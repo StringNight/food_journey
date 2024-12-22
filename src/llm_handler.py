@@ -6,6 +6,7 @@ import logging
 import json
 from langchain.prompts import PromptTemplate
 from src.schemas.chat import MessageResponse
+import os
 
 class LLMHandler:
     """LLM处理器类
@@ -22,6 +23,18 @@ class LLMHandler:
         try:
             logging.info("开始初始化 LLM 处理器...")
             
+            # 设置代理绕过
+            os.environ['no_proxy'] = '127.0.0.1,localhost'
+            os.environ['NO_PROXY'] = '127.0.0.1,localhost'
+            # 确保 Python 请求也绕过代理
+            os.environ['PYTHONHTTPSVERIFY'] = '0'
+            
+            # 记录当前的代理设置
+            logging.info("当前代理设置:")
+            logging.info("HTTP_PROXY: %s", os.environ.get('HTTP_PROXY'))
+            logging.info("HTTPS_PROXY: %s", os.environ.get('HTTPS_PROXY'))
+            logging.info("no_proxy: %s", os.environ.get('no_proxy'))
+            
             # 初始化 ChatOllama
             self.chat = None
             self._init_chat()
@@ -36,7 +49,9 @@ class LLMHandler:
 1. 考虑用户的饮食限制和过敏源
 2. 参考用户的卡路里偏好
 3. 结合用户的健康目标
-4. 提供详细的营养信息"""
+4. 提供详细的营养信息
+
+让我们开始这场美食探索之旅吧！"""
             
             logging.info("LLM处理器初始化成功")
             
@@ -48,7 +63,14 @@ class LLMHandler:
         """初始化聊天模型"""
         try:
             logging.info("正在初始化 ChatOllama...")
-            logging.info("使用配置: model=qwen2.5:14b, base_url=http://127.0.0.1:11434")
+            
+            # 配置客户端选项
+            import httpx
+            client = httpx.Client(
+                verify=False,  # 禁用 SSL 验证
+                proxies=None,  # 禁用代理
+                trust_env=False  # 不信任环境变量
+            )
             
             self.chat = ChatOllama(
                 model="qwen2.5:14b",
@@ -56,9 +78,10 @@ class LLMHandler:
                 temperature=0.7,
                 streaming=False,  # 暂时关闭流式输出以便调试
                 callbacks=[StreamingStdOutCallbackHandler()],
-                timeout=30,  # 设置超时时间为 30 秒
-                request_timeout=30.0,  # 设置请求超时时间
-                api_version="v1"  # 指定 API 版本
+                timeout=60,  # 增加超时时间
+                request_timeout=60.0,  # 增加请求超时时间
+                num_retries=3,  # 添加重试次数
+                client=client  # 使用自定义的 HTTP 客户端
             )
             
             # 测试连接
@@ -232,7 +255,7 @@ class LLMHandler:
    - 具体操作描述
    - 火候控制（小火/中火/大火）
    - 精确时间（分钟）
-   - 成功的判断标准
+   - 成功的判断标
    - 可能的失误和补救方法
 
 4. 关键技巧 🔑
@@ -243,7 +266,7 @@ class LLMHandler:
 
 5. 营养分析 📊
    每份（约300克）含量：
-   - 热量：xxx kcal
+   - 热量���xxx kcal
    - 蛋白质：xx g
    - 脂肪：xx g
    - 碳水化合物：xx g
@@ -289,7 +312,7 @@ class LLMHandler:
    - 火候控制说明
    - 时间控制点
    - 成功的判断标准
-   - 常见问题和解决方案
+   - ���见问题和解决方案
 
 3. 专业技巧 ⭐
    - 刀工技巧
