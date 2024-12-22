@@ -1,0 +1,81 @@
+import logging
+import subprocess
+import os
+from dotenv import load_dotenv
+import sys
+import signal
+
+# 加载环境变量
+load_dotenv()
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+def run_fastapi():
+    """运行 FastAPI 服务"""
+    try:
+        cmd = [sys.executable, "-m", "uvicorn", "src.main:app", "--host", "localhost", "--port", "8000"]
+        return subprocess.Popen(cmd)
+    except Exception as e:
+        logger.error(f"FastAPI 服务启动失败: {e}")
+        raise
+
+def run_gradio():
+    """运行 Gradio 服务"""
+    try:
+        cmd = [sys.executable, "-c", """
+from src.web_app import WebApp
+app = WebApp()
+app.launch(server_name='localhost', server_port=7860, share=True)
+"""]
+        return subprocess.Popen(cmd)
+    except Exception as e:
+        logger.error(f"Gradio 服务启动失败: {e}")
+        raise
+
+def signal_handler(signum, frame):
+    """处理终止信号"""
+    logger.info("正在关闭服务...")
+    sys.exit(0)
+
+def main():
+    try:
+        logger.info("正在启动服务...")
+        
+        # 注册信号处理器
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+        
+        # 启动服务
+        fastapi_process = run_fastapi()
+        logger.info("FastAPI 服务已启动 - http://localhost:8000")
+        
+        gradio_process = run_gradio()
+        logger.info("Gradio 服务已启动 - http://localhost:7860")
+        
+        # 等待进程结束
+        fastapi_process.wait()
+        gradio_process.wait()
+        
+    except KeyboardInterrupt:
+        logger.info("正在关闭服务...")
+        if 'fastapi_process' in locals():
+            fastapi_process.terminate()
+        if 'gradio_process' in locals():
+            gradio_process.terminate()
+    except Exception as e:
+        logger.error(f"服务启动失败: {e}")
+        raise
+    finally:
+        # 确保子进程被终止
+        if 'fastapi_process' in locals():
+            fastapi_process.terminate()
+        if 'gradio_process' in locals():
+            gradio_process.terminate()
+
+if __name__ == "__main__":
+    main()
