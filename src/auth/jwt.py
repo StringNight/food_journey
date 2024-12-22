@@ -14,10 +14,10 @@ from src.models.user import User
 load_dotenv()
 
 # 配置
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-super-secret-key-here")
-ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
-REFRESH_TOKEN_EXPIRE_DAYS = 7
+SECRET_KEY = "your-super-secret-key-here"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "10080"))
+REFRESH_TOKEN_EXPIRE_DAYS = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -93,7 +93,7 @@ async def refresh_access_token(refresh_token: str, db: Session) -> Dict[str, str
     
     Args:
         refresh_token: 刷新令牌
-        db: 数据库会话
+        db: 数据库会
         
     Returns:
         Dict: 新的令牌对
@@ -142,7 +142,7 @@ def is_token_revoked(token: str) -> bool:
     检查令牌是否在黑名单中（待实现）
     
     Args:
-        token: 要检查的令牌
+        token: 要检的令牌
         
     Returns:
         bool: 令牌是否已撤销

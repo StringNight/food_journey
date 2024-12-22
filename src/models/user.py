@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from src.database import Base
 
 class User(Base):
@@ -12,3 +13,6 @@ class User(Base):
     avatar_url = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    # 关系定义
+    messages = relationship("Message", back_populates="user")

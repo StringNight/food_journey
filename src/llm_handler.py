@@ -1,4 +1,4 @@
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from typing import Generator, List, Dict, Optional, Any, AsyncGenerator
@@ -20,45 +20,75 @@ class LLMHandler:
             model_name: 使用的模型名称
         """
         try:
-            # 初始化支持流式输出的 ChatOllama
-            self.chat = ChatOllama(
-                model="qwen2.5:14b",
-                base_url="http://localhost:11434",
-                temperature=0.7,
-                streaming=True,  # 启用流式输出
-                callbacks=[StreamingStdOutCallbackHandler()]
-            )
+            logging.info("开始初始化 LLM 处理器...")
+            
+            # 初始化 ChatOllama
+            self.chat = None
+            self._init_chat()
             
             # 创建系统提示
-            self.system_prompt = """你是一个风趣幽默的米其林厨师，并曾在所有的米其林和黑珍珠餐厅工作过，同时也是国家级的营养学专家。你的性格特点是：
-1. 热情友好，喜欢用轻松愉快的语气交谈
-2. 擅长讲笑话和俏皮话，但不会影响专业性
-3. 会根据用户的烹饪水平调整建议的难度
-4. 会关心用户的饮食偏好和健康目标
-5. 喜欢通过提问来了解用户的具体需求
+            self.system_prompt = """你是一个专业的厨师和营养专家。请根据用户的需求提供合适的饮食建议。
 
 用户档案信息：
 {user_profile}
 
-对话规则：
-1. 根据用户的烹饪水平调整回答的专业程度
-2. 考虑用户的饮食限制和过敏源
-3. 参考用户的卡路里偏好给出建议
-4. 结合用户的健康目标提供指导
-5. 在合适的时候提出跟进问题
-
-回答格式要求：
-1. 每个步骤都要详细解释原理和注意事项
-2. 提供具体的时间、温度等数值参考
-3. 说明每个步骤可能出现的问题和解决方案
-4. 包含完整的营养成分分析，包括但不限于卡路里、维生素、矿物质、蛋白质、脂肪、碳水化合物等
-5. 使用emoji增加趣味性"""
+请注意：
+1. 考虑用户的饮食限制和过敏源
+2. 参考用户的卡路里偏好
+3. 结合用户的健康目标
+4. 提供详细的营养信息"""
             
             logging.info("LLM处理器初始化成功")
             
         except Exception as e:
-            logging.error(f"LLM处理器初始化失败: {e}")
-            raise
+            logging.error(f"LLM处理器初始化失败: {e}", exc_info=True)
+            # 不抛出异常，让服务继续运行
+            
+    def _init_chat(self):
+        """初始化聊天模型"""
+        try:
+            logging.info("正在初始化 ChatOllama...")
+            logging.info("使用配置: model=qwen2.5:14b, base_url=http://127.0.0.1:11434")
+            
+            self.chat = ChatOllama(
+                model="qwen2.5:14b",
+                base_url="http://127.0.0.1:11434",
+                temperature=0.7,
+                streaming=False,  # 暂时关闭流式输出以便调试
+                callbacks=[StreamingStdOutCallbackHandler()],
+                timeout=30,  # 设置超时时间为 30 秒
+                request_timeout=30.0,  # 设置请求超时时间
+                api_version="v1"  # 指定 API 版本
+            )
+            
+            # 测试连接
+            self._test_connection()
+            logging.info("ChatOllama 初始化成功")
+            
+        except Exception as e:
+            logging.error(f"ChatOllama 初始化失败: {str(e)}", exc_info=True)
+            self.chat = None
+            raise  # 抛出异常以便上层处理
+
+    def _test_connection(self):
+        """测试与 Ollama 服务的连接"""
+        if not self.chat:
+            logging.error("ChatOllama 未初始化")
+            return
+            
+        try:
+            logging.info("测试与 Ollama 服务的连接...")
+            test_messages = [
+                SystemMessage(content="你是一个助手。"),
+                HumanMessage(content="测试连接")
+            ]
+            response = self.chat.generate([test_messages])
+            logging.info("成功连接到 Ollama 服务")
+            logging.info(f"测试响应: {response.generations[0][0].text}")
+        except Exception as e:
+            logging.error(f"连接 Ollama 服务失败: {str(e)}", exc_info=True)
+            self.chat = None
+            raise  # 抛出异常以便上层处理
 
     async def get_response(self, 
                           prompt: str,
@@ -128,7 +158,7 @@ class LLMHandler:
 1. 食材解析 🥘
    - 核心食材的特点和选购建议
    - 每种食材的最佳处理方法
-   - 食材搭配的营养学原理
+   - 食材配的营养学原理
    - 可能的替代食材及其影响
 
 2. 烹饪步骤详解 👨‍🍳
@@ -299,27 +329,81 @@ class LLMHandler:
             user_profile: 用户档案信息
             
         Returns:
-            MessageResponse: 包含回复消息和建议的响应
+            MessageResponse: 处理结果
         """
         try:
-            response_text = ""
-            async for chunk in self.get_response(message, user_profile=user_profile):
-                response_text += chunk
+            logging.info(f"收到用户消息: {message}")
             
-            # 从响应中提取建议（如果有）
-            suggestions = []
-            if "建议：" in response_text:
-                suggestions_text = response_text.split("建议：")[1].strip()
-                suggestions = [s.strip() for s in suggestions_text.split("\n") if s.strip()]
+            # 如果 LLM 服务不可用，返回友好的错误消息
+            if not self.chat:
+                return MessageResponse(
+                    message="抱歉，AI 助手当前不可用，请稍后再试。",
+                    suggestions=None,
+                    image_url=None,
+                    voice_url=None
+                )
+            
+            # 格式化用户档案
+            profile_str = "暂无用户档案信息"
+            if user_profile:
+                profile_items = []
+                if user_profile.get('cooking_skill_level'):
+                    profile_items.append(f"烹饪水平：{user_profile['cooking_skill_level']}")
+                if user_profile.get('favorite_cuisines'):
+                    cuisines = user_profile['favorite_cuisines']
+                    if isinstance(cuisines, (list, tuple)):
+                        profile_items.append(f"喜爱的菜系：{', '.join(str(x) for x in cuisines)}")
+                    else:
+                        profile_items.append(f"喜爱的菜系：{cuisines}")
+                if user_profile.get('dietary_restrictions'):
+                    restrictions = user_profile['dietary_restrictions']
+                    if isinstance(restrictions, (list, tuple)):
+                        profile_items.append(f"饮食限制：{', '.join(str(x) for x in restrictions)}")
+                    else:
+                        profile_items.append(f"饮食限制：{restrictions}")
+                if user_profile.get('allergies'):
+                    allergies = user_profile['allergies']
+                    if isinstance(allergies, (list, tuple)):
+                        profile_items.append(f"过敏源：{', '.join(str(x) for x in allergies)}")
+                    else:
+                        profile_items.append(f"过敏源：{allergies}")
+                if user_profile.get('calorie_preference'):
+                    profile_items.append(f"卡路里偏好：{user_profile['calorie_preference']}")
+                if user_profile.get('health_goals'):
+                    goals = user_profile['health_goals']
+                    if isinstance(goals, (list, tuple)):
+                        profile_items.append(f"健康目标：{', '.join(str(x) for x in goals)}")
+                    else:
+                        profile_items.append(f"健康目标：{goals}")
+                
+                profile_str = "\n".join(profile_items) if profile_items else "暂无用户档案信息"
+            
+            # 创建消息列表
+            messages = [
+                SystemMessage(content=self.system_prompt.format(user_profile=profile_str)),
+                HumanMessage(content=message)
+            ]
+            
+            logging.info("开始调用 LLM 生成响应...")
+            
+            # 获取响应
+            response = await self.chat.agenerate([messages])
+            response_text = response.generations[0][0].text
+            
+            logging.info(f"LLM 响应内容: {response_text}")
             
             return MessageResponse(
                 message=response_text,
-                suggestions=suggestions if suggestions else None
+                suggestions=None,
+                image_url=None,
+                voice_url=None
             )
             
         except Exception as e:
-            logging.error(f"处理聊天消息失败: {e}")
+            logging.error(f"处理聊天消息失败: {e}", exc_info=True)
             return MessageResponse(
-                message="抱歉，我现在无法正常回答。请稍后再试。",
-                suggestions=["请重新发送您的问题", "换个方式提问", "稍后再试"]
+                message="抱歉，处理您的请求时出现错误，请稍后再试。",
+                suggestions=None,
+                image_url=None,
+                voice_url=None
             )

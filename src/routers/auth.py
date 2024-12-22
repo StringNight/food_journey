@@ -13,6 +13,7 @@ import json
 from src.database import get_db
 from src.models.user import User
 from src.schemas.auth import UserCreate, UserLogin, UserResponse, Token, ChangePassword, ResetPassword
+from src.auth.jwt import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 
 # 配置日志
 logging.basicConfig(level=logging.DEBUG)
@@ -22,11 +23,6 @@ router = APIRouter()
 
 # 密码加密
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# JWT 配置
-SECRET_KEY = "your-secret-key"  # 在生产环境中应该使用环境变量
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -162,7 +158,7 @@ async def login_json(user_data: UserLogin, db: Session = Depends(get_db)):
     # 验证用户
     user = db.query(User).filter(User.username == user_data.username).first()
     if not user or not verify_password(user_data.password, user.hashed_password):
-        logger.warning(f"登录失败: 用户名或密码错误 username={user_data.username}")
+        logger.warning(f"登录失败: 用户���或密码错误 username={user_data.username}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="用户名或密码错误",

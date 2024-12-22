@@ -35,12 +35,12 @@ async def process_text(
     
     # 获取用户档案
     user_profile = {
-        "cooking_skill_level": current_user.cooking_skill_level,
-        "favorite_cuisines": current_user.favorite_cuisines,
-        "dietary_restrictions": current_user.dietary_restrictions,
-        "allergies": current_user.allergies,
-        "calorie_preference": current_user.calorie_preference,
-        "health_goals": current_user.health_goals
+        "cooking_skill_level": current_user.cooking_skill_level if hasattr(current_user, 'cooking_skill_level') else None,
+        "favorite_cuisines": current_user.favorite_cuisines if hasattr(current_user, 'favorite_cuisines') else None,
+        "dietary_restrictions": current_user.dietary_restrictions if hasattr(current_user, 'dietary_restrictions') else None,
+        "allergies": current_user.allergies if hasattr(current_user, 'allergies') else None,
+        "calorie_preference": current_user.calorie_preference if hasattr(current_user, 'calorie_preference') else None,
+        "health_goals": current_user.health_goals if hasattr(current_user, 'health_goals') else None
     }
     
     # 获取 LLM 响应
