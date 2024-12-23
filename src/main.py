@@ -3,15 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
 import logging
+from .logging_config import configure_logging
+
+# 配置日志
+configure_logging()
 
 from src.routers import auth, profile, chat
 from src.database import Base, engine
 
-# 配置日志
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 # 创建数据库表
@@ -41,4 +40,4 @@ app.include_router(chat.router, prefix="/api/chat", tags=["聊天"])
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Food Journey API"} 
+    return {"message": "Welcome to Food Journey API"}

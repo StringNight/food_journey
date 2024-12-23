@@ -1,77 +1,60 @@
 import logging
-import torch
+import wenet
 import torchaudio
-import numpy as np
-from wenet.transformer.asr_model import init_asr_model
-from wenet.utils.common import get_args
-from wenet.utils.file_utils import read_symbol_table
+import os
 
 class VoiceProcessor:
     def __init__(self):
         try:
-            # 强制使用 CPU 设备
-            self.device = "cpu"
-            logging.info(f"使用 {self.device} 设备进行语音处理")
-            
-            # 加载 WeNet 配置
-            args = get_args()
-            args.config = "configs/wenetspeech_conformer.yaml"  # WeNet 配置文件路径
-            args.dict = "data/dict/lang_char.txt"  # 字典文件路径
-            args.checkpoint = "exp/conformer/final.pt"  # 模型文件路径
-            
-            # 加载字典
-            self.symbol_table = read_symbol_table(args.dict)
-            
-            # 加载模型
-            self.model = init_asr_model(args)
-            self.model.load_state_dict(torch.load(args.checkpoint, map_location=self.device))
-            self.model.eval()
-            
-            logging.info("语音处理器初始化成功")
-            
+            # 初始化 WeNet 模型
+            self.model = wenet.load_model('chinese')
+            logging.info("WeNet 语音处理器初始化成功")
         except Exception as e:
-            logging.error(f"语音处理器初始化失败: {e}")
+            logging.error(f"WeNet 模型加载失败: {e}")
             raise
-    
-    def process_voice(self, audio_file) -> str:
+
+    def process_voice(self, audio_file: str) -> str:
+        """
+        处理语音文件并返回识别文本。
+        
+        参数:
+            audio_file (str): 音频文件路径。
+
+        返回:
+            str: 转录的文本。
+        """
         try:
             # 加载音频文件
+            if not os.path.exists(audio_file):
+                raise FileNotFoundError(f"音频文件未找到: {audio_file}")
+            
+            logging.info(f"加载音频文件: {audio_file}")
             waveform, sample_rate = torchaudio.load(audio_file)
             
-            # 重采样到 16kHz（如果需要）
+            # 确保采样率为 16kHz
             if sample_rate != 16000:
+                logging.info("重采样音频到 16kHz")
                 resampler = torchaudio.transforms.Resample(sample_rate, 16000)
                 waveform = resampler(waveform)
                 sample_rate = 16000
             
-            # 确保音频是单声道
+            # 转换为单声道（如有必要）
             if waveform.shape[0] > 1:
+                logging.info("将多声道音频转换为单声道")
                 waveform = torch.mean(waveform, dim=0, keepdim=True)
             
-            # 特征提取和归一化
-            feature = torchaudio.compliance.kaldi.fbank(
-                waveform,
-                num_mel_bins=80,
-                frame_length=25,
-                frame_shift=10,
-                dither=0.0
-            )
-            feature = feature.unsqueeze(0)  # 添加批次维度
+            # 保存临时音频文件
+            temp_audio_file = "temp_audio.wav"
+            torchaudio.save(temp_audio_file, waveform, sample_rate)
             
-            # 进行语音识别
-            with torch.no_grad():
-                hyps = self.model.recognize(
-                    feature,
-                    beam_size=5,
-                    decoding_chunk_size=-1,
-                    num_decoding_left_chunks=-1,
-                    simulate_streaming=False
-                )
+            # 使用 WeNet 模型进行转录
+            logging.info("开始语音转录")
+            result = self.model.transcribe(temp_audio_file)
+            os.remove(temp_audio_file)  # 删除临时文件
             
-            # 解码结果
-            result = "".join([self.symbol_table[i] for i in hyps[0][0]])
-            return result
-            
+            logging.info(f"转录结果: {result['text']}")
+            return result['text']
+        
         except Exception as e:
             logging.error(f"语音处理失败: {e}")
-            return "无法识别语音内容" 
+            return "无法识别语音内容"

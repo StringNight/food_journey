@@ -1,6 +1,11 @@
 import gradio as gr
 from typing import Dict, List, Optional, Tuple
 import logging
+from .logging_config import configure_logging
+
+# 配置日志
+configure_logging()
+
 from .llm_handler import LLMHandler
 from .recipe_manager import RecipeManager
 from .user_profile import UserProfile
@@ -8,6 +13,7 @@ import json
 from datetime import datetime
 
 class WebApp:
+
     """Web应用类
     
     使用Gradio构建的Web界面，提供菜谱生成、个性化推荐等功能

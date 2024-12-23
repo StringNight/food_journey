@@ -1,4 +1,9 @@
 import logging
+from src.logging_config import configure_logging
+
+# 配置日志
+configure_logging()
+
 import subprocess
 import os
 from dotenv import load_dotenv
@@ -8,17 +13,12 @@ import signal
 # 加载环境变量
 load_dotenv()
 
-# 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 def run_fastapi():
     """运行 FastAPI 服务"""
     try:
-        cmd = [sys.executable, "-m", "uvicorn", "src.main:app", "--host", "localhost", "--port", "8000"]
+        cmd = [sys.executable, "-m", "uvicorn", "src.main:app", "--host", "localhost", "--port", "8000", "--log-level", "warning"]
         return subprocess.Popen(cmd)
     except Exception as e:
         logger.error(f"FastAPI 服务启动失败: {e}")
