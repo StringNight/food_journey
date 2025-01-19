@@ -482,15 +482,25 @@ class WebApp:
         """启动Web应用
         
         Args:
-            **kwargs: 传递给gradio.launch的参数
+            **kwargs: 传递给gradio launch的参数
         """
-        # 合并配置
+        # 合并配置参数
         launch_kwargs = {
             "server_name": config.HOST,
             "server_port": config.PORT,
             "debug": config.DEBUG,
-            "show_error": config.DEBUG,
-            **kwargs
         }
         
+        # 如果配置了HTTPS，添加SSL证书配置
+        if config.use_https and config.ssl_certfile and config.ssl_keyfile:
+            launch_kwargs.update({
+                "ssl_keyfile": config.ssl_keyfile,
+                "ssl_certfile": config.ssl_certfile
+            })
+            self.logger.info("启用HTTPS支持")
+        
+        # 更新用户提供的参数
+        launch_kwargs.update(kwargs)
+        
+        # 启动应用
         self.interface.launch(**launch_kwargs) 

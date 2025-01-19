@@ -49,6 +49,11 @@ class AppConfig(BaseSettings):
     port: int = Field(8000, env="APP_PORT")
     log_level: str = Field("INFO", env="LOG_LEVEL")
     
+    # SSL配置
+    ssl_keyfile: str = Field(None, env="SSL_KEYFILE")  # SSL私钥文件路径
+    ssl_certfile: str = Field(None, env="SSL_CERTFILE")  # SSL证书文件路径
+    use_https: bool = Field(False, env="USE_HTTPS")  # 是否启用HTTPS
+    
     # 头像上传配置
     MAX_AVATAR_SIZE: int = Field(5 * 1024 * 1024, env="MAX_AVATAR_SIZE")  # 默认5MB
     ALLOWED_AVATAR_TYPES: list = Field(

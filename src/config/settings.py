@@ -28,6 +28,10 @@ class Settings(BaseSettings):
         "DATABASE_URL",
         "sqlite:///./sql_app.db"
     )
+
+    ssl_keyfile: str = os.getenv("SSL_KEYFILE", None)  # SSL私钥文件路径
+    ssl_certfile: str = os.getenv("SSL_CERTFILE", None)  # SSL证书文件路径
+    use_https: bool = os.getenv("USE_HTTPS", False) 
     
     # JWT设置
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key")
