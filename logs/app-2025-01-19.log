@@ -591,3 +591,158 @@ I am an AI assistant, I do not have access to real-time information or the abili
 2025-01-19 17:27:09 [INFO] __main__: FastAPI 服务已关闭
 2025-01-19 17:27:09 [INFO] __main__: 正在关闭 Gradio 服务...
 2025-01-19 17:27:09 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 18:02:45 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:02:45 [INFO] __main__: 正在启动服务...
+2025-01-19 18:02:45 [INFO] __main__: 启用HTTPS支持
+2025-01-19 18:02:45 [INFO] __main__: FastAPI 服务已启动 - https://0.0.0.0:8000
+2025-01-19 18:02:45 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 198, in _run_module_as_main
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 88, in _run_code
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/__main__.py", line 4, in <module>
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] uvicorn.main()
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1161, in __call__
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return self.main(*args, **kwargs)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1082, in main
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] rv = self.invoke(ctx)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return ctx.invoke(self.callback, **ctx.params)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return __callback(*args, **kwargs)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 412, in main
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] run(
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 579, in run
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] server.run()
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 194, in run
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return runner.run(main)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 118, in run
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return self._loop.run_until_complete(task)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] await self._serve(sockets)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] config.load()
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 401, in load
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] self.ssl: ssl.SSLContext | None = create_ssl_context(
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 114, in create_ssl_context
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] ctx.load_cert_chain(certfile, keyfile, get_password)
+2025-01-19 18:02:45 [INFO] __main__: [FastAPI-Err] FileNotFoundError: [Errno 2] No such file or directory
+2025-01-19 18:02:46 [ERROR] __main__: FastAPI 服务意外退出
+2025-01-19 18:02:46 [INFO] __main__: 正在清理资源...
+2025-01-19 18:02:46 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 18:02:46 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 18:02:46 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 18:02:46 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 18:03:40 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:03:40 [INFO] __main__: 正在启动服务...
+2025-01-19 18:03:40 [ERROR] __main__: FastAPI 服务启动失败: 'Settings' object has no attribute 'USE_HTTPS'
+2025-01-19 18:03:40 [ERROR] __main__: 服务运行出错: 'Settings' object has no attribute 'USE_HTTPS'
+2025-01-19 18:03:40 [INFO] __main__: 正在清理资源...
+2025-01-19 18:06:55 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:06:55 [INFO] __main__: 正在启动服务...
+2025-01-19 18:06:55 [WARNING] __main__: SSL证书文件不存在，将使用HTTP模式启动
+2025-01-19 18:06:55 [INFO] __main__: FastAPI服务已启动
+2025-01-19 18:06:55 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 18:06:55 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/Users/txin/food_journey_backend']
+2025-01-19 18:06:55 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 18:06:55 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [40629] using StatReload
+2025-01-19 18:06:56 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:06:56 [INFO] __main__: [Gradio-Err] 2025-01-19 18:06:56 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:06:58 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 18:06:58 [INFO] __main__: [Gradio-Err] 2025-01-19 18:06:58 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 18:06:59 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:06:59 [INFO] __main__: [Gradio-Err] 2025-01-19 18:06:59 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:01 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:03 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:05 [INFO] root: AI服务客户端初始化成功
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [INFO] root: AI服务客户端初始化成功
+2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 18:07:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 18:07:05 [INFO] src.web_app: 启用HTTPS支持
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [INFO] src.web_app: 启用HTTPS支持
+2025-01-19 18:07:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] Exception in thread Thread-13 (run):
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] self.run()
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/threading.py", line 1012, in run
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] self._target(*self._args, **self._kwargs)
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 194, in run
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] return runner.run(main)
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 118, in run
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] return self._loop.run_until_complete(task)
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] return future.result()
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] await self._serve(sockets)
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] config.load()
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 401, in load
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] self.ssl: ssl.SSLContext | None = create_ssl_context(
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 114, in create_ssl_context
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] ctx.load_cert_chain(certfile, keyfile, get_password)
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] FileNotFoundError: [Errno 2] No such file or directory
+2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:05 [INFO] __main__: [Gradio-Err] 2025-01-19 18:07:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] File "<string>", line 15, in <module>
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 506, in launch
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] self.interface.launch(**launch_kwargs)
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/blocks.py", line 2515, in launch
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] ) = http_server.start_server(
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/http_server.py", line 156, in start_server
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] raise OSError(
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Err] OSError: Cannot find empty port in range: 7860-7860. You can specify a different port by setting the GRADIO_SERVER_PORT environment variable or passing the `server_port` parameter to `launch()`.
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 18:07:10 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 18:07:11 [ERROR] __main__: Gradio 服务意外退出
+2025-01-19 18:07:11 [INFO] __main__: 正在清理资源...
+2025-01-19 18:07:11 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 18:07:14 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 18:07:14 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 18:07:14 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 18:08:35 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 18:08:35 [INFO] __main__: 正在启动服务...
+2025-01-19 18:08:35 [WARNING] __main__: SSL证书文件不存在，将使用HTTP模式启动
+2025-01-19 18:08:35 [INFO] __main__: FastAPI服务已启动
+2025-01-19 18:08:35 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/Users/txin/food_journey_backend']
+2025-01-19 18:08:35 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 18:08:35 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [40938] using StatReload
+2025-01-19 18:08:53 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [40940]
+2025-01-19 18:08:53 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 18:08:53 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 18:09:17 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-19 18:09:17 [INFO] __main__: 正在清理资源...
+2025-01-19 18:09:17 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 18:09:17 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 18:09:17 [INFO] __main__: FastAPI 服务已关闭

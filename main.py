@@ -78,35 +78,55 @@ class ServiceManager:
         self.log_threads.extend([stdout_thread, stderr_thread])
 
     def run_fastapi(self):
-        """运行 FastAPI 服务"""
+        """启动FastAPI服务"""
         try:
+            # 获取SSL配置
+            use_https = os.getenv("USE_HTTPS", "false").lower() == "true"
+            ssl_certfile = os.getenv("SSL_CERTFILE")
+            ssl_keyfile = os.getenv("SSL_KEYFILE")
+            
+            # 展开路径中的用户目录符号 (~)
+            if ssl_certfile:
+                ssl_certfile = os.path.expanduser(ssl_certfile)
+            if ssl_keyfile:
+                ssl_keyfile = os.path.expanduser(ssl_keyfile)
+            
+            # 准备命令行参数
             cmd = [
-                sys.executable, 
-                "-m", 
-                "uvicorn", 
-                "src.main:app", 
-                "--host", 
-                config.HOST,
-                "--port", 
-                str(config.PORT),
-                "--log-level", 
-                "debug" if config.DEBUG else "info"
+                sys.executable,
+                "-m", "uvicorn",
+                "src.main:app",
+                "--host", "0.0.0.0",
+                "--port", "8000",
+                "--reload"
             ]
+            
+            # 添加SSL配置
+            if use_https and ssl_certfile and ssl_keyfile:
+                if os.path.exists(ssl_certfile) and os.path.exists(ssl_keyfile):
+                    cmd.extend([
+                        "--ssl-keyfile", ssl_keyfile,
+                        "--ssl-certfile", ssl_certfile
+                    ])
+                else:
+                    logger.warning("SSL证书文件不存在，将使用HTTP模式启动")
+            
+            # 启动FastAPI进程
             self.fastapi_process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
+                text=True,
                 bufsize=1,
-                universal_newlines=True,
-                encoding='utf-8'
+                universal_newlines=True
             )
             
-            # 启动输出监控线程
+            # 启动日志处理线程
             self._start_process_log_threads(self.fastapi_process, "FastAPI")
+            logger.info("FastAPI服务已启动")
             
-            logger.info(f"FastAPI 服务已启动 - http://{config.HOST}:{config.PORT}")
         except Exception as e:
-            logger.error(f"FastAPI 服务启动失败: {e}")
+            logger.error(f"启动FastAPI服务失败: {e}")
             raise
 
     def run_gradio(self):
@@ -206,14 +226,14 @@ def main():
         
         # 启动服务
         manager.run_fastapi()
-        manager.run_gradio()
+        #manager.run_gradio()
         
         # 等待进程结束，同时检查子进程状态
         while True:
             if manager.fastapi_process.poll() is not None:
                 logger.error("FastAPI 服务意外退出")
                 break
-            if manager.gradio_process.poll() is not None:
+           # if manager.gradio_process.poll() is not None:
                 logger.error("Gradio 服务意外退出")
                 break
             time.sleep(1)

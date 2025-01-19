@@ -194,3 +194,40 @@ async def general_exception_handler(request: Request, exc: Exception):
 
 # 使用自定义OpenAPI文档
 app.openapi = lambda: custom_openapi(app)
+
+# 如果是直接运行此文件（不是作为模块导入）
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    from pathlib import Path
+    
+    # 获取SSL配置
+    use_https = os.getenv("USE_HTTPS", "false").lower() == "true"
+    ssl_certfile = os.getenv("SSL_CERTFILE")
+    ssl_keyfile = os.getenv("SSL_KEYFILE")
+    
+    # 展开路径中的用户目录符号 (~)
+    if ssl_certfile:
+        ssl_certfile = os.path.expanduser(ssl_certfile)
+    if ssl_keyfile:
+        ssl_keyfile = os.path.expanduser(ssl_keyfile)
+    
+    # 配置SSL
+    ssl_config = {}
+    if use_https and ssl_certfile and ssl_keyfile:
+        if os.path.exists(ssl_certfile) and os.path.exists(ssl_keyfile):
+            ssl_config.update({
+                "ssl_keyfile": ssl_keyfile,
+                "ssl_certfile": ssl_certfile
+            })
+        else:
+            print("警告: SSL证书文件不存在，将使用HTTP模式启动")
+    
+    # 启动服务器
+    uvicorn.run(
+        "src.main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        **ssl_config
+    )
