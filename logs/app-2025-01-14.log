@@ -1,0 +1,1853 @@
+2025-01-14 19:44:22 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:44:22 [INFO] __main__: 正在启动服务...
+2025-01-14 19:44:22 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 19:44:22 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 19:44:23 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:44:23 [INFO] __main__: [Gradio-Err] 2025-01-14 19:44:23 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 198, in _run_module_as_main
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 88, in _run_code
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/__main__.py", line 4, in <module>
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] uvicorn.main()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1161, in __call__
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return self.main(*args, **kwargs)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1082, in main
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] rv = self.invoke(ctx)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return ctx.invoke(self.callback, **ctx.params)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return __callback(*args, **kwargs)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 412, in main
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] run(
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 579, in run
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] server.run()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 194, in run
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return runner.run(main)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 118, in run
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return self._loop.run_until_complete(task)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] await self._serve(sockets)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] config.load()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 435, in load
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/main.py", line 37, in <module>
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/routers/chat.py", line 28, in <module>
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 21, in __init__
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] self.chat_client = Client("https://97c0a4fd9fb39fb02d.gradio.live/")
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 153, in __init__
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] self.config = self._get_config()
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Err] ValueError: Could not fetch config for https://97c0a4fd9fb39fb02d.gradio.live/
+2025-01-14 19:44:25 [INFO] __main__: [FastAPI-Out] Loaded as API: https://97c0a4fd9fb39fb02d.gradio.live/ ✔
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] File "<string>", line 14, in <module>
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 28, in __init__
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] self.ai_client = AIServiceClient()
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 21, in __init__
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] self.chat_client = Client("https://97c0a4fd9fb39fb02d.gradio.live/")
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 153, in __init__
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] self.config = self._get_config()
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Err] ValueError: Could not fetch config for https://97c0a4fd9fb39fb02d.gradio.live/
+2025-01-14 19:44:25 [INFO] __main__: [Gradio-Out] Loaded as API: https://97c0a4fd9fb39fb02d.gradio.live/ ✔
+2025-01-14 19:44:25 [ERROR] __main__: FastAPI 服务意外退出
+2025-01-14 19:44:25 [INFO] __main__: 正在清理资源...
+2025-01-14 19:44:25 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 19:44:25 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 19:44:25 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 19:44:25 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 19:45:16 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:45:16 [INFO] __main__: 正在启动服务...
+2025-01-14 19:45:16 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 19:45:16 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 19:45:17 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:45:17 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:17 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:45:19 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:19 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:19 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:20 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:21 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:21 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:21 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:23 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:25 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:25 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:45:26 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:26 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:26 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:45:26 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:45:26 [INFO] __main__: [Gradio-Err] 2025-01-14 19:45:26 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:45:33 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [34137]
+2025-01-14 19:45:33 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 19:45:33 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 19:45:33 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 19:46:49 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 19:46:49 [INFO] __main__: 正在清理资源...
+2025-01-14 19:46:49 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 19:46:49 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 19:46:49 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 19:46:49 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 19:46:49 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 19:47:49 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:47:49 [INFO] __main__: 正在启动服务...
+2025-01-14 19:47:49 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 19:47:49 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 19:47:50 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:47:50 [INFO] __main__: [Gradio-Err] 2025-01-14 19:47:50 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:47:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:47:54 [INFO] __main__: [Gradio-Err] 2025-01-14 19:47:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:47:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:47:55 [INFO] __main__: [Gradio-Err] 2025-01-14 19:47:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:47:57 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:47:57 [INFO] __main__: [Gradio-Err] 2025-01-14 19:47:57 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:47:59 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:47:59 [INFO] __main__: [Gradio-Err] 2025-01-14 19:47:59 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:48:01 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:48:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:48:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:48:01 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:01 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:48:02 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:48:02 [INFO] __main__: [Gradio-Err] 2025-01-14 19:48:02 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] yield
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] resp = self._pool.handle_request(req)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] raise exc from None
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] response = connection.handle_request(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 316, in handle_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] stream = stream.start_tls(**kwargs)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 376, in start_tls
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return self._stream.start_tls(ssl_context, server_hostname, timeout)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 154, in start_tls
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] with map_exceptions(exc_map):
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] self.gen.throw(value)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] raise to_exc(exc) from exc
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] httpcore.ConnectTimeout: _ssl.c:983: The handshake operation timed out
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] The above exception was the direct cause of the following exception:
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 198, in _run_module_as_main
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 88, in _run_code
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/__main__.py", line 4, in <module>
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] uvicorn.main()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1161, in __call__
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return self.main(*args, **kwargs)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1082, in main
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] rv = self.invoke(ctx)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return ctx.invoke(self.callback, **ctx.params)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return __callback(*args, **kwargs)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 412, in main
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] run(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 579, in run
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] server.run()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 194, in run
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return runner.run(main)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 118, in run
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return self._loop.run_until_complete(task)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] await self._serve(sockets)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] config.load()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 435, in load
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/main.py", line 37, in <module>
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/routers/workout.py", line 28, in <module>
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 22, in __init__
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] self.chat_stream_client = Client("https://2cef2c9b80d0a7784b.gradio.live/")
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 180, in __init__
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] self._info = self._get_api_info()
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 565, in _get_api_info
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] r = httpx.get(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 210, in get
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return request(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return client.request(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] return self.send(request, auth=auth, follow_redirects=follow_redirects)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] response = self._send_handling_auth(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] response = self._send_handling_redirects(
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] response = self._send_single_request(request)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] response = transport.handle_request(request)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] with map_httpcore_exceptions():
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] self.gen.throw(value)
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] raise mapped_exc(message) from exc
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Err] httpx.ConnectTimeout: _ssl.c:983: The handshake operation timed out
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:09 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:48:10 [ERROR] __main__: FastAPI 服务意外退出
+2025-01-14 19:48:10 [INFO] __main__: 正在清理资源...
+2025-01-14 19:48:10 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 19:48:10 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 19:48:10 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 19:48:10 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 19:52:07 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:52:07 [INFO] __main__: 正在启动服务...
+2025-01-14 19:52:07 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 19:52:07 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 19:52:09 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:52:09 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:09 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 19:52:11 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:11 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:11 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:12 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:14 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:16 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:16 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:16 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:18 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [INFO] root: AI服务客户端初始化成功
+2025-01-14 19:52:18 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:18 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:52:18 [INFO] __main__: [Gradio-Err] 2025-01-14 19:52:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 19:52:38 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [46160]
+2025-01-14 19:52:38 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 19:52:38 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 19:52:38 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 19:52:47 [INFO] __main__: [FastAPI-Out] INFO:     127.0.0.1:54906 - "GET /api/v1/openapi.json HTTP/1.1" 200 OK
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:223988]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:223988]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:223988]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:223988]
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:03 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:13:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:41 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:13:53 [ERROR] src.web_app: 图片处理失败: 'str' object has no attribute 'get'
+2025-01-14 20:13:53 [INFO] __main__: [Gradio-Err] 2025-01-14 20:13:53 [ERROR] src.web_app: 图片处理失败: 'str' object has no attribute 'get'
+2025-01-14 20:16:25 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:16:25 [INFO] __main__: 正在清理资源...
+2025-01-14 20:16:25 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:16:25 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:16:25 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:16:25 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:16:25 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:16:52 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:16:52 [INFO] __main__: 正在启动服务...
+2025-01-14 20:16:52 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:16:52 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:16:53 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:16:53 [INFO] __main__: [Gradio-Err] 2025-01-14 20:16:53 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:16:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:16:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:16:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:16:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:16:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:16:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:16:57 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:16:57 [INFO] __main__: [Gradio-Err] 2025-01-14 20:16:57 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:01 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:03 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:17:03 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:17:03 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:17:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:17:09 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [87429]
+2025-01-14 20:17:09 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:17:09 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:17:09 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:131072]
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:131072]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:164582]
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:164582]
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:17:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:17:27 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:19:37 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:19:37 [INFO] __main__: 正在清理资源...
+2025-01-14 20:19:37 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:19:37 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:19:37 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:19:37 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:19:37 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:19:40 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:19:40 [INFO] __main__: 正在启动服务...
+2025-01-14 20:19:40 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:19:40 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:19:41 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:19:41 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:41 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:19:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:43 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:44 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:44 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:44 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:45 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:45 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:45 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:48 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:48 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:48 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:49 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:19:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:49 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:19:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:19:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:19:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:19:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:19:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:19:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:19:57 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [91901]
+2025-01-14 20:19:57 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:19:57 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:19:57 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:261563]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:261563]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:34091]
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:34091]
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:20:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:20:11 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:114]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_field with data[116:128]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_value with data[130:140]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:114]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_field with data[116:128]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_value with data[130:140]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[144:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[144:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:262144]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:227231]
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:227231]
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:21:34 [INFO] __main__: [Gradio-Err] 2025-01-14 20:21:34 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:30:10 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:10 [INFO] __main__: 正在启动服务...
+2025-01-14 20:30:10 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:30:10 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:30:11 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:11 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:17 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:17 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:19 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:19 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:19 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:21 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:21 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:30:21 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:21 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:21 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:21 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] File "<string>", line 14, in <module>
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 32, in __init__
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] self.interface = self._build_interface()
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 52, in _build_interface
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] self._build_ai_test_tab()
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 216, in _build_ai_test_tab
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] image_input = gr.Image(
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] ^^^^^^^^^
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/component_meta.py", line 179, in wrapper
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] return fn(self, **kwargs)
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] TypeError: Image.__init__() got an unexpected keyword argument 'tool'
+2025-01-14 20:30:21 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:21 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:22 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:22 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:22 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:22 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:23 [ERROR] __main__: Gradio 服务意外退出
+2025-01-14 20:30:23 [INFO] __main__: 正在清理资源...
+2025-01-14 20:30:23 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:30:28 [WARNING] __main__: FastAPI 服务未能在5秒内关闭，强制结束
+2025-01-14 20:30:28 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:30:28 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:30:28 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:30:39 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:39 [INFO] __main__: 正在启动服务...
+2025-01-14 20:30:39 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:30:39 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:30:40 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:40 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:40 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:30:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:43 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:43 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:46 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:46 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:46 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:48 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:48 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:48 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:50 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:50 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:30:50 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:50 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] File "<string>", line 14, in <module>
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 32, in __init__
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] self.interface = self._build_interface()
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 52, in _build_interface
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] self._build_ai_test_tab()
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 216, in _build_ai_test_tab
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] image_input = gr.Image(
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] ^^^^^^^^^
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/component_meta.py", line 179, in wrapper
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] return fn(self, **kwargs)
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] TypeError: Image.__init__() got an unexpected keyword argument 'tool'
+2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:50 [INFO] __main__: [Gradio-Err] 2025-01-14 20:30:50 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:30:51 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:51 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:51 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:51 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:30:52 [ERROR] __main__: Gradio 服务意外退出
+2025-01-14 20:30:52 [INFO] __main__: 正在清理资源...
+2025-01-14 20:30:52 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:30:57 [WARNING] __main__: FastAPI 服务未能在5秒内关闭，强制结束
+2025-01-14 20:30:57 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:30:57 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:30:57 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:31:11 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:31:11 [INFO] __main__: 正在启动服务...
+2025-01-14 20:31:11 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:31:11 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:31:12 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:31:12 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:12 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:31:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:31:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:31:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:17 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:17 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:20 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:22 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:22 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:31:22 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:22 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] File "<string>", line 14, in <module>
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 32, in __init__
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] self.interface = self._build_interface()
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 52, in _build_interface
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] self._build_ai_test_tab()
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 216, in _build_ai_test_tab
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] image_input = gr.Image(
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] ^^^^^^^^^
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/component_meta.py", line 179, in wrapper
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] return fn(self, **kwargs)
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] TypeError: Image.__init__() got an unexpected keyword argument 'tool'
+2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:22 [INFO] __main__: [Gradio-Err] 2025-01-14 20:31:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:31:23 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:31:23 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:31:23 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:31:23 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:31:23 [ERROR] __main__: Gradio 服务意外退出
+2025-01-14 20:31:23 [INFO] __main__: 正在清理资源...
+2025-01-14 20:31:23 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:31:28 [WARNING] __main__: FastAPI 服务未能在5秒内关闭，强制结束
+2025-01-14 20:31:28 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:31:28 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:31:28 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:32:20 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:32:20 [INFO] __main__: 正在启动服务...
+2025-01-14 20:32:20 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:32:20 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:32:21 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:32:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:21 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:32:23 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:23 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:25 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:27 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:27 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:27 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:29 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:32:29 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:29 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:32:29 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:29 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:32:29 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:29 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:29 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:29 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:30 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:32:30 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:30 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:32:30 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:30 [INFO] __main__: [Gradio-Err] 2025-01-14 20:32:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:32:38 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [13820]
+2025-01-14 20:32:38 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:32:38 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:32:38 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:33:11 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:33:11 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:33:11 [INFO] root: 读取到的图片大小: 295511 bytes
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: 读取到的图片大小: 295511 bytes
+2025-01-14 20:33:11 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:33:11 [INFO] root: base64字符串前100个字符: /9j/4AAQSk
+2025-01-14 20:33:11 [INFO] root: base64字符串后100个字符: UUVoZH/9k=
+2025-01-14 20:33:11 [INFO] root: 开始发送预测请求...
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: base64字符串前100个字符: /9j/4AAQSk
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: base64字符串后100个字符: UUVoZH/9k=
+2025-01-14 20:33:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:11 [INFO] root: 开始发送预测请求...
+2025-01-14 20:33:17 [ERROR] root: 食物识别请求失败: The read operation timed out
+Traceback (most recent call last):
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 149, in recognize_food
+    result = self.food_client.predict(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+    ).result()
+      ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+    return super().result(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+    predictions = _predict(*data)
+                  ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+    event_id = self.client.send_data(data, hash_data, self.protocol)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+    req = httpx.post(
+          ^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+    return request(
+           ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:33:17 [ERROR] root: 食物识别请求失败: The read operation timed out
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] yield
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] resp = self._pool.handle_request(req)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] raise exc from None
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] response = connection.handle_request(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return self._connection.handle_request(request)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] raise exc
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ) = self._receive_response_headers(**kwargs)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] event = self._receive_event(timeout=timeout)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] data = self._network_stream.read(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] with map_exceptions(exc_map):
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] raise to_exc(exc) from exc
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] httpcore.ReadTimeout: The read operation timed out
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] The above exception was the direct cause of the following exception:
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 149, in recognize_food
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] result = self.food_client.predict(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ).result()
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return super().result(timeout=timeout)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return self.__get_result()
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] raise self._exception
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] result = self.fn(*self.args, **self.kwargs)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] predictions = _predict(*data)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] event_id = self.client.send_data(data, hash_data, self.protocol)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] req = httpx.post(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return request(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return client.request(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] return self.send(request, auth=auth, follow_redirects=follow_redirects)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] response = self._send_handling_auth(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] response = self._send_handling_redirects(
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] response = self._send_single_request(request)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] response = transport.handle_request(request)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] with map_httpcore_exceptions():
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] raise mapped_exc(message) from exc
+2025-01-14 20:33:17 [INFO] __main__: [Gradio-Err] httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:35:07 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:35:07 [INFO] __main__: 正在清理资源...
+2025-01-14 20:35:07 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:35:07 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:35:07 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:35:07 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:35:10 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:35:10 [INFO] __main__: 正在启动服务...
+2025-01-14 20:35:10 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:35:10 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:35:11 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:35:11 [INFO] __main__: [Gradio-Err] 2025-01-14 20:35:11 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:35:13 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:35:13 [INFO] __main__: [Gradio-Err] 2025-01-14 20:35:13 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:35:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:35:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:35:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:35:16 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:35:16 [INFO] __main__: [Gradio-Err] 2025-01-14 20:35:16 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 198, in _run_module_as_main
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen runpy>", line 88, in _run_code
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/__main__.py", line 4, in <module>
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] uvicorn.main()
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1161, in __call__
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return self.main(*args, **kwargs)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1082, in main
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] rv = self.invoke(ctx)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return ctx.invoke(self.callback, **ctx.params)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return __callback(*args, **kwargs)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 412, in main
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] run(
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/main.py", line 579, in run
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] server.run()
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 66, in run
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 194, in run
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return runner.run(main)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/runners.py", line 118, in run
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return self._loop.run_until_complete(task)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] await self._serve(sockets)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/server.py", line 77, in _serve
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] config.load()
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/config.py", line 435, in load
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/main.py", line 37, in <module>
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/routers/chat.py", line 28, in <module>
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 24, in __init__
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] self.food_client = Client(
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] ^^^^^^^
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Err] TypeError: Client.__init__() got an unexpected keyword argument 'request_timeout'
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:17 [INFO] __main__: [FastAPI-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] File "<string>", line 14, in <module>
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 28, in __init__
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] self.ai_client = AIServiceClient()
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 24, in __init__
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] self.food_client = Client(
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] ^^^^^^^
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Err] TypeError: Client.__init__() got an unexpected keyword argument 'request_timeout'
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://2cef2c9b80d0a7784b.gradio.live/ ✔
+2025-01-14 20:35:18 [ERROR] __main__: FastAPI 服务意外退出
+2025-01-14 20:35:18 [INFO] __main__: 正在清理资源...
+2025-01-14 20:35:18 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:35:18 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:35:18 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:35:18 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:36:45 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:36:45 [INFO] __main__: 正在启动服务...
+2025-01-14 20:36:45 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:36:45 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:36:46 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:36:46 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:46 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:36:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:51 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:51 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:51 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:53 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:53 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:53 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:55 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:36:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:55 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:36:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:55 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:36:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:55 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:56 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:36:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:56 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:36:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:36:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:37:04 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [21769]
+2025-01-14 20:37:04 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:37:04 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:37:04 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:37:23 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:37:23 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:37:23 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:37:23 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:37:23 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:37:23 [INFO] root: 开始发送预测请求...
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [INFO] root: 开始发送预测请求...
+2025-01-14 20:37:23 [ERROR] root: 食物识别请求失败: Parameter `timeout` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+Traceback (most recent call last):
+  File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+    result = self.food_client.predict(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 475, in predict
+    return self.submit(
+           ^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 519, in submit
+    args = utils.construct_args(endpoint.parameters_info, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/utils.py", line 1169, in construct_args
+    raise TypeError(
+TypeError: Parameter `timeout` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] 2025-01-14 20:37:23 [ERROR] root: 食物识别请求失败: Parameter `timeout` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] result = self.food_client.predict(
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 475, in predict
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] return self.submit(
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 519, in submit
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] args = utils.construct_args(endpoint.parameters_info, args, kwargs)
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/utils.py", line 1169, in construct_args
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] raise TypeError(
+2025-01-14 20:37:23 [INFO] __main__: [Gradio-Err] TypeError: Parameter `timeout` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+2025-01-14 20:39:02 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:39:02 [INFO] __main__: 正在清理资源...
+2025-01-14 20:39:02 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:39:02 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:39:02 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:39:02 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:39:02 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:39:04 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:39:04 [INFO] __main__: 正在启动服务...
+2025-01-14 20:39:04 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:39:04 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:39:05 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:39:05 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:05 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:39:07 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:07 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:07 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:07 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:07 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:07 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:10 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:10 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:10 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:12 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:14 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:39:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:14 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:39:14 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:39:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:14 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:39:14 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:15 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:39:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:15 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:39:15 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:15 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:39:24 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [25877]
+2025-01-14 20:39:24 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:39:24 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:39:24 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:262144]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:33510]
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:39:36 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:36 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:39:37 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:39:37 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:39:37 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:39:37 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:39:37 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:39:37 [INFO] root: 开始发送预测请求...
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:39:37 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:37 [INFO] root: 开始发送预测请求...
+2025-01-14 20:39:43 [ERROR] root: 食物识别请求失败: The read operation timed out
+Traceback (most recent call last):
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+    result = self.food_client.predict(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+    ).result()
+      ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+    return super().result(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+    predictions = _predict(*data)
+                  ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+    event_id = self.client.send_data(data, hash_data, self.protocol)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+    req = httpx.post(
+          ^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+    return request(
+           ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] 2025-01-14 20:39:43 [ERROR] root: 食物识别请求失败: The read operation timed out
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] yield
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] resp = self._pool.handle_request(req)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] raise exc from None
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] response = connection.handle_request(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return self._connection.handle_request(request)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] raise exc
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ) = self._receive_response_headers(**kwargs)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] event = self._receive_event(timeout=timeout)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] data = self._network_stream.read(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] with map_exceptions(exc_map):
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] raise to_exc(exc) from exc
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] httpcore.ReadTimeout: The read operation timed out
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] The above exception was the direct cause of the following exception:
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] result = self.food_client.predict(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ).result()
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return super().result(timeout=timeout)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return self.__get_result()
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] raise self._exception
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] result = self.fn(*self.args, **self.kwargs)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] predictions = _predict(*data)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] event_id = self.client.send_data(data, hash_data, self.protocol)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] req = httpx.post(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return request(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return client.request(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] return self.send(request, auth=auth, follow_redirects=follow_redirects)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] response = self._send_handling_auth(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] response = self._send_handling_redirects(
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] response = self._send_single_request(request)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] response = transport.handle_request(request)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] with map_httpcore_exceptions():
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] raise mapped_exc(message) from exc
+2025-01-14 20:39:43 [INFO] __main__: [Gradio-Err] httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:40:01 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:40:01 [INFO] __main__: 正在清理资源...
+2025-01-14 20:40:01 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:40:01 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:40:01 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:40:01 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:40:01 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:41:50 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:41:50 [INFO] __main__: 正在启动服务...
+2025-01-14 20:41:50 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:41:50 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:41:51 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:41:51 [INFO] __main__: [Gradio-Err] 2025-01-14 20:41:51 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:41:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:41:54 [INFO] __main__: [Gradio-Err] 2025-01-14 20:41:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:41:54 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:41:54 [INFO] __main__: [Gradio-Err] 2025-01-14 20:41:54 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:41:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:41:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:41:56 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:41:58 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:41:58 [INFO] __main__: [Gradio-Err] 2025-01-14 20:41:58 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:42:00 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:42:00 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:00 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:42:00 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:42:00 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:42:00 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:00 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:42:00 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:00 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:42:01 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:42:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:42:01 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:01 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:42:01 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:42:01 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:01 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:42:08 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [30811]
+2025-01-14 20:42:08 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:42:08 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:42:08 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:42:52 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:42:52 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-14 20:42:52 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:42:52 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-14 20:42:52 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-14 20:42:52 [INFO] root: 开始发送预测请求...
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-14 20:42:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:52 [INFO] root: 开始发送预测请求...
+2025-01-14 20:42:56 [INFO] root: 收到预测结果: This image appears to contain sliced peaches, kiwi, bananas, and grapes. There are also some red berries that could be strawberries or cherries but it's difficult to tell due to the blurriness of the photo. The fruit is arranged on a large green plate with rounded edges.
+2025-01-14 20:42:56 [INFO] __main__: [Gradio-Err] 2025-01-14 20:42:56 [INFO] root: 收到预测结果: This image appears to contain sliced peaches, kiwi, bananas, and grapes. There are also some red berries that could be strawberries or cherries but it's difficult to tell due to the blurriness of the photo. The fruit is arranged on a large green plate with rounded edges.
+2025-01-14 20:43:36 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:43:36 [INFO] __main__: 正在清理资源...
+2025-01-14 20:43:36 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:43:36 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:43:37 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:43:37 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:43:37 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:45:43 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:45:43 [INFO] __main__: 正在启动服务...
+2025-01-14 20:45:43 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:45:43 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:45:44 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:45:44 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:44 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:45:46 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:46 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:46 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:47 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:47 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:47 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:49 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:52 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:52 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:52 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:54 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:45:54 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:54 [INFO] root: AI服务客户端初始化成功
+2025-01-14 20:45:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:54 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:45:54 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:54 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:54 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:54 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:55 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:45:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:55 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:45:55 [INFO] __main__: [Gradio-Err] 2025-01-14 20:45:55 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-14 20:46:03 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [37724]
+2025-01-14 20:46:03 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-14 20:46:03 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-14 20:46:03 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:46:17 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:17 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:46:18 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:46:18 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-14 20:46:18 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:46:18 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-14 20:46:18 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-14 20:46:18 [INFO] root: 开始发送预测请求...
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-14 20:46:18 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:18 [INFO] root: 开始发送预测请求...
+2025-01-14 20:46:21 [INFO] root: 收到预测结果: The image shows a plate of sliced fruit. There are several different types of fruit on the plate, including orange slices, grapes, and what appears to be kiwi slices (based on the dark green color). The fruit slices appear to be arranged in a decorative pattern on the plate. Overall, this is an image of a healthy snack or meal, perhaps served at a party or gathering.
+2025-01-14 20:46:21 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:21 [INFO] root: 收到预测结果: The image shows a plate of sliced fruit. There are several different types of fruit on the plate, including orange slices, grapes, and what appears to be kiwi slices (based on the dark green color). The fruit slices appear to be arranged in a decorative pattern on the plate. Overall, this is an image of a healthy snack or meal, perhaps served at a party or gathering.
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:113]
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_field with data[115:127]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_value with data[129:139]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:131072]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_data with data[143:131072]
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:164582]
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:164582]
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-14 20:46:39 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:46:39 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-14 20:46:39 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7f86d6b27cd76ff76257ae0181b127b34711efeaab84a3e0330413ca44270a26/食材test.jpg
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: 原始图片大小: 295511 bytes
+2025-01-14 20:46:39 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:46:39 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:46:39 [INFO] root: 开始发送预测请求...
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: 转换后的base64字符串长度: 394016
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIA
+2025-01-14 20:46:39 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:39 [INFO] root: 开始发送预测请求...
+2025-01-14 20:46:45 [ERROR] root: 食物识别请求失败: The read operation timed out
+Traceback (most recent call last):
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+    result = self.food_client.predict(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+    ).result()
+      ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+    return super().result(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+    predictions = _predict(*data)
+                  ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+    event_id = self.client.send_data(data, hash_data, self.protocol)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+    req = httpx.post(
+          ^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+    return request(
+           ^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] 2025-01-14 20:46:45 [ERROR] root: 食物识别请求失败: The read operation timed out
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] yield
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 236, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] resp = self._pool.handle_request(req)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] raise exc from None
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] response = connection.handle_request(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http_proxy.py", line 343, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return self._connection.handle_request(request)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] raise exc
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ) = self._receive_response_headers(**kwargs)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] event = self._receive_event(timeout=timeout)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] data = self._network_stream.read(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] with map_exceptions(exc_map):
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] raise to_exc(exc) from exc
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] httpcore.ReadTimeout: The read operation timed out
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] The above exception was the direct cause of the following exception:
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/services/ai_service_client.py", line 173, in recognize_food
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] result = self.food_client.predict(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 477, in predict
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ).result()
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1514, in result
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return super().result(timeout=timeout)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return self.__get_result()
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] raise self._exception
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] result = self.fn(*self.args, **self.kwargs)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1133, in _inner
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] predictions = _predict(*data)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 1235, in _predict
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] event_id = self.client.send_data(data, hash_data, self.protocol)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio_client/client.py", line 298, in send_data
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] req = httpx.post(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 331, in post
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return request(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_api.py", line 118, in request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return client.request(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 837, in request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] return self.send(request, auth=auth, follow_redirects=follow_redirects)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 926, in send
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] response = self._send_handling_auth(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 954, in _send_handling_auth
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] response = self._send_handling_redirects(
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 991, in _send_handling_redirects
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] response = self._send_single_request(request)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_client.py", line 1027, in _send_single_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] response = transport.handle_request(request)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 235, in handle_request
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] with map_httpcore_exceptions():
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.pyenv/versions/3.12.7/lib/python3.12/contextlib.py", line 158, in __exit__
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] self.gen.throw(value)
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] raise mapped_exc(message) from exc
+2025-01-14 20:46:45 [INFO] __main__: [Gradio-Err] httpx.ReadTimeout: The read operation timed out
+2025-01-14 20:52:00 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:52:00 [INFO] __main__: 正在清理资源...
+2025-01-14 20:52:00 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:52:00 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-14 20:52:00 [INFO] __main__: FastAPI 服务已关闭
+2025-01-14 20:52:00 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-14 20:52:00 [INFO] __main__: Gradio 服务已关闭
+2025-01-14 20:52:02 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:52:02 [INFO] __main__: 正在启动服务...
+2025-01-14 20:52:02 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-14 20:52:02 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-14 20:52:03 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:52:03 [INFO] __main__: [Gradio-Err] 2025-01-14 20:52:03 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-14.log, 控制台: True
+2025-01-14 20:52:04 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-14 20:52:04 [INFO] __main__: 正在清理资源...
+2025-01-14 20:52:04 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-14 20:52:04 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-14 20:52:05 [INFO] __main__: 收到信号 2，正在优雅关闭...

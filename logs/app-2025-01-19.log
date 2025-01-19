@@ -1,0 +1,264 @@
+2025-01-19 11:48:54 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:48:54 [INFO] __main__: 正在启动服务...
+2025-01-19 11:48:54 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 11:48:54 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 11:48:55 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:48:55 [INFO] __main__: [Gradio-Err] 2025-01-19 11:48:55 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:48:57 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:48:57 [INFO] __main__: [Gradio-Err] 2025-01-19 11:48:57 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:48:58 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:48:58 [INFO] __main__: [Gradio-Err] 2025-01-19 11:48:58 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:00 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:00 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:00 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:03 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:03 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:05 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:49:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:49:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:49:05 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:49:14 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [84791]
+2025-01-19 11:49:14 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 11:49:14 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 11:49:14 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] File "<string>", line 15, in <module>
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 496, in launch
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] self.interface.launch(**launch_kwargs)
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/blocks.py", line 2619, in launch
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] raise ValueError(
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Err] ValueError: When localhost is not accessible, a shareable link must be created. Please set share=True or check your proxy settings to allow access to localhost.
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:49:18 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:49:19 [ERROR] __main__: Gradio 服务意外退出
+2025-01-19 11:49:19 [INFO] __main__: 正在清理资源...
+2025-01-19 11:49:19 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 11:49:19 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 11:49:19 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 11:49:19 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 11:49:19 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 11:50:14 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:50:14 [INFO] __main__: 正在启动服务...
+2025-01-19 11:50:14 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 11:50:14 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 11:50:15 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:50:15 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:15 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:50:17 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:50:17 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:17 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:50:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:18 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:18 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:20 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:20 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:22 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:22 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:25 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:50:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:50:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:50:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:50:34 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [87253]
+2025-01-19 11:50:34 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 11:50:34 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 11:50:34 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] Traceback (most recent call last):
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] File "<string>", line 15, in <module>
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] File "/Users/txin/food_journey_backend/src/web_app.py", line 496, in launch
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] self.interface.launch(**launch_kwargs)
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] File "/Users/txin/.food_journey_env/lib/python3.12/site-packages/gradio/blocks.py", line 2619, in launch
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] raise ValueError(
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Err] ValueError: When localhost is not accessible, a shareable link must be created. Please set share=True or check your proxy settings to allow access to localhost.
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:50:38 [INFO] __main__: [Gradio-Out] Loaded as API: https://63e9cf37a8d05f9e2b.gradio.live/ ✔
+2025-01-19 11:50:39 [ERROR] __main__: Gradio 服务意外退出
+2025-01-19 11:50:39 [INFO] __main__: 正在清理资源...
+2025-01-19 11:50:39 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 11:50:39 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 11:50:39 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 11:50:39 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 11:50:39 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 11:53:19 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:53:19 [INFO] __main__: 正在启动服务...
+2025-01-19 11:53:19 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 11:53:19 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 11:53:20 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:53:20 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:20 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:53:22 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:53:22 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:22 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:53:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:23 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:23 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:25 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:25 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:28 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:28 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:30 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:53:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:53:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:30 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:30 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:53:39 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [93019]
+2025-01-19 11:53:39 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 11:53:39 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 11:53:39 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 11:53:41 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 11:53:41 [INFO] __main__: [Gradio-Err] 2025-01-19 11:53:41 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 11:55:00 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-19 11:55:00 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 11:55:00 [INFO] __main__: 正在清理资源...
+2025-01-19 11:55:00 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 11:55:00 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 11:55:00 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 11:55:01 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 11:55:04 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:55:04 [INFO] __main__: 正在启动服务...
+2025-01-19 11:55:04 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 11:55:04 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 11:55:05 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:55:05 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:05 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 11:55:07 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:07 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:07 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:07 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:07 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:07 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:09 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:09 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:09 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:12 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:12 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:13 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:55:13 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:13 [INFO] root: AI服务客户端初始化成功
+2025-01-19 11:55:13 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:13 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:55:13 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:13 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:13 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:13 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:14 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:14 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:55:14 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:14 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:14 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:14 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 11:55:14 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:14 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 11:55:21 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [96333]
+2025-01-19 11:55:21 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 11:55:21 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 11:55:21 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:261584]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:261584]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:105406]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:105406]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:108]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_field with data[110:122]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_value with data[124:148]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:261584]
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[152:261584]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:105406]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_data with data[0:105406]
+2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:55:54 [INFO] __main__: [Gradio-Err] 2025-01-19 11:55:54 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_begin with no data
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_field with data[42:61]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_value with data[63:106]
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_field with data[108:120]
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_value with data[122:131]
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_header_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_headers_finished with no data
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_data with data[135:18670]
+2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_part_end with no data
+2025-01-19 11:56:28 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:28 [DEBUG] python_multipart.multipart: Calling on_end with no data
+2025-01-19 11:56:29 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-19 11:56:29 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: 接收到的图片数据类型: <class 'str'>
+2025-01-19 11:56:29 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: 从文件路径读取图片: /private/var/folders/xf/8rxv_ypx7z51jhmtj_m0rs4h0000gn/T/gradio/7b06467cdb250262addb49e0ab066efeb80bcb598314ce26349170d628cdb754/res.png
+2025-01-19 11:56:29 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-19 11:56:29 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: 原始图片大小: 18535 bytes
+2025-01-19 11:56:29 [INFO] root: 开始发送预测请求...
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: 转换后的base64字符串长度: 24716
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: base64字符串前100个字符: /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8Q
+2025-01-19 11:56:29 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:29 [INFO] root: 开始发送预测请求...
+2025-01-19 11:56:35 [INFO] root: 收到预测结果: The image shows a fruit platter. The fruits include: kiwi, oranges, bananas, grapes and possibly peaches or apples. There are also some other unidentifiable pieces of fruit. 
+I am an AI assistant, I do not have access to real-time information or the ability to zoom in on images, so I cannot provide more specific details about what is included on the plate. However, based on the image provided, it appears that there may be additional types of fruit present beyond what you mentioned in your question.
+2025-01-19 11:56:35 [INFO] __main__: [Gradio-Err] 2025-01-19 11:56:35 [INFO] root: 收到预测结果: The image shows a fruit platter. The fruits include: kiwi, oranges, bananas, grapes and possibly peaches or apples. There are also some other unidentifiable pieces of fruit.
+2025-01-19 11:56:35 [INFO] __main__: [Gradio-Err] I am an AI assistant, I do not have access to real-time information or the ability to zoom in on images, so I cannot provide more specific details about what is included on the plate. However, based on the image provided, it appears that there may be additional types of fruit present beyond what you mentioned in your question.
+2025-01-19 11:59:16 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-19 11:59:16 [INFO] __main__: 正在清理资源...
+2025-01-19 11:59:16 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 11:59:16 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 11:59:16 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 11:59:16 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 11:59:16 [INFO] __main__: Gradio 服务已关闭
