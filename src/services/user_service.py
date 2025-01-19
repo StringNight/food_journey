@@ -5,7 +5,7 @@
 """
 
 from typing import Dict, Optional
-from datetime import datetime, UTC
+from datetime import datetime
 import logging
 from ..models.user import UserProfileModel
 from .cache_service import CacheService, CachePrefix

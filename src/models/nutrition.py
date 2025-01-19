@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, JSON, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
-from datetime import datetime, UTC
+from datetime import datetime
 from . import Base
 
 class NutritionRecordModel(Base):

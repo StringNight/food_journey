@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 import uuid
@@ -149,7 +149,7 @@ class AuthService:
             
             # 获取令牌唯一标识和过期时间
             jti = payload.get("jti")
-            exp = datetime.fromtimestamp(payload.get("exp"), UTC)
+            exp = datetime.fromtimestamp(payload.get("exp"))
             
             # 添加到黑名单
             self.token_blacklist[jti] = exp

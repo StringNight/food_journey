@@ -4,7 +4,7 @@ from sqlalchemy import select, func
 from typing import List, Optional
 import logging
 import uuid
-from datetime import datetime, UTC
+from datetime import datetime
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 

@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 import logging
 from jose import jwt
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 
 # 加载环境变量
 load_dotenv()

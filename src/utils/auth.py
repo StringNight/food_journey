@@ -1,6 +1,6 @@
 """认证工具模块"""
 
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 from typing import Optional, Tuple
 import logging
 from jose import JWTError, jwt

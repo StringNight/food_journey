@@ -3,7 +3,7 @@
 import pytest
 from httpx import AsyncClient
 import logging
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 import os
 from jose import jwt
 from src.config.settings import settings

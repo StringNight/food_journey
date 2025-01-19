@@ -3,7 +3,7 @@
 提供JWT令牌的创建、验证和用户认证功能
 """
 
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer

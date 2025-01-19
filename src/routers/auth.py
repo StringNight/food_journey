@@ -2,7 +2,7 @@
 
 import uuid
 import os
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
 from typing import Optional, Tuple, Dict, Any
 import logging
 from collections import defaultdict

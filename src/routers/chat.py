@@ -3,7 +3,7 @@ from fastapi.responses import StreamingResponse, JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from typing import Optional, List, Dict, Any
-from datetime import datetime, UTC
+from datetime import datetime
 import os
 import logging
 from pathlib import Path

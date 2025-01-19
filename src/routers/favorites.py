@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Body
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, delete, func
 from typing import List
-from datetime import datetime, UTC
+from datetime import datetime
 import uuid
 from fastapi.responses import JSONResponse
 
