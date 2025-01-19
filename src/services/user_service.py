@@ -78,7 +78,7 @@ class UserService:
         """更新用户交互记录"""
         try:
             user_profile = self.get_or_create_user_profile(user_id)
-            interaction_data["timestamp"] = datetime.now(UTC).isoformat()
+            interaction_data["timestamp"] = datetime.now().isoformat()
             user_profile.update_profile(interaction_data)
             
             # 更新缓存

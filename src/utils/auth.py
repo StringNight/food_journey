@@ -33,7 +33,7 @@ def create_access_token(data: dict) -> Tuple[str, int]:
     """创建访问令牌"""
     to_encode = data.copy()
     expires_delta = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    expire = datetime.now(UTC) + expires_delta
+    expire = datetime.now() + expires_delta
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(
         to_encode,

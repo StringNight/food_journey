@@ -112,7 +112,7 @@ class MonitorService:
                     "packets_sent": net_io.packets_sent,
                     "packets_recv": net_io.packets_recv
                 },
-                "timestamp": datetime.now(UTC).isoformat()
+                "timestamp": datetime.now().isoformat()
             }
             
         except Exception as e:
@@ -164,7 +164,7 @@ class MonitorService:
                 "table_stats": table_stats,
                 "pool": pool_stats,
                 "performance": db_performance,
-                "timestamp": datetime.now(UTC).isoformat()
+                "timestamp": datetime.now().isoformat()
             }
             
         except Exception as e:
@@ -191,7 +191,7 @@ class MonitorService:
                 "stats": cache_stats,
                 "hit_rate": f"{hit_rate:.2f}%",
                 "miss_rate": f"{100 - hit_rate:.2f}%",
-                "timestamp": datetime.now(UTC).isoformat()
+                "timestamp": datetime.now().isoformat()
             }
             
         except Exception as e:
@@ -236,7 +236,7 @@ class MonitorService:
                     "total_errors": total_errors,
                     "error_rate": f"{error_rate:.2f}%"
                 },
-                "timestamp": datetime.now(UTC).isoformat()
+                "timestamp": datetime.now().isoformat()
             }
             
         except Exception as e:

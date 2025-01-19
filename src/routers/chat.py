@@ -114,7 +114,7 @@ async def text_chat(
             type=MessageType.text,
             content=message,
             is_user=True,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(user_message)
         
@@ -142,7 +142,7 @@ async def text_chat(
             type=MessageType.text,
             content=content,
             is_user=False,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(system_message)
         await db.commit()
@@ -199,7 +199,7 @@ async def text_chat_stream(
             type=MessageType.text,
             content=message,
             is_user=True,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(user_message)
         await db.commit()
@@ -228,7 +228,7 @@ async def text_chat_stream(
                 type=MessageType.text,
                 content="".join(full_content),
                 is_user=False,
-                created_at=datetime.now(UTC)
+                created_at=datetime.now()
             )
             db.add(system_message)
             await db.commit()
@@ -380,7 +380,7 @@ async def voice_chat(
             content=transcribed_text,
             voice_url=voice_url,
             is_user=True,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(user_message)
         
@@ -408,7 +408,7 @@ async def voice_chat(
             type=MessageType.text,
             content=content,
             is_user=False,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(system_message)
         await db.commit()
@@ -482,7 +482,7 @@ async def food_recognition(
             content="[食物图片]",
             image_url=image_url,
             is_user=True,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(user_message)
         
@@ -500,7 +500,7 @@ async def food_recognition(
             type=MessageType.text,
             content=content,
             is_user=False,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(system_message)
         await db.commit()

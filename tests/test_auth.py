@@ -326,7 +326,7 @@ async def test_expired_token(test_client: AsyncClient):
     """测试过期令牌"""
     try:
         # 创建一个过期的令牌
-        expired_time = datetime.now(UTC) - timedelta(minutes=60)
+        expired_time = datetime.now() - timedelta(minutes=60)
         expired_token = jwt.encode(
             {"exp": expired_time, "sub": "test_user"},
             settings.SECRET_KEY,

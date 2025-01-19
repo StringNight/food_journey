@@ -15,7 +15,7 @@ class NutritionRecordModel(Base):
     user_id = Column(String, ForeignKey('users.id'))
     recipe_id = Column(String, ForeignKey('recipes.id'))
     nutrition_data = Column(JSON, nullable=False)
-    timestamp = Column(DateTime, default=lambda: datetime.now(UTC))
+    timestamp = Column(DateTime, default=lambda: datetime.now())
     
     # 关系
     user = relationship("User", back_populates="nutrition_records") 

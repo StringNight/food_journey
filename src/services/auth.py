@@ -70,16 +70,16 @@ class AuthService:
         
         # 设置过期时间
         if expires_delta:
-            expire = datetime.now(UTC) + expires_delta
+            expire = datetime.now() + expires_delta
         else:
-            expire = datetime.now(UTC) + timedelta(
+            expire = datetime.now() + timedelta(
                 minutes=self.access_token_expire_minutes
             )
             
         # 添加标准声明
         to_encode.update({
             "exp": int(expire.timestamp()),
-            "iat": int(datetime.now(UTC).timestamp()),
+            "iat": int(datetime.now().timestamp()),
             "jti": str(uuid.uuid4())
         })
         
@@ -90,7 +90,7 @@ class AuthService:
             algorithm=self.algorithm
         )
         
-        return encoded_jwt, int(expire.timestamp() - datetime.now(UTC).timestamp())
+        return encoded_jwt, int(expire.timestamp() - datetime.now().timestamp())
         
     def verify_token(self, token: str) -> dict:
         """验证令牌
@@ -162,7 +162,7 @@ class AuthService:
             
     def _cleanup_blacklist(self) -> None:
         """清理过期的黑名单条目"""
-        current_time = datetime.now(UTC)
+        current_time = datetime.now()
         expired_jtis = [
             jti for jti, exp in self.token_blacklist.items()
             if exp <= current_time

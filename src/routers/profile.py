@@ -93,7 +93,7 @@ async def update_basic_info(
         for field, value in update_data.items():
             setattr(current_user, field, value)
         
-        current_user.updated_at = datetime.now(UTC)
+        current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
@@ -128,7 +128,7 @@ async def update_diet_preferences(
         for field, value in update_data.items():
             setattr(current_user, field, value)
         
-        current_user.updated_at = datetime.now(UTC)
+        current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
@@ -163,7 +163,7 @@ async def update_fitness_preferences(
         for field, value in update_data.items():
             setattr(current_user, field, value)
         
-        current_user.updated_at = datetime.now(UTC)
+        current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(

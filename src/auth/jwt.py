@@ -32,7 +32,7 @@ def create_access_token(data: dict) -> tuple[str, int]:
     """
     to_encode = data.copy()
     # 设置令牌过期时间
-    expire = datetime.now(UTC) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now() + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     # 使用密钥创建JWT令牌
     encoded_jwt = jwt.encode(

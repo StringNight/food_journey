@@ -290,9 +290,9 @@ async def login(
         await reset_failed_attempts(cache, form_data.username)
         
         # 更新用户登录信息
-        user.last_login = datetime.now(UTC)
+        user.last_login = datetime.now()
         user.login_count += 1
-        user.updated_at = datetime.now(UTC)
+        user.updated_at = datetime.now()
         await db.commit()
         
         # 生成访问令牌
@@ -396,9 +396,9 @@ async def login_json(
         await reset_failed_attempts(cache, user_data.username)
         
         # 更新用户登录信息
-        user.last_login = datetime.now(UTC)
+        user.last_login = datetime.now()
         user.login_count += 1
-        user.updated_at = datetime.now(UTC)
+        user.updated_at = datetime.now()
         await db.commit()
         
         # 生成访问令牌
@@ -657,7 +657,7 @@ async def refresh_token(
         access_token, expires_in = create_access_token(
             data={
                 "sub": str(current_user.id),
-                "refresh_time": datetime.now(UTC).timestamp()
+                "refresh_time": datetime.now().timestamp()
             }
         )
         

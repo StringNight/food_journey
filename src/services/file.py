@@ -144,7 +144,7 @@ class FileService:
             save_dir.mkdir(parents=True, exist_ok=True)
             
             # 生成文件名
-            timestamp = datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = self._sanitize_filename(file.filename)
             if user_id:
                 save_path = save_dir / f"{user_id}_{timestamp}_{filename}"

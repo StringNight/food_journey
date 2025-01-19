@@ -120,7 +120,7 @@ async def get_recipe(
             
         # 更新浏览次数
         recipe.views_count = recipe.views_count + 1 if recipe.views_count else 1
-        recipe.updated_at = datetime.now(UTC)
+        recipe.updated_at = datetime.now()
         await db.commit()
         await db.refresh(recipe)
         
@@ -249,7 +249,7 @@ async def rate_recipe(
             user_id=current_user.id,
             rating=rating.rating,
             comment=rating.comment,
-            created_at=datetime.now(UTC)
+            created_at=datetime.now()
         )
         db.add(rating_record)
         
@@ -258,7 +258,7 @@ async def rate_recipe(
         result = await db.execute(stmt)
         avg_rating = result.scalar() or rating.rating
         recipe.average_rating = avg_rating
-        recipe.updated_at = datetime.now(UTC)
+        recipe.updated_at = datetime.now()
         
         await db.commit()
         await db.refresh(recipe)
@@ -326,7 +326,7 @@ async def update_recipe(
         for key, value in update_data.items():
             setattr(recipe, key, value)
             
-        recipe.updated_at = datetime.now(UTC)  # 使用 UTC 时间
+        recipe.updated_at = datetime.now()  # 使用 UTC 时间
         await db.commit()
         await db.refresh(recipe)
         
@@ -387,7 +387,7 @@ async def update_recipe(
             if value is not None:  # 只更新非空字段
                 setattr(recipe, field, value)
             
-        recipe.updated_at = datetime.now(UTC)  # 使用 UTC 时间
+        recipe.updated_at = datetime.now()  # 使用 UTC 时间
         await db.commit()
         await db.refresh(recipe)
         

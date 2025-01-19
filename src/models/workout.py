@@ -16,12 +16,12 @@ class Workout(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String, ForeignKey("users.id"), nullable=False)
-    workout_date = Column(DateTime, default=lambda: datetime.now(UTC), nullable=False)
+    workout_date = Column(DateTime, default=lambda: datetime.now(), nullable=False)
     name = Column(String, nullable=False, comment="训练计划名称")
     notes = Column(String, nullable=True, comment="训练备注")
     duration = Column(Integer, comment="训练时长(分钟)")
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC), nullable=False)
-    updated_at = Column(DateTime, default=lambda: datetime.now(UTC), onupdate=lambda: datetime.now(UTC), nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(), nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.now(), onupdate=lambda: datetime.now(), nullable=False)
     
     # 关联关系
     exercises = relationship("WorkoutExercise", back_populates="workout")

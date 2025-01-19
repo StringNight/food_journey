@@ -81,7 +81,7 @@ async def batch_favorite_operations(
         to_add = [rid for rid in recipe_ids if rid not in existing_favorite_ids]
         
         # 创建新的收藏记录
-        created_at = datetime.now(UTC)
+        created_at = datetime.now()
         new_favorites = []
         for recipe_id in to_add:
             favorite = FavoriteModel(
@@ -157,7 +157,7 @@ async def add_favorite(
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="已经收藏过该食谱")
             
         # 创建收藏记录
-        created_at = datetime.now(UTC)
+        created_at = datetime.now()
         favorite = FavoriteModel(
             id=str(uuid.uuid4()),
             user_id=current_user.id,

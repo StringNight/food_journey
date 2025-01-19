@@ -25,7 +25,7 @@ class RatingModel(Base):
     recipe_id = Column(String, ForeignKey('recipes.id', ondelete='CASCADE'))
     rating = Column(Float, nullable=False)
     comment = Column(String)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
+    created_at = Column(DateTime, default=lambda: datetime.now())
     
     # 关系
     user = relationship("User", back_populates="ratings")

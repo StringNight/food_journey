@@ -38,7 +38,7 @@ class EmailService:
     
     def create_reset_token(self, email: str) -> str:
         """创建重置密码令牌"""
-        expire = datetime.now(UTC) + timedelta(hours=24)
+        expire = datetime.now() + timedelta(hours=24)
         return jwt.encode(
             {"email": email, "exp": expire},
             self.reset_token_secret,

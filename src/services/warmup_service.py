@@ -284,7 +284,7 @@ class WarmupService:
                     )
                 },
                 "cache_stats": cache_stats,
-                "timestamp": datetime.now(UTC).isoformat()
+                "timestamp": datetime.now().isoformat()
             }
             
         except Exception as e:

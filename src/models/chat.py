@@ -45,7 +45,7 @@ class ChatMessageModel(Base):
     transcribed_text = Column(Text)
     analysis_result = Column(Text)
     suggestions = Column(Text)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
+    created_at = Column(DateTime, default=lambda: datetime.now())
     
     # 关系
     user = relationship("User", back_populates="chat_messages") 

@@ -262,3 +262,83 @@ I am an AI assistant, I do not have access to real-time information or the abili
 2025-01-19 11:59:16 [INFO] __main__: FastAPI 服务已关闭
 2025-01-19 11:59:16 [INFO] __main__: 正在关闭 Gradio 服务...
 2025-01-19 11:59:16 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 14:35:34 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:35:34 [INFO] __main__: 正在启动服务...
+2025-01-19 14:35:34 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 14:35:34 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 14:35:35 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:35:35 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:35 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:35:37 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:37 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:37 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:37 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:37 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:37 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:39 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:39 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:39 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:41 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:41 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:41 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:43 [INFO] root: AI服务客户端初始化成功
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [INFO] root: AI服务客户端初始化成功
+2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:43 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:43 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 14:35:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:35:43 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 14:35:50 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [6972]
+2025-01-19 14:35:50 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 14:35:50 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 14:35:50 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 14:38:39 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-19 14:38:39 [INFO] __main__: 正在清理资源...
+2025-01-19 14:38:39 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 14:38:39 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 14:38:39 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 14:38:39 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 14:38:39 [INFO] __main__: Gradio 服务已关闭
+2025-01-19 14:38:40 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:38:40 [INFO] __main__: 正在启动服务...
+2025-01-19 14:38:40 [INFO] __main__: FastAPI 服务已启动 - http://0.0.0.0:8000
+2025-01-19 14:38:40 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-01-19 14:38:42 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:38:42 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:42 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-01-19.log, 控制台: True
+2025-01-19 14:38:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:38:43 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:43 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:38:44 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:44 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:44 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:45 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:45 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:45 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:47 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:47 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:47 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:49 [INFO] root: AI服务客户端初始化成功
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [INFO] root: AI服务客户端初始化成功
+2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-01-19 14:38:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/py_client/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/initiated HTTP/1.1" 200 0
+2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 14:38:49 [INFO] __main__: [Gradio-Err] 2025-01-19 14:38:49 [DEBUG] urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/telemetry/gradio/launched HTTP/1.1" 200 0
+2025-01-19 14:38:58 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [13652]
+2025-01-19 14:38:58 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-01-19 14:38:58 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-01-19 14:38:58 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-01-19 14:39:04 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-01-19 14:39:04 [INFO] __main__: 正在清理资源...
+2025-01-19 14:39:04 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-01-19 14:39:04 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-01-19 14:39:04 [INFO] __main__: FastAPI 服务已关闭
+2025-01-19 14:39:04 [INFO] __main__: 正在关闭 Gradio 服务...
+2025-01-19 14:39:04 [INFO] __main__: Gradio 服务已关闭
