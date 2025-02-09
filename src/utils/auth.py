@@ -12,6 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.user import User
 from ..config.settings import settings
 from ..database import get_db
+from ..schemas.auth import Token
 
 logger = logging.getLogger(__name__)
 
@@ -29,8 +30,15 @@ def get_password_hash(password: str) -> str:
     """获取密码哈希值"""
     return pwd_context.hash(password)
 
-def create_access_token(data: dict) -> Tuple[str, int]:
-    """创建访问令牌"""
+def create_access_token(data: dict) -> Token:
+    """创建访问令牌
+    
+    Args:
+        data: 要编码的数据
+        
+    Returns:
+        Token: 包含访问令牌信息的Token结构体
+    """
     to_encode = data.copy()
     expires_delta = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     expire = datetime.now() + expires_delta
@@ -40,7 +48,11 @@ def create_access_token(data: dict) -> Tuple[str, int]:
         settings.SECRET_KEY,
         algorithm=settings.ALGORITHM
     )
-    return encoded_jwt, settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
+    return Token(
+        access_token=encoded_jwt,
+        token_type="bearer",
+        expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
+    )
 
 async def get_current_user(
     token: str = Depends(oauth2_scheme),

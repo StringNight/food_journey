@@ -45,7 +45,7 @@ logger.setLevel(logging.INFO)
 router = APIRouter()
 
 # 创建OAuth2密码Bearer
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
 # 密码加密
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -187,16 +187,18 @@ async def register(
         await db.refresh(user)
         
         # 生成访问令牌
-        access_token, expires_in = create_access_token(data={"sub": user.id})
+        token = create_access_token(data={"sub": user.id})
         
         # 记录注册成功
         logger.info(f"用户注册成功: user_id={user.id} username={user.username}")
         
         # 构造响应数据
         response_data = {
-            "access_token": access_token,
-            "token_type": "bearer",
-            "expires_in": expires_in,
+            "token": {
+                "access_token": token.access_token,
+                "token_type": token.token_type,
+                "expires_in": token.expires_in
+            },
             "user": {
                 "id": str(user.id),
                 "username": user.username,
@@ -296,7 +298,7 @@ async def login(
         await db.commit()
         
         # 生成访问令牌
-        access_token, expires_in = create_access_token(data={"sub": str(user.id)})
+        token = create_access_token(data={"sub": str(user.id)})
         
         # 记录登录成功
         logger.info(f"用户登录成功: user_id={user.id} username={user.username}")
@@ -304,9 +306,9 @@ async def login(
         # 构造响应数据
         response_data = {
             "token": {
-                "access_token": access_token,
-                "token_type": "bearer",
-                "expires_in": expires_in
+                "access_token": token.access_token,
+                "token_type": token.token_type,
+                "expires_in": token.expires_in
             },
             "user": {
                 "id": str(user.id),
@@ -402,7 +404,7 @@ async def login_json(
         await db.commit()
         
         # 生成访问令牌
-        access_token, expires_in = create_access_token(data={"sub": str(user.id)})
+        token = create_access_token(data={"sub": str(user.id)})
         
         # 记录登录成功
         logger.info(f"用户登录成功: user_id={user.id}")
@@ -410,9 +412,9 @@ async def login_json(
         # 构造响应数据
         response_data = {
             "token": {
-                "access_token": access_token,
-                "token_type": "bearer",
-                "expires_in": expires_in
+                "access_token": token.access_token,
+                "token_type": token.token_type,
+                "expires_in": token.expires_in
             },
             "user": {
                 "id": str(user.id),
@@ -654,7 +656,7 @@ async def refresh_token(
     
     try:
         # 创建新的访问令牌
-        access_token, expires_in = create_access_token(
+        token = create_access_token(
             data={
                 "sub": str(current_user.id),
                 "refresh_time": datetime.now().timestamp()
@@ -667,9 +669,9 @@ async def refresh_token(
         # 构造响应数据
         response_data = {
             "token": {
-                "access_token": access_token,
-                "token_type": "bearer",
-                "expires_in": expires_in
+                "access_token": token.access_token,
+                "token_type": token.token_type,
+                "expires_in": token.expires_in
             },
             "user": {
                 "id": str(current_user.id),

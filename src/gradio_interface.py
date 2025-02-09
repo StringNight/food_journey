@@ -358,7 +358,7 @@ def create_interface():
             send_img_btn.click(
                 handle_image_message,
                 inputs=[image_input, caption_input, image_chatbot],
-                outputs=image_chatbot
+                outputs=image_chatbot,
             )
             clear_img_btn.click(lambda: None, None, image_chatbot, queue=False)
             

@@ -10,7 +10,7 @@ from pathlib import Path
 import base64
 from ..database import get_db
 from ..auth.jwt import get_current_user
-from ..models.user import User
+from ..models.user import User, UserProfileModel
 from ..models.chat import ChatMessageModel as ChatMessage, MessageType
 from ..schemas.chat import (
     TextRequest, VoiceRequest, ImageRequest,
@@ -22,16 +22,14 @@ import re
 from ..services.file import file_service
 from fastapi.security import OAuth2PasswordRequestForm
 from ..config.limiter import limiter
-from ..services.profile_update_service import ProfileUpdateService
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 ai_client = AIServiceClient()
-profile_update_service = ProfileUpdateService()
 
 # 常量定义
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
-ALLOWED_AUDIO_TYPES = {"audio/wav", "audio/mpeg", "audio/mp3"}
+ALLOWED_AUDIO_TYPES = {"audio/wav", "audio/mpeg", "audio/mp3","audio/m4a"}
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/gif"}
 MAX_MESSAGE_LENGTH = 1000  # 设置最大消息长度为1000字符
 
@@ -163,7 +161,7 @@ async def process_stream_response(
     history = await get_chat_history_for_response(user_id, db)
     yield f"data: {{'type': 'history', 'data': {history}}}\n\n"
 
-@router.post("/chat/stream")
+@router.post("/stream")
 async def text_chat_stream(
     text_request: TextRequest,
     current_user: User = Depends(get_current_user),
@@ -228,7 +226,7 @@ async def text_chat_stream(
             detail=f"流式文本处理失败: {str(e)}"
         )
 
-@router.post("/voice/stream")
+@router.post("/voice")
 async def voice_chat_stream(
     file: UploadFile = File(...),
     current_user: User = Depends(get_current_user),

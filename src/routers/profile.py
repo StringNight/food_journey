@@ -90,17 +90,30 @@ async def update_basic_info(
     """
     try:
         update_data = data.dict(exclude_unset=True)
+        updated_fields = []
+        
+        # 更新用户属性
         for field, value in update_data.items():
-            setattr(current_user, field, value)
+            if hasattr(current_user, field) and value is not None:
+                setattr(current_user, field, value)
+                updated_fields.append(field)
+        
+        # 如果更新了身高和体重，自动计算BMI
+        if "height" in updated_fields and "weight" in updated_fields:
+            height_m = current_user.height / 100
+            current_user.bmi = round(current_user.weight / (height_m * height_m), 1)
+            updated_fields.append("bmi")
         
         current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
             schema_version="1.0",
-            message="基础信息更新成功"
+            message="基础信息更新成功",
+            updated_fields=updated_fields
         )
     except Exception as e:
+        await db.rollback()
         logging.error(f"更新基础信息失败: {str(e)}")
         raise HTTPException(
             status_code=500,
@@ -125,17 +138,31 @@ async def update_diet_preferences(
     """
     try:
         update_data = data.dict(exclude_unset=True)
+        updated_fields = []
+        
+        # 更新用户属性
         for field, value in update_data.items():
-            setattr(current_user, field, value)
+            if hasattr(current_user, field) and value is not None:
+                if isinstance(value, list):
+                    # 对于列表类型的字段，合并新旧值并去重
+                    current_values = set(getattr(current_user, field) or [])
+                    new_values = set(value)
+                    updated_values = list(current_values | new_values)
+                    setattr(current_user, field, updated_values)
+                else:
+                    setattr(current_user, field, value)
+                updated_fields.append(field)
         
         current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
             schema_version="1.0",
-            message="饮食偏好更新成功"
+            message="饮食偏好更新成功",
+            updated_fields=updated_fields
         )
     except Exception as e:
+        await db.rollback()
         logging.error(f"更新饮食偏好失败: {str(e)}")
         raise HTTPException(
             status_code=500,
@@ -160,17 +187,31 @@ async def update_fitness_preferences(
     """
     try:
         update_data = data.dict(exclude_unset=True)
+        updated_fields = []
+        
+        # 更新用户属性
         for field, value in update_data.items():
-            setattr(current_user, field, value)
+            if hasattr(current_user, field) and value is not None:
+                if isinstance(value, list):
+                    # 对于列表类型的字段，合并新旧值并去重
+                    current_values = set(getattr(current_user, field) or [])
+                    new_values = set(value)
+                    updated_values = list(current_values | new_values)
+                    setattr(current_user, field, updated_values)
+                else:
+                    setattr(current_user, field, value)
+                updated_fields.append(field)
         
         current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
             schema_version="1.0",
-            message="运动偏好更新成功"
+            message="运动偏好更新成功",
+            updated_fields=updated_fields
         )
     except Exception as e:
+        await db.rollback()
         logging.error(f"更新运动偏好失败: {str(e)}")
         raise HTTPException(
             status_code=500,

@@ -9,6 +9,8 @@ from PIL import Image
 import io
 import base64
 import tempfile
+import asyncio
+import time
 
 load_dotenv()
 
@@ -21,9 +23,15 @@ class AIServiceClient:
     def __init__(self):
         """初始化AI服务客户端"""
         # 初始化各个服务的客户端
-        self.chat_client = Client(os.getenv("CHAT_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/"))
-        self.voice_client = Client(os.getenv("VOICE_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/"))
-        self.food_client = Client(os.getenv("FOOD_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/"))
+        self.chat_client = Client(
+            os.getenv("CHAT_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+        )
+        self.voice_client = Client(
+            os.getenv("VOICE_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+        )
+        self.food_client = Client(
+            os.getenv("FOOD_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+        )
         
         logging.info("AI服务客户端初始化成功")
         
@@ -272,36 +280,51 @@ class AIServiceClient:
                 chat_history=chat_history
             )
             
-            # 使用 predict 获取结果
-            result = self.chat_client.predict(
+            # 调用预测接口获取流式响应
+            result = self.chat_client.submit(
                 messages=full_messages,
                 model=model,
                 max_tokens=max_tokens,
                 api_name="/chat_stream"
             )
             
-            # 如果结果是生成器或迭代器，逐个产出结果
-            if hasattr(result, '__iter__'):
-                for chunk in result:
-                    if chunk and isinstance(chunk, (str, dict)):
-                        # 如果是字典，尝试获取文本内容
-                        if isinstance(chunk, dict):
-                            text = chunk.get("text", "") or chunk.get("content", "")
-                        else:
-                            text = chunk
+            # 处理流式响应
+            current = ""
+            while True:
+                try:
+                    # 获取最新的输出
+                    outputs = result.outputs()
+                    if outputs is None:
+                        # 如果outputs为None，等待一会再试
+                        await asyncio.sleep(0.1)
+                        continue
                         
-                        if text.strip():
-                            yield text.strip()
-            # 如果是单个结果，直接产出
-            elif result:
-                if isinstance(result, dict):
-                    text = result.get("text", "") or result.get("content", "")
-                else:
-                    text = str(result)
-                
-                if text.strip():
-                    yield text.strip()
+                    # 确保outputs是列表且不为空
+                    if not outputs:
+                        await asyncio.sleep(0.1)
+                        continue
                         
+                    # 获取最新的文本
+                    new_text = outputs[-1]
+                    if not isinstance(new_text, str):
+                        continue
+                        
+                    # 只产出新增的部分
+                    if len(new_text) > len(current):
+                        new_part = new_text[len(current):]
+                        yield new_part
+                        current = new_text
+                    
+                    # 检查是否已完成
+                    if result.done():
+                        break
+                        
+                    await asyncio.sleep(0.01)
+                    
+                except Exception as e:
+                    logging.error(f"处理流式响应时发生错误: {e}")
+                    break
+                    
         except Exception as e:
             logging.error(f"流式聊天请求失败: {e}")
             raise

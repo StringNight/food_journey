@@ -29,6 +29,27 @@ def custom_openapi(app) -> Dict[str, Any]:
 - 访问令牌有效期为7天
 - 支持令牌刷新机制
 
+## 用户画像管理
+### 获取用户画像
+- GET `/api/v1/profile`
+- 获取用户的完整画像信息，包括：
+  - 基本信息（性别、年龄等）
+  - 健康信息（身高、体重等）
+  - 饮食偏好（烹饪水平、喜好菜系等）
+  - 健身信息（运动水平、运动频率等）
+
+### 更新用户画像
+- PUT `/api/v1/profile/basic` - 更新基本信息和健康数据
+- PUT `/api/v1/profile/diet` - 更新饮食偏好
+- PUT `/api/v1/profile/fitness` - 更新健身偏好
+
+### 健康数据统计
+- GET `/api/v1/profile/stats`
+- 获取用户的健康数据统计，包括：
+  - 身体指标趋势
+  - 营养摄入总结
+  - 运动情况总结
+
 ## 错误处理
 所有接口在发生错误时都会返回统一格式的响应：
 ```json
@@ -116,7 +137,12 @@ def custom_openapi(app) -> Dict[str, Any]:
         },
         {
             "name": "用户档案",
-            "description": "用户画像相关接口，包括偏好设置、饮食限制等"
+            "description": """用户画像相关接口，包括：
+- 获取完整用户画像
+- 更新基本信息和健康数据
+- 更新饮食偏好（烹饪水平、喜好菜系等）
+- 更新健身偏好（运动水平、运动频率等）
+- 获取健康数据统计"""
         },
         {
             "name": "聊天",
@@ -128,6 +154,163 @@ def custom_openapi(app) -> Dict[str, Any]:
     ]
     
     # 添加响应示例
+    profile_examples = {
+        "/api/v1/profile": {
+            "get": {
+                "response": {
+                    "schema_version": "1.0",
+                    "user_profile": {
+                        "id": "user-123",
+                        "username": "test_user",
+                        "email": "test@example.com",
+                        "avatar_url": "https://example.com/avatar.jpg",
+                        "birth_date": "1990-01-01",
+                        "gender": "男",
+                        "created_at": "2024-01-01T00:00:00Z",
+                        "updated_at": "2024-03-15T10:30:00Z"
+                    },
+                    "health_profile": {
+                        "height": 175,
+                        "weight": 70,
+                        "body_fat_percentage": 20,
+                        "muscle_mass": 35,
+                        "bmr": 1600,
+                        "tdee": 2200,
+                        "health_conditions": ["轻度过敏"]
+                    },
+                    "diet_profile": {
+                        "cooking_skill_level": "中级",
+                        "favorite_cuisines": ["川菜", "粤菜"],
+                        "dietary_restrictions": ["少油", "少盐"],
+                        "allergies": ["海鲜"],
+                        "nutrition_goals": {
+                            "protein": 120,
+                            "carbs": 250,
+                            "fat": 60
+                        }
+                    },
+                    "fitness_profile": {
+                        "fitness_level": "中级",
+                        "exercise_frequency": 3,
+                        "preferred_exercises": ["力量训练", "跑步"],
+                        "fitness_goals": ["增肌", "提高耐力"]
+                    }
+                }
+            }
+        },
+        "/api/v1/profile/basic": {
+            "put": {
+                "request": {
+                    "birth_date": "1990-01-01",
+                    "gender": "男",
+                    "height": 175,
+                    "weight": 70,
+                    "body_fat_percentage": 20,
+                    "muscle_mass": 35,
+                    "health_conditions": ["轻度过敏"]
+                },
+                "response": {
+                    "schema_version": "1.0",
+                    "message": "基础信息更新成功",
+                    "updated_fields": [
+                        "birth_date",
+                        "gender",
+                        "height",
+                        "weight",
+                        "body_fat_percentage",
+                        "muscle_mass",
+                        "health_conditions"
+                    ]
+                }
+            }
+        },
+        "/api/v1/profile/diet": {
+            "put": {
+                "request": {
+                    "cooking_skill_level": "中级",
+                    "favorite_cuisines": ["川菜", "粤菜"],
+                    "dietary_restrictions": ["少油", "少盐"],
+                    "allergies": ["海鲜"],
+                    "nutrition_goals": {
+                        "protein": 120,
+                        "carbs": 250,
+                        "fat": 60
+                    }
+                },
+                "response": {
+                    "schema_version": "1.0",
+                    "message": "饮食偏好更新成功",
+                    "updated_fields": [
+                        "cooking_skill_level",
+                        "favorite_cuisines",
+                        "dietary_restrictions",
+                        "allergies",
+                        "nutrition_goals"
+                    ]
+                }
+            }
+        },
+        "/api/v1/profile/fitness": {
+            "put": {
+                "request": {
+                    "fitness_level": "中级",
+                    "exercise_frequency": 3,
+                    "preferred_exercises": ["力量训练", "跑步"],
+                    "fitness_goals": ["增肌", "提高耐力"]
+                },
+                "response": {
+                    "schema_version": "1.0",
+                    "message": "运动偏好更新成功",
+                    "updated_fields": [
+                        "fitness_level",
+                        "exercise_frequency",
+                        "preferred_exercises",
+                        "fitness_goals"
+                    ]
+                }
+            }
+        },
+        "/api/v1/profile/stats": {
+            "get": {
+                "response": {
+                    "schema_version": "1.0",
+                    "period": "2024-01-01/2024-03-15",
+                    "body_metrics_trend": {
+                        "weight": [70, 69.5, 69],
+                        "body_fat": [20, 19.5, 19],
+                        "muscle_mass": [35, 35.5, 36]
+                    },
+                    "nutrition_summary": {
+                        "average_daily_calories": 2200,
+                        "average_macros": {
+                            "protein": 110,
+                            "carbs": 240,
+                            "fat": 55
+                        },
+                        "meal_patterns": {
+                            "most_common_breakfast": ["燕麦", "鸡蛋"],
+                            "most_common_cuisines": ["川菜", "粤菜"]
+                        }
+                    },
+                    "fitness_summary": {
+                        "total_workouts": 24,
+                        "total_duration": 1440,
+                        "total_calories_burned": 12000,
+                        "exercise_distribution": {
+                            "strength": 40,
+                            "cardio": 45,
+                            "flexibility": 15
+                        },
+                        "strength_progress": {
+                            "bench_press": [50, 52.5, 55],
+                            "squat": [70, 75, 77.5]
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     chat_examples = {
         "/api/v1/chat/text": {
             "post": {
@@ -174,13 +357,17 @@ def custom_openapi(app) -> Dict[str, Any]:
         }
     }
     
-    for path, methods in chat_examples.items():
+    # 合并所有示例
+    examples = {**profile_examples, **chat_examples}
+    
+    # 添加示例到OpenAPI文档
+    for path, methods in examples.items():
         if path in openapi_schema["paths"]:
             for method, example in methods.items():
                 if method in openapi_schema["paths"][path]:
-                    if "requestBody" in openapi_schema["paths"][path][method]:
+                    if "requestBody" in openapi_schema["paths"][path][method] and "request" in example:
                         openapi_schema["paths"][path][method]["requestBody"]["content"]["application/json"]["example"] = example["request"]
-                    if "responses" in openapi_schema["paths"][path][method]:
+                    if "responses" in openapi_schema["paths"][path][method] and "response" in example:
                         for response in openapi_schema["paths"][path][method]["responses"].values():
                             if "content" in response:
                                 response["content"]["application/json"]["example"] = example["response"]

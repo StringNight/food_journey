@@ -341,6 +341,56 @@ POST /ai/generate-recipe
 }
 ```
 
+## 流式聊天接口
+
+### 接口说明
+
+URL: `/chat_stream`
+
+此接口支持流式返回，通过异步生成器逐步返回聊天回复文本块。前端调用时请确保开启流式（stream）模式，以实时接收返回的文本更新。
+
+### 请求参数
+
+```json
+{
+  "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    // 其他对话历史
+  ],
+  "model": "qwen2.5:14b",
+  "max_tokens": 2000,
+  "user_profile": { /* 用户画像，可选 */ }
+}
+```
+
+### 返回值
+
+返回值是一个异步文本块生成器，每个返回块为如下格式的部分回复：
+
+```json
+{
+  "role": "assistant",
+  "content": "聊天回复的部分文本..."
+}
+```
+
+### 示例代码
+
+```python
+from gradio_client import Client
+
+client = Client("https://1ba902d825722a9416.gradio.live/")
+result = client.predict(
+  messages=[{"role": "system", "content": "You are a helpful assistant. You will talk like a pirate."}],
+  model="qwen2.5:14b",
+  max_tokens=2000,
+  api_name="/chat_stream"
+)
+print(result)
+```
+
+说明: 请确保前端在调用此接口时启用stream模式，以支持流式返回。
+
 ## 错误响应
 
 所有接口在发生错误时都会返回以下格式的响应：

@@ -7,6 +7,8 @@ from .config import config, setup_logging
 from .services.user_service import UserService
 from .services.recipe_service import RecipeService
 from .services.ai_service_client import AIServiceClient
+import time
+import asyncio
 
 # 配置日志
 setup_logging(
@@ -23,43 +25,32 @@ class WebApp:
     
     def __init__(self):
         """初始化Web应用"""
+        self.logger = logging.getLogger(__name__)
+        self.ai_client = AIServiceClient()
         self.user_service = UserService()
         self.recipe_service = RecipeService()
-        self.ai_client = AIServiceClient()
-        self.logger = logging.getLogger(__name__)
+        self.interface = None
+        self._debounce_timers = {}  # 用于防抖动的计时器字典
         
-        # 创建Gradio界面
-        self.interface = self._build_interface()
-    
-    def _build_interface(self) -> gr.Blocks:
-        """构建Gradio界面
+    def _create_debounce_key(self, message: str, history: List[Dict[str, str]]) -> str:
+        """创建防抖动键"""
+        return f"{message}_{len(history)}"
         
-        Returns:
-            gr.Blocks: Gradio界面对象
-        """
-        with gr.Blocks(
-            title="美食之旅",
-            theme=gr.themes.Soft(
-                primary_hue="orange",
-                secondary_hue="blue"
-            )
-        ) as interface:
-            gr.Markdown("# 🍳 美食之旅")
+    async def _debounce(self, key: str, delay: float = 0.1):
+        """防抖动处理"""
+        if key in self._debounce_timers:
+            self._debounce_timers[key] = time.time()
+            return True
             
-            with gr.Tabs():
-                # AI功能测试标签页
-                with gr.Tab("🤖 AI助手"):
-                    self._build_ai_test_tab()
-                
-                # 菜谱创建标签页
-                with gr.Tab("📝 创建菜谱"):
-                    self._build_recipe_creation_tab()
-                
-                # 菜谱搜索标签页
-                with gr.Tab("🔍 搜索菜谱"):
-                    self._build_recipe_search_tab()
+        self._debounce_timers[key] = time.time()
+        await asyncio.sleep(delay)
+        
+        # 如果计时器值没有改变，说明在延迟期间没有新的调用
+        if self._debounce_timers.get(key) == time.time():
+            del self._debounce_timers[key]
+            return False
             
-        return interface
+        return True
         
     async def _handle_text_message(
         self,
@@ -79,6 +70,11 @@ class WebApp:
             history.append({"role": "user", "content": message})
             yield history
             
+            # 创建防抖动键
+            debounce_key = self._create_debounce_key(message, history)
+            last_update_time = time.time()
+            current_response = ""
+            
             # 处理消息并流式输出
             async for response_chunk in self.ai_client.chat_stream(
                 messages=history,
@@ -86,12 +82,25 @@ class WebApp:
                 user_profile=user_profile
             ):
                 if response_chunk:
-                    # 更新助手的最后一条消息
-                    if len(history) > 0 and history[-1]["role"] == "assistant":
-                        history[-1]["content"] += response_chunk
-                    else:
-                        history.append({"role": "assistant", "content": response_chunk})
-                    yield history
+                    current_response += response_chunk
+                    current_time = time.time()
+                    
+                    # 如果距离上次更新超过100ms，更新UI
+                    if (current_time - last_update_time) >= 0.1:
+                        if len(history) > 0 and history[-1]["role"] == "assistant":
+                            history[-1]["content"] = current_response
+                        else:
+                            history.append({"role": "assistant", "content": current_response})
+                        yield history
+                        last_update_time = current_time
+            
+            # 确保最后一次更新被发送
+            if current_response:
+                if len(history) > 0 and history[-1]["role"] == "assistant":
+                    history[-1]["content"] = current_response
+                else:
+                    history.append({"role": "assistant", "content": current_response})
+                yield history
                     
         except Exception as e:
             self.logger.error(f"处理文本消息失败: {e}")
@@ -122,6 +131,11 @@ class WebApp:
             history = [{"role": "user", "content": f"语音输入：{transcribed_text}"}]
             yield history
             
+            # 创建防抖动键
+            debounce_key = self._create_debounce_key(transcribed_text, history)
+            last_update_time = time.time()
+            current_response = ""
+            
             # 处理消息并流式输出
             async for response_chunk in self.ai_client.chat_stream(
                 messages=history,
@@ -129,12 +143,25 @@ class WebApp:
                 user_profile=user_profile
             ):
                 if response_chunk:
-                    # 更新助手的最后一条消息
-                    if len(history) > 0 and history[-1]["role"] == "assistant":
-                        history[-1]["content"] += response_chunk
-                    else:
-                        history.append({"role": "assistant", "content": response_chunk})
-                    yield history
+                    current_response += response_chunk
+                    current_time = time.time()
+                    
+                    # 如果距离上次更新超过100ms，更新UI
+                    if (current_time - last_update_time) >= 0.1:
+                        if len(history) > 0 and history[-1]["role"] == "assistant":
+                            history[-1]["content"] = current_response
+                        else:
+                            history.append({"role": "assistant", "content": current_response})
+                        yield history
+                        last_update_time = current_time
+            
+            # 确保最后一次更新被发送
+            if current_response:
+                if len(history) > 0 and history[-1]["role"] == "assistant":
+                    history[-1]["content"] = current_response
+                else:
+                    history.append({"role": "assistant", "content": current_response})
+                yield history
                     
         except Exception as e:
             self.logger.error(f"处理语音消息失败: {e}")
@@ -186,6 +213,11 @@ class WebApp:
                 history[-1]["content"] += f"\n用户说明：{caption}"
                 yield history
                 
+            # 创建防抖动键
+            debounce_key = self._create_debounce_key(food_description, history)
+            last_update_time = time.time()
+            current_response = ""
+            
             # 处理消息并流式输出
             async for response_chunk in self.ai_client.chat_stream(
                 messages=history,
@@ -193,18 +225,61 @@ class WebApp:
                 user_profile=user_profile
             ):
                 if response_chunk:
-                    # 更新助手的最后一条消息
-                    if len(history) > 0 and history[-1]["role"] == "assistant":
-                        history[-1]["content"] += response_chunk
-                    else:
-                        history.append({"role": "assistant", "content": response_chunk})
-                    yield history
+                    current_response += response_chunk
+                    current_time = time.time()
+                    
+                    # 如果距离上次更新超过100ms，更新UI
+                    if (current_time - last_update_time) >= 0.1:
+                        if len(history) > 0 and history[-1]["role"] == "assistant":
+                            history[-1]["content"] = current_response
+                        else:
+                            history.append({"role": "assistant", "content": current_response})
+                        yield history
+                        last_update_time = current_time
+            
+            # 确保最后一次更新被发送
+            if current_response:
+                if len(history) > 0 and history[-1]["role"] == "assistant":
+                    history[-1]["content"] = current_response
+                else:
+                    history.append({"role": "assistant", "content": current_response})
+                yield history
                     
         except Exception as e:
             self.logger.error(f"处理图片消息失败: {e}")
             history.append({"role": "assistant", "content": f"处理失败: {str(e)}"})
             yield history
             
+    def _build_interface(self) -> gr.Blocks:
+        """构建Gradio界面
+        
+        Returns:
+            gr.Blocks: Gradio界面对象
+        """
+        with gr.Blocks(
+            title="美食之旅",
+            theme=gr.themes.Soft(
+                primary_hue="orange",
+                secondary_hue="blue"
+            )
+        ) as interface:
+            gr.Markdown("# 🍳 美食之旅")
+            
+            with gr.Tabs():
+                # AI功能测试标签页
+                with gr.Tab("🤖 AI助手"):
+                    self._build_ai_test_tab()
+                
+                # 菜谱创建标签页
+                with gr.Tab("📝 创建菜谱"):
+                    self._build_recipe_creation_tab()
+                
+                # 菜谱搜索标签页
+                with gr.Tab("🔍 搜索菜谱"):
+                    self._build_recipe_search_tab()
+            
+        return interface
+        
     def _build_ai_test_tab(self):
         """构建AI功能测试标签页"""
         with gr.Tabs():
