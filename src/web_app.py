@@ -1,7 +1,7 @@
 """Web应用入口模块"""
 
 import gradio as gr
-from typing import Dict, Optional
+from typing import Dict, Optional, AsyncGenerator, List
 import logging
 from .config import config, setup_logging
 from .services.user_service import UserService
@@ -61,6 +61,150 @@ class WebApp:
             
         return interface
         
+    async def _handle_text_message(
+        self,
+        message: str,
+        history: List[Dict[str, str]]
+    ) -> AsyncGenerator[List[Dict[str, str]], None]:
+        """处理文本消息，支持流式输出"""
+        try:
+            if not message:
+                yield [{"role": "assistant", "content": "请输入消息"}]
+                return
+                
+            # 获取用户画像
+            user_profile = await self.user_service.get_user_profile("test_user")
+            
+            # 添加用户消息到历史
+            history.append({"role": "user", "content": message})
+            yield history
+            
+            # 处理消息并流式输出
+            async for response_chunk in self.ai_client.chat_stream(
+                messages=history,
+                model="qwen2.5:14b",
+                user_profile=user_profile
+            ):
+                if response_chunk:
+                    # 更新助手的最后一条消息
+                    if len(history) > 0 and history[-1]["role"] == "assistant":
+                        history[-1]["content"] += response_chunk
+                    else:
+                        history.append({"role": "assistant", "content": response_chunk})
+                    yield history
+                    
+        except Exception as e:
+            self.logger.error(f"处理文本消息失败: {e}")
+            history.append({"role": "assistant", "content": f"处理失败: {str(e)}"})
+            yield history
+            
+    async def _handle_voice_message(
+        self,
+        audio_data,
+        history: List[Dict[str, str]]
+    ) -> AsyncGenerator[List[Dict[str, str]], None]:
+        """处理语音消息，支持流式输出"""
+        try:
+            if audio_data is None:
+                yield [{"role": "assistant", "content": "请先录制语音"}]
+                return
+                
+            # 获取用户画像
+            user_profile = await self.user_service.get_user_profile("test_user")
+            
+            # 语音转文字
+            transcribed_text = await self.ai_client.process_voice(audio_data)
+            if not transcribed_text:
+                yield [{"role": "assistant", "content": "语音识别失败"}]
+                return
+                
+            # 先显示用户输入
+            history = [{"role": "user", "content": f"语音输入：{transcribed_text}"}]
+            yield history
+            
+            # 处理消息并流式输出
+            async for response_chunk in self.ai_client.chat_stream(
+                messages=history,
+                model="qwen2.5:14b",
+                user_profile=user_profile
+            ):
+                if response_chunk:
+                    # 更新助手的最后一条消息
+                    if len(history) > 0 and history[-1]["role"] == "assistant":
+                        history[-1]["content"] += response_chunk
+                    else:
+                        history.append({"role": "assistant", "content": response_chunk})
+                    yield history
+                    
+        except Exception as e:
+            self.logger.error(f"处理语音消息失败: {e}")
+            history.append({"role": "assistant", "content": f"处理失败: {str(e)}"})
+            yield history
+            
+    async def _handle_image_message(
+        self,
+        image,
+        caption: str,
+        history: List[Dict[str, str]]
+    ) -> AsyncGenerator[List[Dict[str, str]], None]:
+        """处理图片消息，支持流式输出"""
+        try:
+            if image is None:
+                yield [{"role": "assistant", "content": "请先上传图片"}]
+                return
+                
+            # 获取用户画像
+            user_profile = await self.user_service.get_user_profile("test_user")
+                
+            # 显示处理中的状态
+            history = [{"role": "user", "content": "图片上传成功"}]
+            yield history
+            
+            history.append({"role": "assistant", "content": "正在识别图片中的食物..."})
+            yield history
+                
+            # 图片识别
+            recognition_result = await self.ai_client.recognize_food(image)
+            if not recognition_result["success"]:
+                history[-1]["content"] = f"图片识别失败: {recognition_result.get('message', '未知错误')}"
+                yield history
+                return
+                
+            # 构建消息
+            food_items = recognition_result["food_items"]
+            food_description = "图片中识别到的食物：" + ", ".join(
+                [f"{item['name']}（置信度：{item['confidence']:.2%}）" 
+                 for item in food_items]
+            )
+            
+            # 更新识别结果
+            history[-1]["content"] = food_description
+            yield history
+            
+            # 如果有用户说明，添加到结果中
+            if caption:
+                history[-1]["content"] += f"\n用户说明：{caption}"
+                yield history
+                
+            # 处理消息并流式输出
+            async for response_chunk in self.ai_client.chat_stream(
+                messages=history,
+                model="qwen2.5:14b",
+                user_profile=user_profile
+            ):
+                if response_chunk:
+                    # 更新助手的最后一条消息
+                    if len(history) > 0 and history[-1]["role"] == "assistant":
+                        history[-1]["content"] += response_chunk
+                    else:
+                        history.append({"role": "assistant", "content": response_chunk})
+                    yield history
+                    
+        except Exception as e:
+            self.logger.error(f"处理图片消息失败: {e}")
+            history.append({"role": "assistant", "content": f"处理失败: {str(e)}"})
+            yield history
+            
     def _build_ai_test_tab(self):
         """构建AI功能测试标签页"""
         with gr.Tabs():
@@ -69,57 +213,22 @@ class WebApp:
                 chat_history = gr.Chatbot(
                     label="对话历史",
                     height=400,
-                    type="messages"
+                    type="messages",
+                    show_label=True,
+                    show_share_button=False,
+                    show_copy_button=True
                 )
                 with gr.Row():
                     text_input = gr.Textbox(
                         label="输入消息",
                         placeholder="请输入你的问题...",
-                        lines=3
+                        lines=2
                     )
-                    send_btn = gr.Button("发送", variant="primary")
-                clear_btn = gr.Button("清空对话")
-                
-                async def on_message(message: str, history: list):
-                    if not message:
-                        return history
-                    try:
-                        # 发送聊天请求
-                        response = await self.ai_client.chat(
-                            messages=[{
-                                "role": "system",
-                                "content": "你是一个专业的厨师和营养专家。"
-                            }, {
-                                "role": "user",
-                                "content": message
-                            }],
-                            model="qwen2.5:14b"
-                        )
-                        
-                        # 更新对话历史
-                        history.append({
-                            "role": "user",
-                            "content": message
-                        })
-                        history.append({
-                            "role": "assistant",
-                            "content": response.get("response", "")
-                        })
-                        return history
-                    except Exception as e:
-                        self.logger.error(f"聊天请求失败: {str(e)}")
-                        history.append({
-                            "role": "user",
-                            "content": message
-                        })
-                        history.append({
-                            "role": "assistant",
-                            "content": f"抱歉，处理请求时出错: {str(e)}"
-                        })
-                        return history
+                    send_btn = gr.Button("发送")
+                text_clear = gr.Button("清空对话")
                 
                 send_btn.click(
-                    fn=on_message,
+                    fn=self._handle_text_message,
                     inputs=[text_input, chat_history],
                     outputs=chat_history,
                     api_name="chat"
@@ -128,7 +237,7 @@ class WebApp:
                 )
                 
                 text_input.submit(
-                    fn=on_message,
+                    fn=self._handle_text_message,
                     inputs=[text_input, chat_history],
                     outputs=chat_history,
                     api_name="chat_submit"
@@ -136,80 +245,45 @@ class WebApp:
                     lambda: "", None, text_input  # 清空输入框
                 )
                 
-                clear_btn.click(lambda: None, None, chat_history)
+                text_clear.click(lambda: None, None, chat_history, queue=False)
             
             # 语音聊天
             with gr.Tab("🎤 语音聊天"):
                 voice_history = gr.Chatbot(
                     label="对话历史",
                     height=400,
-                    type="messages"
+                    type="messages",
+                    show_label=True,
+                    show_share_button=False,
+                    show_copy_button=True
                 )
                 audio_input = gr.Audio(
                     label="录制语音",
-                    sources=["microphone"],
-                    type="filepath"
+                    sources=["microphone", "upload"],
+                    type="filepath",
+                    format="wav"
                 )
-                voice_clear_btn = gr.Button("清空对话")
-                
-                async def on_voice(audio_data, history: list):
-                    if not audio_data:
-                        return history
-                    try:
-                        # 转写语音
-                        transcribed_text = await self.ai_client.process_voice(audio_data)
-                        if not transcribed_text:
-                            history.append({
-                                "role": "assistant",
-                                "content": "抱歉，无法识别语音内容"
-                            })
-                            return history
-                            
-                        # 发送聊天请求
-                        response = await self.ai_client.chat(
-                            messages=[{
-                                "role": "system",
-                                "content": "你是一个专业的厨师和营养专家。"
-                            }, {
-                                "role": "user",
-                                "content": transcribed_text
-                            }],
-                            model="qwen2.5:14b"
-                        )
-                        
-                        # 更新对话历史
-                        history.append({
-                            "role": "user",
-                            "content": f"语音转写：{transcribed_text}"
-                        })
-                        history.append({
-                            "role": "assistant",
-                            "content": response.get("response", "")
-                        })
-                        return history
-                    except Exception as e:
-                        self.logger.error(f"语音处理失败: {str(e)}")
-                        history.append({
-                            "role": "assistant",
-                            "content": f"抱歉，处理语音时出错: {str(e)}"
-                        })
-                        return history
+                voice_clear = gr.Button("清空对话")
                 
                 audio_input.change(
-                    fn=on_voice,
+                    fn=self._handle_voice_message,
                     inputs=[audio_input, voice_history],
                     outputs=voice_history,
-                    api_name="voice_chat"
+                    api_name="voice_chat",
+                    queue=True
                 )
                 
-                voice_clear_btn.click(lambda: None, None, voice_history)
+                voice_clear.click(lambda: None, None, voice_history, queue=False)
             
             # 食物识别
             with gr.Tab("🍲 食物识别"):
                 food_history = gr.Chatbot(
                     label="识别历史",
                     height=400,
-                    type="messages"
+                    type="messages",
+                    show_label=True,
+                    show_share_button=False,
+                    show_copy_button=True
                 )
                 with gr.Row():
                     with gr.Column():
@@ -220,75 +294,24 @@ class WebApp:
                             sources=["upload", "webcam"]
                         )
                     with gr.Column():
-                        result_output = gr.Textbox(
-                            label="识别结果",
-                            lines=10,
-                            interactive=False
+                        caption_input = gr.Textbox(
+                            label="补充说明",
+                            placeholder="请输入图片补充说明（可选）",
+                            lines=2
                         )
-                food_clear_btn = gr.Button("清空记录")
-                
-                async def on_image(image, history: list):
-                    if not image:
-                        return history, "请上传图片"
-                    try:
-                        # 识别图片中的食物
-                        recognition_result = await self.ai_client.recognize_food(image)
-                        
-                        if not recognition_result["success"]:
-                            error_msg = recognition_result.get("message", "未知错误")
-                            history.append({
-                                "role": "assistant",
-                                "content": f"识别失败: {error_msg}"
-                            })
-                            return history, error_msg
-                        
-                        # 格式化识别结果
-                        food_items = recognition_result.get("food_items", [])
-                        if not food_items:
-                            history.append({
-                                "role": "assistant",
-                                "content": "未识别到食物"
-                            })
-                            return history, "未识别到食物"
-                        
-                        # 构建识别结果文本
-                        result_text = "识别结果：\n"
-                        for item in food_items:
-                            if isinstance(item, dict):
-                                name = item.get("name", "未知食物")
-                                confidence = item.get("confidence", 0)
-                                result_text += f"- {name} (置信度: {confidence:.2%})\n"
-                            elif isinstance(item, str):
-                                result_text += f"- {item}\n"
-                        
-                        history.append({
-                            "role": "assistant",
-                            "content": result_text
-                        })
-                        return history, result_text
-                        
-                    except Exception as e:
-                        self.logger.error(f"图片处理失败: {str(e)}")
-                        error_msg = f"处理图片时出错: {str(e)}"
-                        history.append({
-                            "role": "assistant",
-                            "content": error_msg
-                        })
-                        return history, error_msg
-                
-                image_input.change(
-                    fn=on_image,
-                    inputs=[image_input, food_history],
-                    outputs=[food_history, result_output],
-                    api_name="food_recognition"
+                send_img_btn = gr.Button("发送")
+                clear_img_btn = gr.Button("清空对话")
+
+                send_img_btn.click(
+                    fn=self._handle_image_message,
+                    inputs=[image_input, caption_input, food_history],
+                    outputs=food_history,
+                    api_name="food_recognition",
+                    queue=True
                 )
                 
-                food_clear_btn.click(
-                    lambda: (None, ""),
-                    None,
-                    [food_history, result_output]
-                )
-                
+                clear_img_btn.click(lambda: None, None, food_history, queue=False)
+            
     def _build_recipe_creation_tab(self):
         """构建菜谱创建标签页"""
         with gr.Column():

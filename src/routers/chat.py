@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query, Request, status
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query, Request, status, Form
 from fastapi.responses import StreamingResponse, JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
@@ -22,10 +22,12 @@ import re
 from ..services.file import file_service
 from fastapi.security import OAuth2PasswordRequestForm
 from ..config.limiter import limiter
+from ..services.profile_update_service import ProfileUpdateService
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 ai_client = AIServiceClient()
+profile_update_service = ProfileUpdateService()
 
 # 常量定义
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
@@ -45,17 +47,7 @@ async def get_chat_history_for_response(
     db: AsyncSession,
     limit: int = 10
 ) -> List[Dict[str, Any]]:
-    """获取用于响应的聊天历史
-    
-    Args:
-        user_id: 用户ID
-        db: 数据库会话
-        limit: 获取的消息数量
-        
-    Returns:
-        List[Dict[str, Any]]: 聊天历史记录
-    """
-    # 获取最近的消息
+    """获取用于响应的聊天历史"""
     query = (
         select(ChatMessage)
         .filter(ChatMessage.user_id == user_id)
@@ -65,9 +57,8 @@ async def get_chat_history_for_response(
     result = await db.execute(query)
     messages = result.scalars().all()
     
-    # 转换为响应格式
     history = []
-    for msg in reversed(messages):  # 反转顺序，使其按时间正序
+    for msg in reversed(messages):
         history.append({
             "content": msg.content,
             "is_user": msg.is_user,
@@ -76,101 +67,109 @@ async def get_chat_history_for_response(
             "image_url": msg.image_url,
             "transcribed_text": msg.transcribed_text
         })
-        
     return history
 
-@router.post("/text", response_model=MessageResponse)
-async def text_chat(
-    text_request: TextRequest,
-    current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
-) -> MessageResponse:
-    """处理文本聊天请求"""
-    try:
-        # 验证消息内容
-        if not isinstance(text_request.message, str):
-            raise HTTPException(status_code=400, detail="消息必须是字符串类型")
-            
-        message = text_request.message.strip()
-        if not message:
-            raise HTTPException(status_code=400, detail="消息不能为空")
-            
-        if len(message) > MAX_MESSAGE_LENGTH:
-            raise HTTPException(
-                status_code=413,
-                detail=f"消息长度不能超过{MAX_MESSAGE_LENGTH}字符"
-            )
-            
-        # 获取用户画像
-        user_profile = await get_user_profile(current_user.id, db)
+async def get_user_profile(user_id: str, db: AsyncSession) -> Dict[str, Any]:
+    """获取用户画像信息"""
+    query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
+    result = await db.execute(query)
+    profile = result.scalar_one_or_none()
+    
+    if not profile:
+        return {}
         
-        # 获取最近的聊天历史（最多5条）用于AI上下文
-        chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
-        
-        # 保存用户消息
-        user_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.text,
-            content=message,
-            is_user=True,
-            created_at=datetime.now()
-        )
-        db.add(user_message)
-        
-        # 构建完整的消息列表
-        messages = ai_client._build_chat_messages(
-            user_profile=user_profile,
-            current_message=message,
-            chat_history=chat_history
-        )
-        
-        # 获取AI响应
-        chat_response = await ai_client.chat(
-            messages=messages,
-            model="qwen2.5:14b"
-        )
-        
-        content = chat_response.get("response", "")
-        if not content:
-            raise ValueError("AI响应内容为空")
-            
-        # 保存系统响应
-        system_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.text,
-            content=content,
-            is_user=False,
-            created_at=datetime.now()
-        )
-        db.add(system_message)
-        await db.commit()
-        
-        # 获取用于响应的历史消息（最多10条）
-        history = await get_chat_history_for_response(current_user.id, db)
-        
-        return MessageResponse(
-            schema_version="1.0",
-            message=content,
-            created_at=system_message.created_at,
-            history=history
-        )
-        
-    except Exception as e:
-        await db.rollback()
-        logger.error(f"文本处理失败: {str(e)}")
-        if isinstance(e, HTTPException):
-            raise e
-        raise HTTPException(status_code=500, detail=f"文本处理失败: {str(e)}")
+    return {
+        "gender": profile.gender,
+        "age": (datetime.now().date() - profile.birth_date).days // 365 if profile.birth_date else None,
+        "height": profile.height,
+        "weight": profile.weight,
+        "bmi": round(profile.weight / ((profile.height/100) ** 2), 1) if profile.height and profile.weight else None,
+        "body_fat_percentage": profile.body_fat_percentage,
+        "health_conditions": profile.health_conditions or [],
+        "health_goals": profile.health_goals or [],
+        "food_preferences": profile.favorite_cuisines or [],
+        "dietary_restrictions": profile.dietary_restrictions or [],
+        "allergies": profile.allergies or [],
+        "cooking_level": profile.cooking_skill_level or "初级",
+        "calorie_preference": profile.calorie_preference,
+        "nutrition_goals": profile.nutrition_goals or [],
+        "fitness_level": profile.fitness_level,
+        "exercise_frequency": profile.exercise_frequency,
+        "fitness_goals": profile.fitness_goals or []
+    }
 
-@router.post("/text/stream")
+async def get_recent_chat_history(
+    user_id: str,
+    db: AsyncSession,
+    limit: int = 5
+) -> List[Dict[str, str]]:
+    """获取最近的聊天历史"""
+    query = (
+        select(ChatMessage)
+        .filter(ChatMessage.user_id == user_id)
+        .order_by(ChatMessage.created_at.desc())
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    messages = result.scalars().all()
+    
+    history = []
+    for msg in reversed(messages):
+        history.append({
+            "role": "user" if msg.is_user else "assistant",
+            "content": msg.content
+        })
+    return history
+
+async def process_stream_response(
+    user_id: str,
+    db: AsyncSession,
+    messages: List[Dict[str, str]],
+    user_message: ChatMessage
+):
+    """处理流式响应的通用函数"""
+    full_content = []
+    async for chunk in ai_client.chat_stream(messages=messages):
+        full_content.append(chunk)
+        yield f"data: {chunk}\n\n"
+        
+    # 保存完整的系统响应
+    content = "".join(full_content)
+    system_message = ChatMessage(
+        id=str(uuid.uuid4()),
+        user_id=user_id,
+        type=MessageType.text,
+        content=content,
+        is_user=False,
+        created_at=datetime.now()
+    )
+    db.add(system_message)
+    
+    # 提取并更新用户画像
+    extracted_info = await profile_update_service.extract_profile_info(
+        user_message=user_message.content,
+        ai_response=content
+    )
+    if extracted_info:
+        await profile_update_service.update_user_profile(
+            user_id=user_id,
+            extracted_info=extracted_info,
+            db=db
+        )
+    
+    await db.commit()
+    
+    # 获取用于响应的历史消息
+    history = await get_chat_history_for_response(user_id, db)
+    yield f"data: {{'type': 'history', 'data': {history}}}\n\n"
+
+@router.post("/chat/stream")
 async def text_chat_stream(
     text_request: TextRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """处理流式文本聊天请求"""
+    """处理文本流式聊天请求"""
     try:
         # 验证消息内容
         if not isinstance(text_request.message, str):
@@ -186,10 +185,8 @@ async def text_chat_stream(
                 detail=f"消息长度不能超过{MAX_MESSAGE_LENGTH}字符"
             )
             
-        # 获取用户画像
+        # 获取用户画像和聊天历史
         user_profile = await get_user_profile(current_user.id, db)
-        
-        # 获取最近的聊天历史（最多5条）用于AI上下文
         chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
             
         # 保存用户消息
@@ -204,43 +201,20 @@ async def text_chat_stream(
         db.add(user_message)
         await db.commit()
         
-        # 构建完整的消息列表
+        # 构建消息列表
         messages = ai_client._build_chat_messages(
             user_profile=user_profile,
             current_message=message,
             chat_history=chat_history
         )
         
-        # 创建流式响应
-        async def generate_response():
-            full_content = []
-            async for chunk in ai_client.chat_stream(
-                messages=messages,
-                model="qwen2.5:14b"
-            ):
-                full_content.append(chunk)
-                yield f"data: {chunk}\n\n"
-                
-            # 保存完整的系统响应
-            system_message = ChatMessage(
-                id=str(uuid.uuid4()),
-                user_id=current_user.id,
-                type=MessageType.text,
-                content="".join(full_content),
-                is_user=False,
-                created_at=datetime.now()
-            )
-            db.add(system_message)
-            await db.commit()
-            
-            # 获取用于响应的历史消息
-            history = await get_chat_history_for_response(current_user.id, db)
-            
-            # 发送完整的消息历史
-            yield f"data: {{'type': 'history', 'data': {history}}}\n\n"
-            
         return StreamingResponse(
-            generate_response(),
+            process_stream_response(
+                user_id=current_user.id,
+                db=db,
+                messages=messages,
+                user_message=user_message
+            ),
             media_type="text/event-stream"
         )
         
@@ -254,314 +228,188 @@ async def text_chat_stream(
             detail=f"流式文本处理失败: {str(e)}"
         )
 
-async def get_user_profile(user_id: str, db: AsyncSession) -> Dict[str, Any]:
-    """获取用户画像信息
-    
-    Args:
-        user_id: 用户ID
-        db: 数据库会话
-        
-    Returns:
-        Dict[str, Any]: 用户画像信息
-    """
-    # 从数据库获取用户画像信息
-    query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
-    result = await db.execute(query)
-    profile = result.scalar_one_or_none()
-    
-    if not profile:
-        return {}  # 返回空画像
-        
-    return {
-        # 基本信息
-        "gender": profile.gender,
-        "age": (datetime.now().date() - profile.birth_date).days // 365 if profile.birth_date else None,
-        
-        # 健康信息
-        "height": profile.height,  # 厘米
-        "weight": profile.weight,  # 千克
-        "bmi": round(profile.weight / ((profile.height/100) ** 2), 1) if profile.height and profile.weight else None,
-        "body_fat_percentage": profile.body_fat_percentage,
-        "health_conditions": profile.health_conditions or [],
-        "health_goals": profile.health_goals or [],
-        
-        # 饮食相关
-        "food_preferences": profile.favorite_cuisines or [],
-        "dietary_restrictions": profile.dietary_restrictions or [],
-        "allergies": profile.allergies or [],
-        "cooking_level": profile.cooking_skill_level or "初级",
-        "calorie_preference": profile.calorie_preference,
-        "nutrition_goals": profile.nutrition_goals or [],
-        
-        # 健身相关
-        "fitness_level": profile.fitness_level,
-        "exercise_frequency": profile.exercise_frequency,  # 每周运动次数
-        "fitness_goals": profile.fitness_goals or []
-    }
-
-async def get_recent_chat_history(
-    user_id: str,
-    db: AsyncSession,
-    limit: int = 5
-) -> List[Dict[str, str]]:
-    """获取最近的聊天历史
-    
-    Args:
-        user_id: 用户ID
-        db: 数据库会话
-        limit: 获取的消息数量
-        
-    Returns:
-        List[Dict[str, str]]: 聊天历史记录
-    """
-    # 获取最近的消息
-    query = (
-        select(ChatMessage)
-        .filter(ChatMessage.user_id == user_id)
-        .order_by(ChatMessage.created_at.desc())
-        .limit(limit)
-    )
-    result = await db.execute(query)
-    messages = result.scalars().all()
-    
-    # 转换为LLM消息格式
-    chat_history = []
-    for msg in reversed(messages):  # 反转顺序，使其按时间正序
-        role = "user" if msg.is_user else "assistant"
-        chat_history.append({
-            "role": role,
-            "content": msg.content
-        })
-        
-    return chat_history
-
-@router.post("/voice", response_model=MessageResponse)
-@limiter.limit("60/minute")
-async def voice_chat(
-    request: Request,
+@router.post("/voice/stream")
+async def voice_chat_stream(
     file: UploadFile = File(...),
-    voice_request: VoiceRequest = Depends(),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
-) -> MessageResponse:
-    """处理语音聊天请求"""
+):
+    """处理语音流式聊天请求"""
     try:
-        # 验证文件大小和类型
-        if file.size and file.size > MAX_FILE_SIZE:
-            raise HTTPException(
-                status_code=413,
-                detail=f"文件大小不能超过{MAX_FILE_SIZE/1024/1024}MB"
-            )
-            
+        # 验证文件类型和大小
         if file.content_type not in ALLOWED_AUDIO_TYPES:
             raise HTTPException(
                 status_code=400,
                 detail=f"不支持的音频格式: {file.content_type}"
             )
             
-        # 读取文件内容
-        content = await file.read()
-        
-        # 转写语音内容
-        transcribed_text = await ai_client.process_voice(content)
-        
-        # 获取用户画像
+        file_size = 0
+        file_content = b""
+        async for chunk in file.stream():
+            file_content += chunk
+            file_size += len(chunk)
+            if file_size > MAX_FILE_SIZE:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
+                )
+                
+        # 保存语音文件, 根据文件类型选择正确的扩展名
+        if file.content_type == "audio/wav":
+            ext = "wav"
+        elif file.content_type in {"audio/mpeg", "audio/mp3"}:
+            ext = "mp3"
+        else:
+            raise HTTPException(status_code=400, detail=f"不支持的音频格式: {file.content_type}")
+        voice_filename = f"{uuid.uuid4()}.{ext}"
+        voice_path = VOICE_DIR / voice_filename
+        with open(voice_path, "wb") as f:
+            f.write(file_content)
+            
+        # 语音转文字 - 使用语音文件的URL作为输入
+        voice_url = f"/uploads/voices/{voice_filename}"
+        transcribed_text = await ai_client.process_voice(voice_url)
+        if not transcribed_text:
+            raise HTTPException(
+                status_code=400,
+                detail="语音识别失败"
+            )
+            
+        # 获取用户画像和聊天历史
         user_profile = await get_user_profile(current_user.id, db)
-        
-        # 获取最近的聊天历史
         chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
         
         # 保存用户消息
-        voice_url = await file_service.save_file(content, VOICE_DIR, file.filename)
         user_message = ChatMessage(
             id=str(uuid.uuid4()),
             user_id=current_user.id,
             type=MessageType.voice,
             content=transcribed_text,
-            voice_url=voice_url,
+            voice_url=f"/uploads/voices/{voice_filename}",
+            transcribed_text=transcribed_text,
             is_user=True,
             created_at=datetime.now()
         )
         db.add(user_message)
+        await db.commit()
         
-        # 构建完整的消息列表
+        # 构建消息列表
         messages = ai_client._build_chat_messages(
             user_profile=user_profile,
             current_message=transcribed_text,
             chat_history=chat_history
         )
         
-        # 获取AI响应
-        chat_response = await ai_client.chat(
-            messages=messages,
-            model="qwen2.5:14b"
-        )
-        
-        content = chat_response.get("response", "")
-        if not content:
-            raise ValueError("AI响应内容为空")
-            
-        # 保存系统响应
-        system_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.text,
-            content=content,
-            is_user=False,
-            created_at=datetime.now()
-        )
-        db.add(system_message)
-        await db.commit()
-        
-        # 获取用于响应的历史消息
-        history = await get_chat_history_for_response(current_user.id, db)
-        
-        return MessageResponse(
-            schema_version="1.0",
-            message=content,
-            voice_url=voice_url,
-            transcribed_text=transcribed_text,
-            created_at=system_message.created_at,
-            history=history
+        return StreamingResponse(
+            process_stream_response(
+                user_id=current_user.id,
+                db=db,
+                messages=messages,
+                user_message=user_message
+            ),
+            media_type="text/event-stream"
         )
         
     except Exception as e:
         await db.rollback()
-        logger.error(f"语音处理失败: {str(e)}")
+        logger.error(f"流式语音处理失败: {str(e)}")
         if isinstance(e, HTTPException):
             raise e
         raise HTTPException(
             status_code=500,
-            detail=f"语音处理失败: {str(e)}"
+            detail=f"流式语音处理失败: {str(e)}"
         )
 
-@router.post("/food", response_model=MessageResponse)
-@limiter.limit("60/minute")
-async def food_recognition(
-    request: Request,
+@router.post("/image/stream")
+async def image_chat_stream(
     file: UploadFile = File(...),
+    caption: str = Form(""),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
-) -> MessageResponse:
-    """处理食物识别请求"""
+):
+    """处理图片流式聊天请求"""
     try:
-        # 验证文件大小和类型
-        if file.size and file.size > MAX_FILE_SIZE:
-            raise HTTPException(
-                status_code=413,
-                detail=f"文件大小不能超过{MAX_FILE_SIZE/1024/1024}MB"
-            )
-            
+        # 验证文件类型和大小
         if file.content_type not in ALLOWED_IMAGE_TYPES:
             raise HTTPException(
                 status_code=400,
                 detail=f"不支持的图片格式: {file.content_type}"
             )
             
-        # 读取文件内容并转换为base64
-        content = await file.read()
-        image_base64 = base64.b64encode(content).decode('utf-8')
-        
-        # 保存图片
-        image_url = await file_service.save_file(content, IMAGE_DIR, file.filename)
-        
-        # 识别食物
-        recognition_result = await ai_client.recognize_food(image_base64)
-        
-        if not recognition_result.get("success", False):
+        file_size = 0
+        file_content = b""
+        async for chunk in file.stream():
+            file_content += chunk
+            file_size += len(chunk)
+            if file_size > MAX_FILE_SIZE:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
+                )
+                
+        # 保存图片文件
+        image_filename = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
+        image_path = IMAGE_DIR / image_filename
+        with open(image_path, "wb") as f:
+            f.write(file_content)
+            
+        # 识别图片内容
+        recognition_result = await ai_client.recognize_food(str(image_path))
+        if not recognition_result["success"]:
             raise HTTPException(
-                status_code=500,
-                detail=recognition_result.get("message", "食物识别失败")
+                status_code=400,
+                detail=f"图片识别失败: {recognition_result.get('message', '未知错误')}"
             )
             
+        # 构建图片描述
+        food_items = recognition_result["food_items"]
+        food_description = "图片中包含: " + ", ".join([item["name"] for item in food_items])
+        
+        # 组合用户输入的文字说明
+        full_message = f"{food_description}\n用户说明: {caption}" if caption else food_description
+        
+        # 获取用户画像和聊天历史
+        user_profile = await get_user_profile(current_user.id, db)
+        chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
+        
         # 保存用户消息
         user_message = ChatMessage(
             id=str(uuid.uuid4()),
             user_id=current_user.id,
             type=MessageType.image,
-            content="[食物图片]",
-            image_url=image_url,
+            content=full_message,
+            image_url=f"/uploads/images/{image_filename}",
             is_user=True,
             created_at=datetime.now()
         )
         db.add(user_message)
-        
-        # 构建响应消息
-        food_items = recognition_result.get("food_items", [])
-        content = "我识别到以下食物：\n" + "\n".join(
-            f"- {item.get('name', '未知食物')}" 
-            for item in food_items
-        )
-        
-        # 保存系统响应
-        system_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.text,
-            content=content,
-            is_user=False,
-            created_at=datetime.now()
-        )
-        db.add(system_message)
         await db.commit()
         
-        return MessageResponse(
-            schema_version="1.0",
-            message=content,
-            image_url=image_url,
-            food_items=food_items,
-            created_at=system_message.created_at
+        # 构建消息列表
+        messages = ai_client._build_chat_messages(
+            user_profile=user_profile,
+            current_message=full_message,
+            chat_history=chat_history
+        )
+        
+        return StreamingResponse(
+            process_stream_response(
+                user_id=current_user.id,
+                db=db,
+                messages=messages,
+                user_message=user_message
+            ),
+            media_type="text/event-stream"
         )
         
     except Exception as e:
         await db.rollback()
-        logger.error(f"食物识别失败: {str(e)}")
+        logger.error(f"流式图片处理失败: {str(e)}")
         if isinstance(e, HTTPException):
             raise e
         raise HTTPException(
             status_code=500,
-            detail=f"食物识别失败: {str(e)}"
-        )
-
-@router.post("/image", response_model=MessageResponse)
-@limiter.limit("60/minute")
-async def image_chat(
-    request: Request,
-    file: UploadFile = File(...),
-    image_request: ImageRequest = Depends(),
-    current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
-) -> MessageResponse:
-    """处理图片消息"""
-    try:
-        # 验证并获取文件内容
-        content = await file_service._verify_file_type(
-            file, 
-            file_service.ALLOWED_IMAGE_TYPES,
-            "不支持的图片格式"
-        )
-        
-        # 验证文件大小
-        if len(content) > file_service.MAX_IMAGE_SIZE:
-            raise HTTPException(
-                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-                detail=f"文件大小超过限制: {file_service.MAX_IMAGE_SIZE/1024/1024:.1f}MB"
-            )
-        
-        # 保存图片文件
-        image_url = await file_service.save_image(file)
-        
-        # 处理图片消息
-        result = await process_image(content, image_url, current_user, db)
-        return result
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"处理图片消息时发生错误: {str(e)}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="处理图片消息时发生错误"
+            detail=f"流式图片处理失败: {str(e)}"
         )
 
 @router.get("/history", response_model=MessageHistory)
@@ -576,71 +424,49 @@ async def get_chat_history(
     """获取聊天历史记录"""
     try:
         # 构建基础查询
-        base_query = select(ChatMessage).filter(
-            ChatMessage.user_id == current_user.id
-        )
+        query = select(ChatMessage).filter(ChatMessage.user_id == current_user.id)
         
         # 添加日期过滤
         if start_date:
-            base_query = base_query.filter(ChatMessage.created_at >= start_date)
+            query = query.filter(ChatMessage.created_at >= start_date)
         if end_date:
-            base_query = base_query.filter(ChatMessage.created_at <= end_date)
+            query = query.filter(ChatMessage.created_at <= end_date)
             
-        # 获取总数
-        total_query = select(func.count()).select_from(
-            base_query.subquery()
-        )
-        total = await db.scalar(total_query) or 0
+        # 获取总记录数
+        count_query = select(func.count()).select_from(query.subquery())
+        total = await db.scalar(count_query)
         
-        # 计算总页数
-        total_pages = (total + per_page - 1) // per_page if total > 0 else 0
+        # 分页
+        query = query.order_by(ChatMessage.created_at.desc())
+        query = query.offset((page - 1) * per_page).limit(per_page)
         
-        # 获取分页数据
-        query = base_query.order_by(ChatMessage.created_at.desc())
-        result = await db.execute(
-            query.offset((page - 1) * per_page).limit(per_page)
-        )
+        # 执行查询
+        result = await db.execute(query)
         messages = result.scalars().all()
         
-        # 构建消息列表
-        message_list = []
-        for msg in messages:
-            suggestions = []
-            if msg.suggestions:
-                suggestions = [s.strip() for s in msg.suggestions.split(",") if s.strip()]
-                
-            message_response = MessageResponse(
-                schema_version="1.0",
-                message=msg.content,
-                suggestions=suggestions,
-                voice_url=msg.voice_url,
-                image_url=msg.image_url,
-                transcribed_text=msg.transcribed_text,
-                analysis_result=msg.analysis_result,
-                created_at=msg.created_at,
-                is_user=msg.is_user
-            )
-            message_list.append(message_response)
-        
-        # 构建分页信息
-        pagination_info = PaginationInfo(
-            page=page,
-            per_page=per_page,
-            total=total,
-            total_pages=total_pages
-        )
-        
-        # 构建最终响应
+        # 构建响应
         return MessageHistory(
-            schema_version="1.0",
-            messages=message_list,
-            pagination=pagination_info
+            messages=[
+                MessageResponse(
+                    id=str(msg.id),
+                    content=msg.content,
+                    is_user=msg.is_user,
+                    created_at=msg.created_at,
+                    voice_url=msg.voice_url,
+                    image_url=msg.image_url,
+                    transcribed_text=msg.transcribed_text
+                ) for msg in messages
+            ],
+            pagination=PaginationInfo(
+                total=total,
+                page=page,
+                per_page=per_page,
+                total_pages=(total + per_page - 1) // per_page
+            )
         )
         
     except Exception as e:
         logger.error(f"获取聊天历史失败: {str(e)}")
-        if isinstance(e, HTTPException):
-            raise e
         raise HTTPException(
             status_code=500,
             detail=f"获取聊天历史失败: {str(e)}"

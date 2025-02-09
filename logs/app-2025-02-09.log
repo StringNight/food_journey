@@ -1,0 +1,15 @@
+2025-02-09 12:26:15 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-09.log, 控制台: True
+2025-02-09 12:26:15 [INFO] __main__: 正在启动服务...
+2025-02-09 12:26:15 [WARNING] __main__: SSL证书文件不存在，将使用HTTP模式启动
+2025-02-09 12:26:15 [INFO] __main__: FastAPI服务已启动
+2025-02-09 12:26:15 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/Users/txin/food_journey_backend']
+2025-02-09 12:26:15 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-09 12:26:15 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [51219] using StatReload
+2025-02-09 12:26:38 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [51221]
+2025-02-09 12:26:38 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-09 12:26:38 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-09 12:27:34 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-02-09 12:27:34 [INFO] __main__: 正在清理资源...
+2025-02-09 12:27:34 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-09 12:27:34 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-02-09 12:27:34 [INFO] __main__: FastAPI 服务已关闭

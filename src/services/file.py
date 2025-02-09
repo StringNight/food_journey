@@ -26,7 +26,8 @@ class FileService:
     ALLOWED_AUDIO_TYPES: Set[str] = {
         'audio/wav',
         'audio/mpeg',
-        'audio/mp3'
+        'audio/mp3',
+        'audio/m4a'
     }
     
     # 文件大小限制
