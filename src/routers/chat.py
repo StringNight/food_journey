@@ -22,6 +22,7 @@ import re
 from ..services.file import file_service
 from fastapi.security import OAuth2PasswordRequestForm
 from ..config.limiter import limiter
+import json
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -129,7 +130,12 @@ async def process_stream_response(
     full_content = []
     async for chunk in ai_client.chat_stream(messages=messages):
         full_content.append(chunk)
-        yield f"data: {chunk}\n\n"
+        # 将文本块包装成JSON格式
+        chunk_data = {
+            "type": "message",
+            "data": chunk
+        }
+        yield f"data: {json.dumps(chunk_data)}\n\n"
         
     # 保存完整的系统响应
     content = "".join(full_content)
@@ -143,23 +149,24 @@ async def process_stream_response(
     )
     db.add(system_message)
     
-    # 提取并更新用户画像
-    extracted_info = await profile_update_service.extract_profile_info(
-        user_message=user_message.content,
-        ai_response=content
-    )
-    if extracted_info:
-        await profile_update_service.update_user_profile(
+    # 尝试从AI回复中提取用户画像更新信息
+    updates = ai_client.extract_profile_updates(content)
+    if updates:
+        await ai_client.process_profile_updates(
             user_id=user_id,
-            extracted_info=extracted_info,
+            updates=updates,
             db=db
         )
     
     await db.commit()
     
-    # 获取用于响应的历史消息
+    # 获取用于响应的历史消息并正确格式化为JSON字符串
     history = await get_chat_history_for_response(user_id, db)
-    yield f"data: {{'type': 'history', 'data': {history}}}\n\n"
+    history_data = {
+        "type": "history",
+        "data": history
+    }
+    yield f"data: {json.dumps(history_data)}\n\n"
 
 @router.post("/stream")
 async def text_chat_stream(

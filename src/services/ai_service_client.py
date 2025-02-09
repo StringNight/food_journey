@@ -11,6 +11,10 @@ import base64
 import tempfile
 import asyncio
 import time
+from datetime import datetime
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from src.models.user import UserProfileModel
 
 load_dotenv()
 
@@ -190,9 +194,47 @@ class AIServiceClient:
    - 对于文字输入：提供详细的专业建议和具体的执行方案
 
 6. 用户画像更新：
-   - 识别用户提供的新信息
+   - 识别用户提供的新信息，包括但不限于：
+     * 身高、体重的变化
+     * 新的健康状况或症状
+     * 饮食习惯的改变
+     * 运动习惯的变化
+     * 新的过敏反应
+     * 生活方式的调整
+     * 健康目标的更新
    - 分析用户的行为变化
    - 及时更新相关建议
+   - 如果发现需要更新用户画像，请在回复的最后使用以下格式提供更新建议：
+
+===用户画像更新建议===
+{
+    "updates": {
+        "birth_date": "2024-01-11",  // 可选
+        "gender": "string",  // 可选，枚举值：男|女|其他
+        "height": 170.0,  // 可选，单位：厘米
+        "weight": 65.0,  // 可选，单位：千克
+        "body_fat_percentage": 20.0,  // 可选，单位：%
+        "muscle_mass": 50.0,  // 可选，单位：千克
+        "health_conditions": ["高血压", "糖尿病"],  // 可选
+        "health_goals": ["减重", "增肌"],  // 可选
+        "cooking_skill_level": "初级",  // 可选，枚举值：初级|中级|高级
+        "favorite_cuisines": ["中餐", "日料"],  // 可选
+        "dietary_restrictions": ["无麸质", "素食"],  // 可选
+        "allergies": ["花生", "海鲜"],  // 可选
+        "calorie_preference": 2000,  // 可选，单位：卡路里
+        "nutrition_goals": {  // 可选
+            "protein": 150,  // 单位：克
+            "carbs": 200,  // 单位：克
+            "fat": 60  // 单位：克
+        },
+        "fitness_level": "中级",  // 可选，枚举值：初级|中级|高级
+        "exercise_frequency": 3,  // 可选，范围：0-7
+        "preferred_exercises": ["跑步", "力量训练"],  // 可选
+        "fitness_goals": ["增肌", "提高耐力"],  // 可选
+        "update_reason": "基于用户提供的信息..."  // 必填，更新原因说明
+    }
+}
+===================
 
 7. 非相关问题处理：
    - 礼貌地说明你只能回答与饮食、营养、运动、健康相关的问题
@@ -413,3 +455,118 @@ class AIServiceClient:
         """关闭客户端连接"""
         # Gradio Client 会自动管理连接，不需要手动关闭
         pass 
+
+    def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
+        """从AI助手的回复中提取用户画像更新建议
+        
+        Args:
+            response: AI助手的回复文本
+            
+        Returns:
+            Optional[Dict[str, Any]]: 提取的更新建议，如果没有更新建议则返回None
+        """
+        try:
+            # 查找更新建议部分
+            start_marker = "===用户画像更新建议==="
+            end_marker = "==================="
+            
+            if start_marker not in response or end_marker not in response:
+                return None
+                
+            # 提取JSON部分
+            start_idx = response.index(start_marker) + len(start_marker)
+            end_idx = response.index(end_marker, start_idx)
+            json_str = response[start_idx:end_idx].strip()
+            
+            # 解析JSON
+            updates = json.loads(json_str)
+            
+            # 验证更新内容
+            if not isinstance(updates, dict) or "updates" not in updates:
+                return None
+                
+            # 验证必填字段
+            if "update_reason" not in updates["updates"]:
+                return None
+                
+            return updates["updates"]
+            
+        except (ValueError, json.JSONDecodeError) as e:
+            logging.error(f"解析用户画像更新建议失败: {e}")
+            return None
+
+    async def process_profile_updates(
+        self,
+        user_id: str,
+        updates: Dict[str, Any],
+        db: AsyncSession
+    ) -> Dict[str, Any]:
+        """处理用户画像更新建议
+        
+        Args:
+            user_id: 用户ID
+            updates: 更新内容
+            db: 数据库会话
+            
+        Returns:
+            Dict[str, Any]: {
+                "success": bool,
+                "message": str,
+                "updated_fields": List[str]  # 实际更新的字段列表
+            }
+        """
+        try:
+            # 1. 获取当前用户画像
+            query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
+            result = await db.execute(query)
+            profile = result.scalar_one_or_none()
+            
+            if not profile:
+                # 如果用户画像不存在，创建新的
+                profile = UserProfileModel(user_id=user_id)
+                db.add(profile)
+            
+            # 2. 记录实际更新的字段
+            updated_fields = []
+            update_reason = updates.pop("update_reason", "AI助手建议的更新")
+            
+            # 3. 应用更新
+            for field, value in updates.items():
+                if hasattr(profile, field) and getattr(profile, field) != value:
+                    setattr(profile, field, value)
+                    updated_fields.append(field)
+            
+            if updated_fields:
+                # 更新时间戳
+                profile.updated_at = datetime.now()
+                
+                # 提交更改
+                await db.commit()
+                
+                # 记录日志
+                logging.info(
+                    f"用户画像更新成功: user_id={user_id}, "
+                    f"fields={updated_fields}, reason={update_reason}"
+                )
+                
+                return {
+                    "success": True,
+                    "message": "用户画像更新成功",
+                    "updated_fields": updated_fields
+                }
+            else:
+                return {
+                    "success": True,
+                    "message": "用户画像无需更新",
+                    "updated_fields": []
+                }
+                
+        except Exception as e:
+            logging.error(f"处理用户画像更新失败: {e}")
+            # 回滚事务
+            await db.rollback()
+            return {
+                "success": False,
+                "message": f"用户画像更新失败: {str(e)}",
+                "updated_fields": []
+            } 
