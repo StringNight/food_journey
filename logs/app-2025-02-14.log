@@ -1,0 +1,242 @@
+2025-02-14 19:08:48 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 19:08:48 [INFO] __main__: 正在启动服务...
+2025-02-14 19:08:48 [INFO] __main__: FastAPI服务已启动
+2025-02-14 19:08:48 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 19:08:48 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-14 19:08:48 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [246331] using StatReload
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-1:
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] self.run()
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] self._target(*self._args, **self._kwargs)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 78, in subprocess_started
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] target(sockets=sockets)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 62, in run
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] return loop.run_until_complete(main)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] config.load()
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 458, in load
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/main.py", line 37, in <module>
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/routers/chat.py", line 29, in <module>
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/services/ai_service_client.py", line 30, in __init__
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] self.chat_client = Client(
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 153, in __init__
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] self.config = self._get_config()
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Err] ValueError: Could not fetch config for https://247ec6abb75d009aaf.gradio.live/
+2025-02-14 19:08:53 [INFO] __main__: [FastAPI-Out] Loaded as API: https://247ec6abb75d009aaf.gradio.live/ ✔
+2025-02-14 19:25:52 [INFO] __main__: [FastAPI-Err] WARNING:  StatReload detected changes in 'src/services/ai_service_client.py'. Reloading...
+2025-02-14 19:25:54 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-02-14 19:25:54 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-2:
+2025-02-14 19:25:54 [INFO] __main__: 正在清理资源...
+2025-02-14 19:25:54 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-14 19:25:55 [INFO] __main__: FastAPI 服务已关闭
+2025-02-14 19:25:59 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 19:25:59 [INFO] __main__: 正在启动服务...
+2025-02-14 19:25:59 [INFO] __main__: FastAPI服务已启动
+2025-02-14 19:25:59 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 19:25:59 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-14 19:25:59 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [246643] using StatReload
+2025-02-14 19:26:17 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [246650]
+2025-02-14 19:26:17 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-14 19:26:17 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 19:27:08 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32626 - "GET /api/v1/auth/register HTTP/1.1" 405 Method Not Allowed
+2025-02-14 19:28:53 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30911 - "GET /api/v1/auth/profile HTTP/1.1" 401 Unauthorized
+2025-02-14 19:29:34 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始用户注册: username=Test0214
+2025-02-14 19:29:34 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户注册成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f username=Test0214
+2025-02-14 19:29:34 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30291 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+2025-02-14 19:29:48 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29575 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:32:14 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28905 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:32:24 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29657 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:32:37 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:32:37 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:32:37 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29025 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:32:41 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29025 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:32:48 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29025 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:33:19 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:33:19 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:33:19 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31674 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:33:49 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:33:49 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:33:49 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29056 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:34:25 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:34:25 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:34:25 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30685 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:34:37 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31960 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:36:03 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:36:03 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:36:03 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31593 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:36:25 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30860 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:37:06 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:37:06 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 19:37:06 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31731 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a1990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a1990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a1e40>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a1e40>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a22f0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a22f0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a27a0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a27a0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a2b60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a2b60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a3010>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb7187a3010>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 19:37:20 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30260 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:42:36 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31445 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 19:44:04 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.50:60618 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-14 19:44:14 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.50:37642 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-14 19:44:15 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.50:37662 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-02-14 19:44:15 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-02-14 20:04:23 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31797 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 20:17:59 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29745 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 21:13:08 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 21:13:08 [INFO] __main__: 正在启动服务...
+2025-02-14 21:13:08 [INFO] __main__: FastAPI服务已启动
+2025-02-14 21:13:09 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 21:13:09 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-14 21:13:09 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [2028] using StatReload
+2025-02-14 21:13:37 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [2032]
+2025-02-14 21:13:37 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-14 21:13:37 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-14 21:16:13 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=Test0214
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户登录成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:16:14 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29149 - "POST /api/v1/auth/login/json HTTP/1.1" 200 OK
+2025-02-14 21:16:18 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29149 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 21:28:53 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 21:28:53 [INFO] __main__: 正在启动服务...
+2025-02-14 21:28:53 [INFO] __main__: FastAPI服务已启动
+2025-02-14 21:28:53 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 21:28:53 [INFO] __main__: [FastAPI-Err] ERROR:    [Errno 98] Address already in use
+2025-02-14 21:28:54 [ERROR] __main__: FastAPI 服务意外退出
+2025-02-14 21:28:54 [INFO] __main__: 正在清理资源...
+2025-02-14 21:28:54 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-14 21:28:54 [INFO] __main__: FastAPI 服务已关闭
+2025-02-14 21:29:05 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 21:29:05 [INFO] __main__: 正在启动服务...
+2025-02-14 21:29:05 [INFO] __main__: FastAPI服务已启动
+2025-02-14 21:29:05 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 21:29:05 [INFO] __main__: [FastAPI-Err] ERROR:    [Errno 98] Address already in use
+2025-02-14 21:29:06 [ERROR] __main__: FastAPI 服务意外退出
+2025-02-14 21:29:06 [INFO] __main__: 正在清理资源...
+2025-02-14 21:29:06 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-14 21:29:06 [INFO] __main__: FastAPI 服务已关闭
+2025-02-14 21:48:08 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 21:48:08 [INFO] __main__: 正在启动服务...
+2025-02-14 21:48:08 [INFO] __main__: FastAPI服务已启动
+2025-02-14 21:48:09 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 21:48:09 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-14 21:48:09 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [2717] using StatReload
+2025-02-14 21:48:33 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [2742]
+2025-02-14 21:48:33 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-14 21:48:33 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-14 21:49:26 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=Test0214
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户登录成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 21:49:27 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30106 - "POST /api/v1/auth/login/json HTTP/1.1" 200 OK
+2025-02-14 21:49:32 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30106 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-14 21:49:52 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31167 - "POST /api/v1/chat/image HTTP/1.1" 404 Not Found
+2025-02-14 21:53:37 [INFO] __main__: [FastAPI-Out] INFO:     59.82.21.15:38632 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-14 22:07:20 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 22:07:20 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 22:07:20 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32712 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-02-14 22:07:23 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32712 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 22:12:12 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28694 - "GET /api/v1/recipes HTTP/1.1" 307 Temporary Redirect
+2025-02-14 22:12:12 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28694 - "GET /api/v1/recipes/ HTTP/1.1" 200 OK
+2025-02-14 22:12:22 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户头像更新成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 22:12:22 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28730 - "POST /api/v1/auth/avatar HTTP/1.1" 200 OK
+2025-02-14 22:12:31 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户头像更新成功: user_id=699f37f7-eba6-4aea-ba33-1003af13d96f
+2025-02-14 22:12:31 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30689 - "POST /api/v1/auth/avatar HTTP/1.1" 200 OK
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] WARNING:  StatReload detected changes in 'src/routers/chat.py'. Reloading...
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] INFO:     Shutting down
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application shutdown.
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] INFO:     Application shutdown complete.
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] INFO:     Finished server process [2742]
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb6fc2aa3e0>>
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._dialect.do_terminate(connection)
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1105, in do_terminate
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] dbapi_connection.terminate()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in terminate
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._connection.terminate()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/asyncpg/connection.py", line 1478, in terminate
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._abort()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/asyncpg/connection.py", line 1505, in _abort
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._protocol.abort()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "asyncpg/protocol/protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/sslproto.py", line 405, in abort
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._ssl_protocol._abort()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/sslproto.py", line 737, in _abort
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._transport.abort()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/selector_events.py", line 686, in abort
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._force_close(None)
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/selector_events.py", line 737, in _force_close
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._loop.call_soon(self._call_connection_lost, exc)
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 753, in call_soon
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] self._check_closed()
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] raise RuntimeError('Event loop is closed')
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] RuntimeError: Event loop is closed
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb6fc2aa3e0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 22:14:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fb6fc2aa3e0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-14 22:14:13 [INFO] __main__: [FastAPI-Err] WARNING:  StatReload detected changes in 'src/routers/chat.py'. Reloading...
+2025-02-14 22:14:18 [INFO] __main__: 收到信号 2，正在优雅关闭...
+2025-02-14 22:14:18 [INFO] __main__: 正在清理资源...
+2025-02-14 22:14:18 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-14 22:14:18 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-3:
+2025-02-14 22:14:19 [INFO] __main__: FastAPI 服务已关闭
+2025-02-14 22:14:24 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-14.log, 控制台: True
+2025-02-14 22:14:24 [INFO] __main__: 正在启动服务...
+2025-02-14 22:14:24 [INFO] __main__: FastAPI服务已启动
+2025-02-14 22:14:24 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-14 22:14:24 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-14 22:14:24 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [3323] using StatReload
+2025-02-14 22:14:48 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [3327]
+2025-02-14 22:14:48 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-14 22:14:49 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] Loaded as API: https://50dab7c46d18f888a4.gradio.live/ ✔
+2025-02-14 22:17:48 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32410 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 22:21:05 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32373 - "POST /api/v1/chat/voice HTTP/1.1" 500 Internal Server Error
+2025-02-14 22:56:51 [INFO] __main__: [FastAPI-Out] INFO:     113.215.188.123:53633 - "GET / HTTP/1.1" 500 Internal Server Error

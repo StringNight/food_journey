@@ -250,20 +250,25 @@ async def voice_chat_stream(
             
         file_size = 0
         file_content = b""
-        async for chunk in file.stream():
-            file_content += chunk
-            file_size += len(chunk)
-            if file_size > MAX_FILE_SIZE:
-                raise HTTPException(
-                    status_code=413,
-                    detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
-                )
+        # MODIFIED
+        # async for chunk in file.stream():
+        #     file_content += chunk
+        #     file_size += len(chunk)
+        #     if file_size > MAX_FILE_SIZE:
+        #         raise HTTPException(
+        #             status_code=413,
+        #             detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
+        #         )
+        file_content = await file.read()
+        file_size = len(file_content)
                 
         # 保存语音文件, 根据文件类型选择正确的扩展名
         if file.content_type == "audio/wav":
             ext = "wav"
         elif file.content_type in {"audio/mpeg", "audio/mp3"}:
             ext = "mp3"
+        elif file.content_type == "audio/m4a":
+            ext = "m4a"
         else:
             raise HTTPException(status_code=400, detail=f"不支持的音频格式: {file.content_type}")
         voice_filename = f"{uuid.uuid4()}.{ext}"
