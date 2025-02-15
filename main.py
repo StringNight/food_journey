@@ -226,14 +226,14 @@ def main():
         
         # 启动服务
         manager.run_fastapi()
-        manager.run_gradio()
+        #manager.run_gradio()
         
         # 等待进程结束，同时检查子进程状态
         while True:
             if manager.fastapi_process.poll() is not None:
                 logger.error("FastAPI 服务意外退出")
                 break
-            if manager.gradio_process.poll() is not None:
+            #if manager.gradio_process.poll() is not None:
                 logger.error("Gradio 服务意外退出")
                 break
             time.sleep(1)

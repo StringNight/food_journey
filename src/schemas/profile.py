@@ -123,4 +123,63 @@ class HealthStatsResponse(BaseModel):
     period: str
     body_metrics_trend: Dict[str, List[float]]
     nutrition_summary: Dict[str, Any]
-    fitness_summary: Dict[str, Any] 
+    fitness_summary: Dict[str, Any]
+
+class ExerciseSet(BaseModel):
+    """运动组数模型"""
+    reps: int = Field(..., description="重复次数", ge=0)
+    weight: Optional[float] = Field(None, description="重量（千克）", ge=0)
+    duration: Optional[int] = Field(None, description="持续时间（秒）", ge=0)
+    distance: Optional[float] = Field(None, description="距离（米）", ge=0)
+
+class ExerciseRecord(BaseModel):
+    """运动记录模型"""
+    id: str = Field(..., description="记录ID")
+    user_id: str = Field(..., description="用户ID")
+    exercise_name: str = Field(..., description="运动名称")
+    exercise_type: str = Field(..., description="运动类型", pattern="^(力量|有氧|拉伸|其他)$")
+    sets: List[ExerciseSet] = Field(..., description="运动组数详情")
+    calories_burned: Optional[float] = Field(None, description="消耗卡路里", ge=0)
+    notes: Optional[str] = Field(None, description="备注")
+    recorded_at: datetime = Field(..., description="记录时间")
+    created_at: datetime = Field(..., description="创建时间")
+    updated_at: datetime = Field(..., description="更新时间")
+
+class FoodItem(BaseModel):
+    """食物项目模型"""
+    food_name: str = Field(..., description="食物名称")
+    portion: float = Field(..., description="份量（克）", ge=0)
+    calories: float = Field(..., description="卡路里", ge=0)
+    protein: Optional[float] = Field(None, description="蛋白质（克）", ge=0)
+    carbs: Optional[float] = Field(None, description="碳水化合物（克）", ge=0)
+    fat: Optional[float] = Field(None, description="脂肪（克）", ge=0)
+    fiber: Optional[float] = Field(None, description="膳食纤维（克）", ge=0)
+
+class MealRecord(BaseModel):
+    """餐食记录模型"""
+    id: str = Field(..., description="记录ID")
+    user_id: str = Field(..., description="用户ID")
+    meal_type: str = Field(..., description="餐食类型", pattern="^(早餐|午餐|晚餐|加餐)$")
+    food_items: List[FoodItem] = Field(..., description="食物列表")
+    total_calories: float = Field(..., description="总卡路里", ge=0)
+    location: Optional[str] = Field(None, description="用餐地点")
+    mood: Optional[str] = Field(None, description="用餐心情")
+    notes: Optional[str] = Field(None, description="备注")
+    recorded_at: datetime = Field(..., description="记录时间")
+    created_at: datetime = Field(..., description="创建时间")
+    updated_at: datetime = Field(..., description="更新时间")
+
+class DailyNutritionSummary(BaseModel):
+    """每日营养摄入汇总模型"""
+    summary_date: date = Field(..., description="日期")  # 重命名字段，避免与日期类型冲突
+    user_id: str = Field(..., description="用户ID")
+    total_calories: float = Field(0, description="总卡路里")
+    total_protein: float = Field(0, description="总蛋白质（克）")
+    total_carbs: float = Field(0, description="总碳水化合物（克）")
+    total_fat: float = Field(0, description="总脂肪（克）")
+    total_fiber: float = Field(0, description="总膳食纤维（克）")
+    meals: List[MealRecord] = Field([], description="当日餐食记录")
+    exercises: List[ExerciseRecord] = Field([], description="当日运动记录")
+    net_calories: float = Field(0, description="净卡路里（摄入-消耗）")
+    created_at: datetime = Field(..., description="创建时间")
+    updated_at: datetime = Field(..., description="更新时间") 

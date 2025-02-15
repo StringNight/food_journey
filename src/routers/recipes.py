@@ -18,7 +18,7 @@ from ..auth import get_current_user
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-@router.post("/", response_model=RecipeResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/create_recipe", response_model=RecipeResponse, status_code=status.HTTP_201_CREATED)
 async def create_recipe(
     recipe: RecipeCreate,
     current_user: User = Depends(get_current_user),

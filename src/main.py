@@ -30,8 +30,8 @@ logging.getLogger('gradio').setLevel(logging.CRITICAL)
 # 导入所有模型以确保在创建表之前加载它们
 from .models import (
     User, UserProfileModel, RecipeModel, RatingModel,
-    NutritionRecordModel, FavoriteModel, ChatMessageModel,
-    Workout, WorkoutExercise
+    FavoriteModel, ChatMessageModel, ExerciseRecord,
+    ExerciseSet, MealRecord, DailyNutritionSummary
 )
 from .database import Base, engine
 from .routers import auth, profile, chat, workout, recipes, favorites
