@@ -9,6 +9,7 @@ from .services.recipe_service import RecipeService
 from .services.ai_service_client import AIServiceClient
 import time
 import asyncio
+import os
 
 # 配置日志
 setup_logging(
@@ -582,6 +583,10 @@ class WebApp:
         Args:
             **kwargs: 传递给gradio launch的参数
         """
+        # 初始化界面
+        if self.interface is None:
+            self.interface = self._build_interface()
+            
         # 合并配置参数
         launch_kwargs = {
             "server_name": config.HOST,
@@ -589,16 +594,35 @@ class WebApp:
             "debug": config.DEBUG,
         }
         
-        # 如果配置了HTTPS，添加SSL证书配置
-        if config.use_https and config.ssl_certfile and config.ssl_keyfile:
+        # 只有在SSL证书文件都存在的情况下才启用HTTPS
+        if (config.use_https and config.ssl_certfile and config.ssl_keyfile and 
+            os.path.exists(config.ssl_certfile) and os.path.exists(config.ssl_keyfile)):
             launch_kwargs.update({
                 "ssl_keyfile": config.ssl_keyfile,
                 "ssl_certfile": config.ssl_certfile
             })
             self.logger.info("启用HTTPS支持")
+        else:
+            self.logger.warning("SSL证书文件不存在或未配置，将使用HTTP模式")
+            # 确保不使用SSL
+            launch_kwargs.update({
+                "ssl_keyfile": None,
+                "ssl_certfile": None
+            })
         
         # 更新用户提供的参数
         launch_kwargs.update(kwargs)
         
-        # 启动应用
-        self.interface.launch(**launch_kwargs) 
+        try:
+            # 启动应用
+            self.interface.launch(**launch_kwargs)
+        except OSError as e:
+            if "Cannot find empty port" in str(e):
+                self.logger.warning(f"端口 {launch_kwargs.get('server_port')} 被占用，尝试使用其他端口")
+                # 移除特定端口，让Gradio自动选择可用端口
+                launch_kwargs.pop('server_port', None)
+                # 设置一个较大的端口范围
+                launch_kwargs['server_port'] = 0  # 让系统自动分配端口
+                self.interface.launch(**launch_kwargs)
+            else:
+                raise 

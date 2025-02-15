@@ -30,7 +30,7 @@ ai_client = AIServiceClient()
 
 # 常量定义
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
-ALLOWED_AUDIO_TYPES = {"audio/wav", "audio/mpeg", "audio/mp3","audio/m4a"}
+ALLOWED_AUDIO_TYPES = {"audio/wav", "audio/mpeg", "audio/mp3", "audio/m4a", "audio/x-m4a", "audio/aac", "audio/ogg"}
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/gif"}
 MAX_MESSAGE_LENGTH = 1000  # 设置最大消息长度为1000字符
 
@@ -242,10 +242,11 @@ async def voice_chat_stream(
     """处理语音流式聊天请求"""
     try:
         # 验证文件类型和大小
-        if file.content_type not in ALLOWED_AUDIO_TYPES:
+        content_type = file.content_type.lower()
+        if content_type not in ALLOWED_AUDIO_TYPES:
             raise HTTPException(
                 status_code=400,
-                detail=f"不支持的音频格式: {file.content_type}"
+                detail=f"不支持的音频格式: {content_type}。支持的格式: {', '.join(ALLOWED_AUDIO_TYPES)}"
             )
             
         file_size = 0
@@ -260,66 +261,95 @@ async def voice_chat_stream(
                 )
                 
         # 保存语音文件, 根据文件类型选择正确的扩展名
-        if file.content_type == "audio/wav":
+        if content_type == "audio/wav":
             ext = "wav"
-        elif file.content_type in {"audio/mpeg", "audio/mp3"}:
+        elif content_type in {"audio/mpeg", "audio/mp3"}:
             ext = "mp3"
+        elif content_type in {"audio/m4a", "audio/x-m4a"}:
+            ext = "m4a"
+        elif content_type == "audio/aac":
+            ext = "aac"
+        elif content_type == "audio/ogg":
+            ext = "ogg"
         else:
-            raise HTTPException(status_code=400, detail=f"不支持的音频格式: {file.content_type}")
-        voice_filename = f"{uuid.uuid4()}.{ext}"
-        voice_path = VOICE_DIR / voice_filename
-        with open(voice_path, "wb") as f:
-            f.write(file_content)
-            
-        # 语音转文字 - 使用语音文件的URL作为输入
-        voice_url = f"/uploads/voices/{voice_filename}"
-        transcribed_text = await ai_client.process_voice(voice_url)
-        if not transcribed_text:
             raise HTTPException(
                 status_code=400,
-                detail="语音识别失败"
+                detail=f"不支持的音频格式: {content_type}"
             )
             
-        # 获取用户画像和聊天历史
-        user_profile = await get_user_profile(current_user.id, db)
-        chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
+        voice_filename = f"{uuid.uuid4()}.{ext}"
+        voice_path = VOICE_DIR / voice_filename
         
-        # 保存用户消息
-        user_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.voice,
-            content=transcribed_text,
-            voice_url=f"/uploads/voices/{voice_filename}",
-            transcribed_text=transcribed_text,
-            is_user=True,
-            created_at=datetime.now()
-        )
-        db.add(user_message)
-        await db.commit()
-        
-        # 构建消息列表
-        messages = ai_client._build_chat_messages(
-            user_profile=user_profile,
-            current_message=transcribed_text,
-            chat_history=chat_history
-        )
-        
-        return StreamingResponse(
-            process_stream_response(
+        try:
+            with open(voice_path, "wb") as f:
+                f.write(file_content)
+            logger.info(f"语音文件已保存: {voice_path}")
+            
+            # 语音转文字 - 使用语音文件的URL作为输入
+            voice_url = f"/uploads/voices/{voice_filename}"
+            try:
+                transcribed_text = await ai_client.process_voice(voice_url)
+                if not transcribed_text:
+                    raise ValueError("语音识别结果为空")
+                logger.info(f"语音识别成功: {transcribed_text}")
+                
+            except ValueError as e:
+                logger.error(f"语音识别失败: {str(e)}")
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"语音识别失败: {str(e)}"
+                )
+                
+            # 获取用户画像和聊天历史
+            user_profile = await get_user_profile(current_user.id, db)
+            chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
+            
+            # 保存用户消息
+            user_message = ChatMessage(
+                id=str(uuid.uuid4()),
                 user_id=current_user.id,
-                db=db,
-                messages=messages,
-                user_message=user_message
-            ),
-            media_type="text/event-stream"
-        )
-        
+                type=MessageType.voice,
+                content=transcribed_text,
+                voice_url=f"/uploads/voices/{voice_filename}",
+                transcribed_text=transcribed_text,
+                is_user=True,
+                created_at=datetime.now()
+            )
+            db.add(user_message)
+            await db.commit()
+            
+            # 构建消息列表
+            messages = ai_client._build_chat_messages(
+                user_profile=user_profile,
+                current_message=transcribed_text,
+                chat_history=chat_history
+            )
+            
+            return StreamingResponse(
+                process_stream_response(
+                    user_id=current_user.id,
+                    db=db,
+                    messages=messages,
+                    user_message=user_message
+                ),
+                media_type="text/event-stream"
+            )
+            
+        except Exception as e:
+            # 清理语音文件
+            try:
+                if voice_path.exists():
+                    voice_path.unlink()
+                    logger.info(f"语音文件已删除: {voice_path}")
+            except Exception as cleanup_error:
+                logger.warning(f"清理语音文件失败: {cleanup_error}")
+            raise e
+            
+    except HTTPException:
+        raise
     except Exception as e:
         await db.rollback()
         logger.error(f"流式语音处理失败: {str(e)}")
-        if isinstance(e, HTTPException):
-            raise e
         raise HTTPException(
             status_code=500,
             detail=f"流式语音处理失败: {str(e)}"

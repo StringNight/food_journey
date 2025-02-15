@@ -28,13 +28,13 @@ class AIServiceClient:
         """初始化AI服务客户端"""
         # 初始化各个服务的客户端
         self.chat_client = Client(
-            os.getenv("CHAT_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+            os.getenv("CHAT_SERVICE_URL", "https://122a537f931d1b8aa7.gradio.live/")
         )
         self.voice_client = Client(
-            os.getenv("VOICE_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+            os.getenv("VOICE_SERVICE_URL", "https://122a537f931d1b8aa7.gradio.live")
         )
         self.food_client = Client(
-            os.getenv("FOOD_SERVICE_URL", "https://1ba902d825722a9416.gradio.live/")
+            os.getenv("FOOD_SERVICE_URL", "https://122a537f931d1b8aa7.gradio.live")
         )
         
         logging.info("AI服务客户端初始化成功")
@@ -53,20 +53,30 @@ class AIServiceClient:
                 if audio_file.startswith("/uploads/voices/"):
                     # 将相对路径转换为完整URL
                     audio_url = f"{os.getenv('BASE_URL', 'http://localhost:8000')}{audio_file}"
+                    logging.info(f"处理语音文件URL: {audio_url}")
                 else:
                     audio_url = audio_file
+                    logging.info(f"处理外部语音URL: {audio_url}")
                     
-                # 调用语音识别服务
-                result = self.voice_client.predict(
-                    audio=handle_file(audio_url),
-                    api_name="/voice_transcribe"
-                )
+                try:
+                    # 调用语音识别服务
+                    result = self.voice_client.predict(
+                        audio=handle_file(audio_url),
+                        api_name="/voice_transcribe"
+                    )
+                    logging.info(f"语音识别结果: {result}")
+                except Exception as e:
+                    logging.error(f"语音识别服务调用失败: {str(e)}")
+                    raise ValueError(f"语音识别服务调用失败: {str(e)}")
                 
                 if isinstance(result, dict):
+                    if "error" in result:
+                        raise ValueError(f"语音识别失败: {result['error']}")
                     return result.get("text", "")
                 return str(result)
                 
             elif isinstance(audio_file, (bytes, BinaryIO)):
+                logging.info("处理二进制音频数据")
                 # 如果是字节数据或文件对象，保存为临时文件
                 with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
                     if isinstance(audio_file, bytes):
@@ -74,6 +84,7 @@ class AIServiceClient:
                     else:
                         temp_file.write(audio_file.read())
                     temp_path = temp_file.name
+                    logging.info(f"临时文件保存至: {temp_path}")
                 
                 try:
                     # 使用临时文件路径调用语音识别服务
@@ -81,11 +92,21 @@ class AIServiceClient:
                         audio=handle_file(temp_path),
                         api_name="/voice_transcribe"
                     )
+                    logging.info(f"语音识别结果: {result}")
+                except Exception as e:
+                    logging.error(f"语音识别服务调用失败: {str(e)}")
+                    raise ValueError(f"语音识别服务调用失败: {str(e)}")
                 finally:
                     # 清理临时文件
-                    os.unlink(temp_path)
+                    try:
+                        os.unlink(temp_path)
+                        logging.info(f"临时文件已删除: {temp_path}")
+                    except Exception as e:
+                        logging.warning(f"临时文件删除失败: {str(e)}")
                 
                 if isinstance(result, dict):
+                    if "error" in result:
+                        raise ValueError(f"语音识别失败: {result['error']}")
                     return result.get("text", "")
                 return str(result)
             
@@ -93,8 +114,8 @@ class AIServiceClient:
                 raise ValueError("不支持的音频输入类型")
                 
         except Exception as e:
-            logging.error(f"语音识别失败: {e}")
-            raise
+            logging.error(f"语音识别失败: {str(e)}")
+            raise ValueError(f"语音识别失败: {str(e)}")
             
     def _build_chat_messages(
         self,
