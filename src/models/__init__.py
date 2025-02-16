@@ -6,21 +6,24 @@
 from ..database import Base
 from .user import User, UserProfileModel
 from .recipe import RecipeModel
+from .workout import ExerciseType, ExerciseSet, ExerciseRecord
 from .rating import RatingModel
-from .nutrition import NutritionRecordModel
-from .favorite import FavoriteModel
 from .chat import ChatMessageModel
-from .workout import Workout, WorkoutExercise
+from .favorite import FavoriteModel
+from .nutrition import FoodItem, MealRecord, DailyNutritionSummary
 
 __all__ = [
     'Base',
     'User',
     'UserProfileModel',
     'RecipeModel',
+    'ExerciseType',
+    'ExerciseSet',
+    'ExerciseRecord',
     'RatingModel',
-    'NutritionRecordModel',
-    'FavoriteModel',
     'ChatMessageModel',
-    'Workout',
-    'WorkoutExercise'
+    'FavoriteModel',
+    'FoodItem',
+    'MealRecord',
+    'DailyNutritionSummary'
 ] 

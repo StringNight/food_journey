@@ -1,14 +1,16 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, JSON
 from sqlalchemy.orm import relationship
 from datetime import datetime
 import enum
-from . import Base
+from ..database import Base
+from uuid import uuid4
 
 class ExerciseType(str, enum.Enum):
     """运动类型枚举"""
-    STRENGTH = "STRENGTH"  # 力量训练
-    CARDIO = "CARDIO"     # 有氧运动
-    FLEXIBILITY = "FLEXIBILITY"  # 柔韧性训练
+    STRENGTH = "力量"
+    CARDIO = "有氧"
+    FLEXIBILITY = "拉伸"
+    OTHER = "其他"
 
 class Workout(Base):
     """训练记录主表"""
@@ -52,3 +54,35 @@ class WorkoutExercise(Base):
     
     # 关联关系
     workout = relationship("Workout", back_populates="exercises") 
+
+class ExerciseSet(Base):
+    """运动组数数据库模型"""
+    __tablename__ = "exercise_sets"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
+    exercise_record_id = Column(String, ForeignKey("exercise_records.id"), nullable=False)
+    reps = Column(Integer, nullable=False)
+    weight = Column(Float)
+    duration = Column(Integer)  # 秒
+    distance = Column(Float)    # 米
+    
+    # 关系
+    exercise_record = relationship("ExerciseRecord", back_populates="sets")
+
+class ExerciseRecord(Base):
+    """运动记录数据库模型"""
+    __tablename__ = "exercise_records"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
+    user_id = Column(String, ForeignKey("users.id"), nullable=False)
+    exercise_name = Column(String, nullable=False)
+    exercise_type = Column(Enum(ExerciseType), nullable=False)
+    calories_burned = Column(Float)
+    notes = Column(String)
+    recorded_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, default=datetime.now, nullable=False)
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    
+    # 关系
+    sets = relationship("ExerciseSet", back_populates="exercise_record", cascade="all, delete-orphan")
+    user = relationship("User", back_populates="exercise_records") 

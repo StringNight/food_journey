@@ -8,7 +8,8 @@ from ..database import get_db
 from ..auth.jwt import get_current_user
 from ..schemas.profile import (
     CompleteProfile, BasicInfoUpdate, DietPreferencesUpdate,
-    FitnessPreferencesUpdate, HealthStatsResponse, UpdateResponse
+    FitnessPreferencesUpdate, HealthStatsResponse, UpdateResponse,
+    ExerciseRecord, MealRecord, DailyNutritionSummary
 )
 import logging
 
@@ -282,4 +283,160 @@ async def get_health_stats(
         raise HTTPException(
             status_code=500,
             detail=f"获取健康数据统计失败: {str(e)}"
+        )
+
+@router.post("/exercise", response_model=ExerciseRecord)
+async def record_exercise(
+    data: ExerciseRecord,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """记录用户的运动数据
+    
+    Args:
+        data: 运动记录数据
+        current_user: 当前用户
+        db: 数据库会话
+    
+    Returns:
+        ExerciseRecord: 创建的运动记录
+    """
+    try:
+        exercise_record = ExerciseRecord(
+            user_id=current_user.id,
+            exercise_name=data.exercise_name,
+            exercise_type=data.exercise_type,
+            calories_burned=data.calories_burned,
+            notes=data.notes,
+            recorded_at=data.recorded_at or datetime.now(),
+            sets=[ExerciseSet(**set_data.dict()) for set_data in data.sets]
+        )
+        
+        db.add(exercise_record)
+        await db.commit()
+        await db.refresh(exercise_record)
+        
+        return exercise_record
+    except Exception as e:
+        await db.rollback()
+        logging.error(f"记录运动数据失败: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"记录运动数据失败: {str(e)}"
+        )
+
+@router.post("/meal", response_model=MealRecord)
+async def record_meal(
+    data: MealRecord,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """记录用户的餐食数据
+    
+    Args:
+        data: 餐食记录数据
+        current_user: 当前用户
+        db: 数据库会话
+    
+    Returns:
+        MealRecord: 创建的餐食记录
+    """
+    try:
+        meal_record = MealRecord(
+            user_id=current_user.id,
+            meal_type=data.meal_type,
+            total_calories=data.total_calories,
+            location=data.location,
+            mood=data.mood,
+            notes=data.notes,
+            recorded_at=data.recorded_at or datetime.now(),
+            food_items=[FoodItem(**item.dict()) for item in data.food_items]
+        )
+        
+        db.add(meal_record)
+        await db.commit()
+        await db.refresh(meal_record)
+        
+        # 更新每日营养摄入汇总
+        date = meal_record.recorded_at.date()
+        summary = await db.execute(
+            select(DailyNutritionSummary)
+            .where(
+                DailyNutritionSummary.user_id == current_user.id,
+                DailyNutritionSummary.date == date
+            )
+        )
+        summary = summary.scalar_one_or_none()
+        
+        if not summary:
+            summary = DailyNutritionSummary(
+                user_id=current_user.id,
+                date=date
+            )
+            db.add(summary)
+        
+        # 更新汇总数据
+        summary.total_calories += meal_record.total_calories
+        summary.total_protein += sum(item.protein or 0 for item in meal_record.food_items)
+        summary.total_carbs += sum(item.carbs or 0 for item in meal_record.food_items)
+        summary.total_fat += sum(item.fat or 0 for item in meal_record.food_items)
+        summary.total_fiber += sum(item.fiber or 0 for item in meal_record.food_items)
+        summary.net_calories = summary.total_calories  # 需要减去运动消耗
+        
+        await db.commit()
+        await db.refresh(summary)
+        
+        return meal_record
+    except Exception as e:
+        await db.rollback()
+        logging.error(f"记录餐食数据失败: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"记录餐食数据失败: {str(e)}"
+        )
+
+@router.get("/nutrition/summary/{date}", response_model=DailyNutritionSummary)
+async def get_daily_nutrition_summary(
+    date: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """获取指定日期的营养摄入汇总
+    
+    Args:
+        date: 日期字符串 (YYYY-MM-DD)
+        current_user: 当前用户
+        db: 数据库会话
+    
+    Returns:
+        DailyNutritionSummary: 每日营养摄入汇总
+    """
+    try:
+        target_date = datetime.strptime(date, "%Y-%m-%d").date()
+        summary = await db.execute(
+            select(DailyNutritionSummary)
+            .where(
+                DailyNutritionSummary.user_id == current_user.id,
+                DailyNutritionSummary.date == target_date
+            )
+        )
+        summary = summary.scalar_one_or_none()
+        
+        if not summary:
+            raise HTTPException(
+                status_code=404,
+                detail=f"未找到{date}的营养摄入汇总数据"
+            )
+        
+        return summary
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="日期格式错误，请使用YYYY-MM-DD格式"
+        )
+    except Exception as e:
+        logging.error(f"获取营养摄入汇总失败: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"获取营养摄入汇总失败: {str(e)}"
         ) 

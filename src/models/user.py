@@ -29,9 +29,10 @@ class User(Base):
     recipes = relationship("RecipeModel", back_populates="author", cascade="all, delete-orphan")
     favorites = relationship("FavoriteModel", back_populates="user", cascade="all, delete-orphan")
     chat_messages = relationship("ChatMessageModel", back_populates="user", cascade="all, delete-orphan")
-    workouts = relationship("Workout", back_populates="user", cascade="all, delete-orphan")
-    nutrition_records = relationship("NutritionRecordModel", back_populates="user", cascade="all, delete-orphan")
     ratings = relationship("RatingModel", back_populates="user", cascade="all, delete-orphan")
+    meal_records = relationship("MealRecord", back_populates="user", cascade="all, delete-orphan")
+    exercise_records = relationship("ExerciseRecord", back_populates="user", cascade="all, delete-orphan")
+    nutrition_summaries = relationship("DailyNutritionSummary", back_populates="user", cascade="all, delete-orphan")
 
 class UserProfileModel(Base):
     """用户画像数据模型
