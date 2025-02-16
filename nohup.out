@@ -1,0 +1,73 @@
+2025-02-15 21:18:13 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-15.log, 控制台: True
+2025-02-15 21:18:13 [INFO] __main__: 正在启动服务...
+2025-02-15 21:18:13 [INFO] __main__: FastAPI服务已启动
+2025-02-15 21:18:14 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-02-15 21:18:14 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-15 21:18:14 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-15 21:18:14 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [4106] using StatReload
+2025-02-15 21:34:37 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-15.log, 控制台: True
+2025-02-15 21:34:37 [INFO] __main__: 正在启动服务...
+2025-02-15 21:34:37 [INFO] __main__: FastAPI服务已启动
+2025-02-15 21:34:37 [INFO] __main__: Gradio 服务已启动 - http://localhost:7860
+2025-02-15 21:34:38 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-15 21:34:38 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-15 21:34:38 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [1820] using StatReload
+2025-02-15 21:34:52 [INFO] __main__: [Gradio-Err] 2025-02-15 21:34:52 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-15.log, 控制台: True
+2025-02-15 21:34:55 [INFO] __main__: [Gradio-Err] 2025-02-15 21:34:55 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-02-15 21:35:04 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:04 [INFO] root: AI服务客户端初始化成功
+2025-02-15 21:35:04 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:04 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-02-15 21:35:04 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:04 [DEBUG] asyncio: Using selector: EpollSelector
+2025-02-15 21:35:04 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:04 [WARNING] src.web_app: SSL证书文件不存在或未配置，将使用HTTP模式
+2025-02-15 21:35:05 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:05 [DEBUG] asyncio: Using selector: EpollSelector
+2025-02-15 21:35:05 [INFO] __main__: [Gradio-Err] 2025-02-15 21:35:05 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-02-15 21:35:09 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [1827]
+2025-02-15 21:35:09 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-02-15 21:35:09 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-02-15 21:35:31 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始用户注册: username=Test0215
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户注册成功: user_id=df57fd19-28b6-406f-bd0b-d2c9fd9ef331 username=Test0215
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] Loaded as API: https://122a537f931d1b8aa7.gradio.live/ ✔
+2025-02-15 21:35:32 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51518 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+2025-02-15 21:35:35 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51518 - "GET /api/v1/recipes HTTP/1.1" 307 Temporary Redirect
+2025-02-15 21:35:36 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51518 - "GET /api/v1/recipes/ HTTP/1.1" 200 OK
+2025-02-15 21:35:44 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51649 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:35:54 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51649 - "GET /api/v1/recipes HTTP/1.1" 307 Temporary Redirect
+2025-02-15 21:35:54 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51649 - "GET /api/v1/recipes/ HTTP/1.1" 200 OK
+2025-02-15 21:36:05 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51755 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:36:56 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52021 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:37:06 [INFO] __main__: [Gradio-Err] 2025-02-15 21:37:06 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (2): huggingface.co:443
+2025-02-15 21:37:09 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52066 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:38:17 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52435 - "GET /api/v1/recipes HTTP/1.1" 307 Temporary Redirect
+2025-02-15 21:38:18 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52435 - "GET /api/v1/recipes/ HTTP/1.1" 200 OK
+2025-02-15 21:38:48 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52619 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f726770a2f0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f726770a2f0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef89990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef89990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef89d50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef89d50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef8a200>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef8a200>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.AsyncAdaptedQueuePool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef8a6b0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Err] sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f724ef8a6b0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-02-15 21:39:00 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52686 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-02-15 21:39:17 [INFO] __main__: [Gradio-Err] 2025-02-15 21:39:17 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (3): huggingface.co:443
+2025-02-15 23:18:58 [INFO] __main__: [FastAPI-Out] INFO:     35.203.210.139:57502 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-15 23:51:30 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.61:42176 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-15 23:51:35 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.61:60996 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-02-15 23:51:35 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-02-16 02:45:54 [INFO] __main__: [FastAPI-Out] INFO:     185.247.137.223:33293 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 04:24:38 [INFO] __main__: [FastAPI-Out] INFO:     134.199.156.68:43754 - "GET /ab2g HTTP/1.1" 404 Not Found
+2025-02-16 04:24:40 [INFO] __main__: [FastAPI-Out] INFO:     134.199.156.68:43762 - "GET /ab2h HTTP/1.1" 404 Not Found
+2025-02-16 04:24:42 [INFO] __main__: [FastAPI-Out] INFO:     134.199.156.68:43780 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 04:24:44 [INFO] __main__: [FastAPI-Out] INFO:     134.199.156.68:46404 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-16 11:06:47 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.48:48052 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 11:06:57 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.48:38784 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 11:06:58 [INFO] __main__: [FastAPI-Out] INFO:     167.94.146.48:38802 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-02-16 11:06:58 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-02-16 12:32:38 [INFO] __main__: [FastAPI-Out] INFO:     147.185.133.72:64676 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 14:52:00 [INFO] __main__: [FastAPI-Out] INFO:     147.185.132.160:61232 - "GET / HTTP/1.1" 500 Internal Server Error
