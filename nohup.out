@@ -71,3 +71,4 @@
 2025-02-16 11:06:58 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
 2025-02-16 12:32:38 [INFO] __main__: [FastAPI-Out] INFO:     147.185.133.72:64676 - "GET / HTTP/1.1" 500 Internal Server Error
 2025-02-16 14:52:00 [INFO] __main__: [FastAPI-Out] INFO:     147.185.132.160:61232 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-02-16 20:52:10 [INFO] __main__: [FastAPI-Out] INFO:     13.64.109.6:42182 - "GET / HTTP/1.1" 500 Internal Server Error
