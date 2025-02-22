@@ -192,3 +192,153 @@
 2025-02-19 17:14:21 [INFO] __main__: FastAPI 服务已关闭
 2025-02-19 17:14:21 [INFO] __main__: 正在关闭 Gradio 服务...
 2025-02-19 17:14:21 [INFO] __main__: Gradio 服务已关闭
+2025-02-19 17:35:43 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-19.log, 控制台: True
+2025-02-19 17:35:43 [INFO] __main__: 正在启动服务...
+2025-02-19 17:35:43 [INFO] __main__: FastAPI服务已启动
+2025-02-19 17:35:43 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-19 17:35:43 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-19 17:35:43 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [37836] using StatReload
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-1:
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] self.run()
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] self._target(*self._args, **self._kwargs)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 78, in subprocess_started
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] target(sockets=sockets)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 62, in run
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] return loop.run_until_complete(main)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] config.load()
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 458, in load
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/main.py", line 37, in <module>
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/routers/chat.py", line 43, in <module>
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/services/ai_service_client.py", line 30, in __init__
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] self.chat_client = Client(
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 153, in __init__
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] self.config = self._get_config()
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Err] ValueError: Could not fetch config for https://bce061925ee7082bc9.gradio.live/
+2025-02-19 17:35:53 [INFO] __main__: [FastAPI-Out] Loaded as API: https://bce061925ee7082bc9.gradio.live/ ✔
+2025-02-19 17:41:00 [ERROR] __main__: FastAPI 服务意外退出
+2025-02-19 17:41:00 [INFO] __main__: 正在清理资源...
+2025-02-19 17:41:00 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-19 17:41:00 [INFO] __main__: FastAPI 服务已关闭
+2025-02-19 17:42:13 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-19.log, 控制台: True
+2025-02-19 17:42:13 [INFO] __main__: 正在启动服务...
+2025-02-19 17:42:13 [INFO] __main__: FastAPI服务已启动
+2025-02-19 17:42:13 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-19 17:42:13 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-19 17:42:13 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [37959] using StatReload
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-1:
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] self.run()
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] self._target(*self._args, **self._kwargs)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 78, in subprocess_started
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] target(sockets=sockets)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 62, in run
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] return loop.run_until_complete(main)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] config.load()
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 458, in load
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/main.py", line 37, in <module>
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/routers/chat.py", line 43, in <module>
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/services/ai_service_client.py", line 30, in __init__
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] self.chat_client = Client(
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 153, in __init__
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] self.config = self._get_config()
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Err] ValueError: Could not fetch config for https://bce061925ee7082bc9.gradio.live/
+2025-02-19 17:42:22 [INFO] __main__: [FastAPI-Out] Loaded as API: https://bce061925ee7082bc9.gradio.live/ ✔
+2025-02-19 18:15:53 [INFO] __main__: 收到信号 15，正在优雅关闭...
+2025-02-19 18:15:53 [INFO] __main__: 正在清理资源...
+2025-02-19 18:15:53 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-19 18:15:55 [INFO] __main__: FastAPI 服务已关闭
+2025-02-22 23:15:06 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-02-22.log, 控制台: True
+2025-02-22 23:15:06 [INFO] __main__: 正在启动服务...
+2025-02-22 23:15:06 [INFO] __main__: FastAPI服务已启动
+2025-02-22 23:15:06 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-02-22 23:15:06 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-22 23:15:06 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [22890] using StatReload
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] Process SpawnProcess-1:
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] Traceback (most recent call last):
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] self.run()
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] self._target(*self._args, **self._kwargs)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 78, in subprocess_started
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] target(sockets=sockets)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 62, in run
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] return asyncio.run(self.serve(sockets=sockets))
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] return loop.run_until_complete(main)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] return future.result()
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] config.load()
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 458, in load
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] self.loaded_app = import_from_string(self.app)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] module = importlib.import_module(module_str)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] return _bootstrap._gcd_import(name[level:], package, level)
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/main.py", line 37, in <module>
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] from .routers import auth, profile, chat, workout, recipes, favorites
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/routers/chat.py", line 43, in <module>
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] ai_client = AIServiceClient()
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/src/services/ai_service_client.py", line 30, in __init__
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] self.chat_client = Client(
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 153, in __init__
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] self.config = self._get_config()
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] File "/root/food_journey/.venv/lib/python3.10/site-packages/gradio_client/client.py", line 886, in _get_config
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] raise ValueError(f"Could not fetch config for {self.src}")
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Err] ValueError: Could not fetch config for https://bce061925ee7082bc9.gradio.live/
+2025-02-22 23:15:19 [INFO] __main__: [FastAPI-Out] Loaded as API: https://bce061925ee7082bc9.gradio.live/ ✔
+2025-02-22 23:23:29 [ERROR] __main__: FastAPI 服务意外退出
+2025-02-22 23:23:29 [INFO] __main__: 正在清理资源...
+2025-02-22 23:23:29 [INFO] __main__: 正在关闭 FastAPI 服务...
+2025-02-22 23:23:29 [INFO] __main__: FastAPI 服务已关闭
