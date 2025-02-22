@@ -2,6 +2,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+import sqlalchemy as sa
 
 from alembic import context
 
@@ -88,7 +89,16 @@ def run_migrations_online() -> None:
         )
 
         with context.begin_transaction():
-            context.run_migrations()
+            try:
+                # 尝试运行迁移
+                context.run_migrations()
+            except Exception as e:
+                # 如果出现找不到 revision 的异常，则删除 alembic_version 表后重试
+                if "Can't locate revision" in str(e):
+                    connection.execute(sa.text("DROP TABLE IF EXISTS alembic_version"))
+                    context.run_migrations()
+                else:
+                    raise e
 
 
 if context.is_offline_mode():

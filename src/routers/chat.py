@@ -101,32 +101,50 @@ async def get_user_profile(user_id: str, db: AsyncSession) -> Dict[str, Any]:
     if not profile:
         return {}
 
+    # 返回完整的用户画像数据，包括基本信息、健康信息、饮食偏好、健身信息及扩展属性
     return {
+        "user_id": profile.user_id,
+        "birth_date": profile.birth_date.isoformat() if profile.birth_date else None,
         "gender": profile.gender,
-        "age": (
-            (datetime.now().date() - profile.birth_date).days // 365
-            if profile.birth_date
-            else None
-        ),
+        "nickname": profile.nickname,
+        "age": ((datetime.now().date() - profile.birth_date).days // 365) if profile.birth_date else None,
         "height": profile.height,
         "weight": profile.weight,
-        "bmi": (
-            round(profile.weight / ((profile.height / 100) ** 2), 1)
-            if profile.height and profile.weight
-            else None
-        ),
         "body_fat_percentage": profile.body_fat_percentage,
+        "muscle_mass": profile.muscle_mass,
+        "bmr": profile.bmr,
+        "tdee": profile.tdee,
+        "bmi": (round(profile.weight / ((profile.height / 100) ** 2), 1) if profile.height and profile.weight else None),
+        "water_ratio": profile.water_ratio,
         "health_conditions": profile.health_conditions or [],
         "health_goals": profile.health_goals or [],
-        "food_preferences": profile.favorite_cuisines or [],
+        "cooking_skill_level": profile.cooking_skill_level or "",
+        "favorite_cuisines": profile.favorite_cuisines or [],
         "dietary_restrictions": profile.dietary_restrictions or [],
         "allergies": profile.allergies or [],
-        "cooking_level": profile.cooking_skill_level or "初级",
         "calorie_preference": profile.calorie_preference,
         "nutrition_goals": profile.nutrition_goals or [],
+        "eating_habits": profile.eating_habits,
+        "diet_goal": profile.diet_goal,
         "fitness_level": profile.fitness_level,
         "exercise_frequency": profile.exercise_frequency,
+        "preferred_exercises": profile.preferred_exercises or [],
         "fitness_goals": profile.fitness_goals or [],
+        "short_term_goals": profile.short_term_goals or [],
+        "long_term_goals": profile.long_term_goals or [],
+        "goal_progress": profile.goal_progress,
+        "training_type": profile.training_type,
+        "training_progress": profile.training_progress,
+        "muscle_group_analysis": profile.muscle_group_analysis or [],
+        "sleep_duration": profile.sleep_duration,
+        "deep_sleep_percentage": profile.deep_sleep_percentage,
+        "fatigue_score": profile.fatigue_score,
+        "recovery_activities": profile.recovery_activities or [],
+        "performance_metrics": profile.performance_metrics or [],
+        "exercise_history": profile.exercise_history or [],
+        "training_time_preference": profile.training_time_preference,
+        "equipment_preferences": profile.equipment_preferences or [],
+        "extended_attributes": profile.extended_attributes or {}
     }
 
 

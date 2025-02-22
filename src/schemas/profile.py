@@ -11,6 +11,8 @@ class HealthProfile(BaseModel):
     bmr: Optional[int] = Field(None, description="基础代谢率（卡路里）", ge=0)
     tdee: Optional[int] = Field(None, description="每日总能量消耗（卡路里）", ge=0)
     health_conditions: Optional[List[str]] = Field(None, description="健康状况")
+    bmi: Optional[float] = Field(None, description="体重指数（BMI）", ge=0)
+    water_ratio: Optional[float] = Field(None, description="身体水分比例（%）", ge=0, le=100)
 
 class DietProfile(BaseModel):
     """饮食档案模型"""
@@ -24,6 +26,8 @@ class DietProfile(BaseModel):
     allergies: Optional[List[str]] = Field(None, description="食物过敏")
     nutrition_goals: Optional[Dict] = Field(None, description="营养目标")
     calorie_preference: Optional[int] = Field(None, description="每日卡路里目标", ge=0)
+    eating_habits: Optional[str] = Field(None, description="饮食习惯，例如是否有规律进餐，是否吃快餐等")
+    diet_goal: Optional[str] = Field(None, description="饮食目标，例如每日摄入2000卡目标，蛋白质摄入100g")
 
 class FitnessProfile(BaseModel):
     """健身档案模型"""
@@ -40,14 +44,30 @@ class FitnessProfile(BaseModel):
     )
     preferred_exercises: Optional[List[str]] = Field(None, description="偏好的运动类型")
     fitness_goals: Optional[List[str]] = Field(None, description="健身目标")
+    short_term_goals: Optional[List[str]] = Field(None, description="短期健身目标，例如增肌5kg，体脂降到15%")
+    long_term_goals: Optional[List[str]] = Field(None, description="长期健身目标，例如保持健康，提高运动表现")
+    goal_progress: Optional[float] = Field(None, description="目标进度百分比", ge=0, le=100)
+    training_type: Optional[str] = Field(None, description="训练类型，如力量训练、跑步、有氧运动等")
+    training_progress: Optional[float] = Field(None, description="训练进度（百分比）", ge=0, le=100)
+    muscle_group_analysis: Optional[Dict[str, Any]] = Field(None, description="肌肉群分析，记录训练中涉及的肌肉群")
+    sleep_duration: Optional[float] = Field(None, description="每晚睡眠时长（小时）", ge=0)
+    deep_sleep_percentage: Optional[float] = Field(None, description="深度睡眠比例（%）", ge=0, le=100)
+    fatigue_score: Optional[int] = Field(None, description="疲劳感评分（1-5）", ge=1, le=5)
+    recovery_activities: Optional[List[str]] = Field(None, description="恢复性活动记录，如拉伸、瑜伽等")
+    performance_metrics: Optional[Dict[str, Any]] = Field(None, description="运动表现指标，如最大力量、耐力、跑步速度等")
+    exercise_history: Optional[List[Dict]] = Field(None, description="运动历史记录")
+    training_time_preference: Optional[str] = Field(None, description="训练时间偏好，如早晨、下午、晚上")
+    equipment_preferences: Optional[List[str]] = Field(None, description="设备偏好，如哑铃、跑步机、动感单车等")
 
 class UserProfile(BaseModel):
     """用户基本档案模型"""
     id: str = Field(..., description="用户ID")
     username: str = Field(..., description="用户名")
+    nickname: Optional[str] = Field(None, description="昵称")
     email: EmailStr = Field(..., description="邮箱")
     avatar_url: Optional[str] = Field(None, description="头像URL")
     birth_date: Optional[date] = Field(None, description="出生日期")
+    age: Optional[int] = Field(None, description="年龄")
     gender: Optional[str] = Field(
         None, 
         description="性别",
