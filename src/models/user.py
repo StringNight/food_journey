@@ -35,7 +35,7 @@ class User(Base):
     nutrition_summaries = relationship("DailyNutritionSummary", back_populates="user", cascade="all, delete-orphan")
     
     # 添加与 Workout 的关系
-    workouts = relationship("WorkoutModel", back_populates="user")
+    workouts = relationship("Workout", back_populates="user")
 
 class UserProfileModel(Base):
     """用户画像数据模型
