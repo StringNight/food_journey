@@ -31,17 +31,18 @@ def custom_openapi(app) -> Dict[str, Any]:
 
 ## 用户画像管理
 ### 获取用户画像
-- GET `/api/v1/profile`
-- 获取用户的完整画像信息，包括：
-  - 基本信息（性别、年龄等）
-  - 健康信息（身高、体重等）
-  - 饮食偏好（烹饪水平、喜好菜系等）
-  - 健身信息（运动水平、运动频率等）
+GET `/api/v1/profile`
+获取用户的完整画像信息，包括：
+  - 基本信息：用户ID, 性别, 年龄, 昵称, 出生日期等
+  - 健康信息：身高(cm), 体重(kg), 体脂率(%), 肌肉含量, 基础代谢率, 每日能量消耗, BMI, 身体水分比例, 健康状况, 健康目标
+  - 饮食偏好：烹饪技能水平, 喜好菜系, 饮食限制, 食物过敏, 卡路里偏好, 营养目标, 饮食习惯, 饮食目标
+  - 健身信息：健身水平, 每周运动频率, 偏好运动类型, 健身目标, 短期与长期健身目标, 目标进度, 训练类型, 训练进度, 肌肉群分析, 每晚睡眠时长, 深度睡眠比例, 疲劳感评分, 恢复性活动, 运动表现指标, 运动历史记录, 训练时间偏好, 设备偏好
+  - 扩展属性：其他未分类的个性化设置
 
 ### 更新用户画像
-- PUT `/api/v1/profile/basic` - 更新基本信息和健康数据
-- PUT `/api/v1/profile/diet` - 更新饮食偏好
-- PUT `/api/v1/profile/fitness` - 更新健身偏好
+PUT `/api/v1/profile/basic` - 更新用户的基本信息和健康数据（如性别、年龄、身高、体重等）
+PUT `/api/v1/profile/diet` - 更新用户的饮食偏好（如烹饪水平、喜好菜系、饮食限制等）
+PUT `/api/v1/profile/fitness` - 更新用户的健身习惯和目标（如运动频率、健身目标、睡眠数据等）
 
 ### 健康数据统计
 - GET `/api/v1/profile/stats`
@@ -85,7 +86,7 @@ def custom_openapi(app) -> Dict[str, Any]:
 ### 文本聊天
 - POST `/api/v1/chat/text`
 - 发送文本消息与AI助手对话
-- 支持的模型：qwen2.5:14b
+- 支持的模型：deepseek-r1:14b
 - 最大消息长度：1000字符
 
 ### 流式文本聊天
@@ -207,6 +208,8 @@ def custom_openapi(app) -> Dict[str, Any]:
                     "weight": 70,
                     "body_fat_percentage": 20,
                     "muscle_mass": 35,
+                    "bmr": 1600,
+                    "tdee": 2200,
                     "health_conditions": ["轻度过敏"]
                 },
                 "response": {
@@ -219,6 +222,8 @@ def custom_openapi(app) -> Dict[str, Any]:
                         "weight",
                         "body_fat_percentage",
                         "muscle_mass",
+                        "bmr",
+                        "tdee",
                         "health_conditions"
                     ]
                 }
@@ -231,6 +236,7 @@ def custom_openapi(app) -> Dict[str, Any]:
                     "favorite_cuisines": ["川菜", "粤菜"],
                     "dietary_restrictions": ["少油", "少盐"],
                     "allergies": ["海鲜"],
+                    "calorie_preference": 2000,
                     "nutrition_goals": {
                         "protein": 120,
                         "carbs": 250,
@@ -245,6 +251,7 @@ def custom_openapi(app) -> Dict[str, Any]:
                         "favorite_cuisines",
                         "dietary_restrictions",
                         "allergies",
+                        "calorie_preference",
                         "nutrition_goals"
                     ]
                 }
@@ -312,7 +319,7 @@ def custom_openapi(app) -> Dict[str, Any]:
     }
     
     chat_examples = {
-        "/api/v1/chat/text": {
+        "/api/v1/chat/stream": {
             "post": {
                 "request": {
                     "message": "请推荐一道简单的家常菜"
@@ -335,7 +342,7 @@ def custom_openapi(app) -> Dict[str, Any]:
                 }
             }
         },
-        "/api/v1/chat/food": {
+        "/api/v1/chat/image/stream": {
             "post": {
                 "response": {
                     "schema_version": "1.0",

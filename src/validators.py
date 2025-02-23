@@ -1,5 +1,5 @@
 from pydantic import BaseModel, validator, Field
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, date
 from datetime import datetime
 
 class IngredientInput(BaseModel):
@@ -85,15 +85,58 @@ class RecipeInput(BaseModel):
 
 class UserProfileInput(BaseModel):
     """用户画像输入模型
-    
-    用于验证和规范化用户画像的输入格式
+    用于验证和规范化用户画像的输入格式，包含基本信息、健康信息、饮食偏好、健身信息以及扩展属性等各个方面
     """
+    # 基本信息
+    birth_date: Optional[date] = None            # 出生日期
+    gender: Optional[str] = None                 # 性别
+    nickname: Optional[str] = None               # 用户昵称
+    age: Optional[int] = None                    # 年龄
+
+    # 健康信息
+    height: Optional[float] = None               # 身高(cm)
+    weight: Optional[float] = None               # 体重(kg)
+    body_fat_percentage: Optional[float] = None  # 体脂率(%)
+    muscle_mass: Optional[float] = None          # 肌肉含量(kg)
+    bmr: Optional[int] = None                    # 基础代谢率(卡路里)
+    tdee: Optional[int] = None                   # 每日总能量消耗(卡路里)
+    bmi: Optional[float] = None                  # 体重指数
+    water_ratio: Optional[float] = None          # 身体水分比例(%)
+    health_conditions: Optional[List[str]] = None  # 健康状况
+    health_goals: Optional[List[str]] = None       # 健康目标
+
+    # 饮食偏好
+    cooking_skill_level: Optional[str] = Field(None, pattern="^(beginner|intermediate|advanced)$")  # 烹饪技能水平
     favorite_cuisines: Optional[List[str]] = None  # 喜爱的菜系
     dietary_restrictions: Optional[List[str]] = None  # 饮食限制
-    allergies: Optional[List[str]] = None  # 过敏源
-    cooking_skill_level: Optional[str] = Field(None, pattern="^(beginner|intermediate|advanced)$")  # 烹饪技能水平
+    allergies: Optional[List[str]] = None             # 食物过敏
     calorie_preference: Optional[int] = Field(None, ge=0)  # 卡路里偏好
-    health_goals: Optional[List[str]] = None  # 健康目标
+    nutrition_goals: Optional[List[str]] = None         # 营养目标
+    eating_habits: Optional[str] = None                 # 饮食习惯
+    diet_goal: Optional[str] = None                     # 饮食目标
+
+    # 健身信息
+    fitness_level: Optional[str] = None                 # 健身水平
+    exercise_frequency: Optional[int] = Field(None, ge=0, le=7)  # 每周运动频率
+    preferred_exercises: Optional[List[str]] = None      # 偏好的运动类型
+    fitness_goals: Optional[List[str]] = None            # 健身目标
+    short_term_goals: Optional[List[str]] = None         # 短期健身目标
+    long_term_goals: Optional[List[str]] = None          # 长期健身目标
+    goal_progress: Optional[float] = None                # 目标进度百分比
+    training_type: Optional[str] = None                 # 训练类型
+    training_progress: Optional[float] = None            # 训练进度百分比
+    muscle_group_analysis: Optional[List[str]] = None    # 肌肉群分析
+    sleep_duration: Optional[float] = None               # 每晚睡眠时长(小时)
+    deep_sleep_percentage: Optional[float] = None        # 深度睡眠比例(%)
+    fatigue_score: Optional[int] = None                  # 疲劳感评分
+    recovery_activities: Optional[List[str]] = None      # 恢复性活动
+    performance_metrics: Optional[List[str]] = None      # 运动表现指标
+    exercise_history: Optional[List[Dict]] = None        # 运动历史记录
+    training_time_preference: Optional[str] = None       # 训练时间偏好
+    equipment_preferences: Optional[List[str]] = None    # 设备偏好
+
+    # 扩展属性
+    extended_attributes: Optional[Dict] = None
 
     @validator('favorite_cuisines')
     def validate_cuisines(cls, v):
