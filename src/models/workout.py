@@ -27,6 +27,7 @@ class Workout(Base):
     
     # 关联关系
     exercises = relationship("WorkoutExercise", back_populates="workout")
+    
     user = relationship("User", back_populates="workouts")
 
 class WorkoutExercise(Base):
@@ -85,4 +86,4 @@ class ExerciseRecord(Base):
     
     # 关系
     sets = relationship("ExerciseSet", back_populates="exercise_record", cascade="all, delete-orphan")
-    user = relationship("User", back_populates="exercise_records") 
+    user = relationship("User", back_populates="exercise_records")
