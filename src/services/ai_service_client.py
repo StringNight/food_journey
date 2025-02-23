@@ -310,7 +310,7 @@ class AIServiceClient:
     async def chat_stream(
         self,
         messages: List[Dict[str, str]],
-        model: str = "qwen2.5:14b",
+        model: str = "deepseek-r1:14b",
         max_tokens: int = 2000,
         user_profile: Optional[Dict[str, Any]] = None
     ) -> AsyncGenerator[str, None]:
@@ -502,14 +502,7 @@ class AIServiceClient:
             # 解析JSON
             updates = json.loads(json_str)
             
-            # 验证更新内容
-            if not isinstance(updates, dict) or "updates" not in updates:
-                return None
-                
-            # 验证必填字段
-            if "update_reason" not in updates["updates"]:
-                return None
-                
+            # 直接返回更新建议，不再强制要求包含 'update_reason' 字段，以支持所有新的用户画像字段
             return updates["updates"]
             
         except (ValueError, json.JSONDecodeError) as e:

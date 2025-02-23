@@ -46,7 +46,9 @@ class UserProfileModel(Base):
     id = Column(String, primary_key=True)
     user_id = Column(String, ForeignKey('users.id'), unique=True)
     birth_date = Column(Date)
-    gender = Column(String)
+    gender = Column(String)  # 性别
+    nickname = Column(String)  # 用户昵称
+    age = Column(Integer)  # 用户年龄
     
     # 健康信息
     height = Column(Float)  # 身高（厘米）
@@ -55,6 +57,8 @@ class UserProfileModel(Base):
     muscle_mass = Column(Float)  # 肌肉量（千克）
     bmr = Column(Integer)  # 基础代谢率（卡路里）
     tdee = Column(Integer)  # 每日总能量消耗（卡路里）
+    bmi = Column(Float)  # 体重指数（BMI）
+    water_ratio = Column(Float)  # 身体水分比例（%）
     health_conditions = Column(JSON)  # 健康状况
     health_goals = Column(JSON)  # 健康目标
     
@@ -65,12 +69,28 @@ class UserProfileModel(Base):
     allergies = Column(JSON)  # 食物过敏
     calorie_preference = Column(Integer)  # 卡路里偏好
     nutrition_goals = Column(JSON)  # 营养目标
+    eating_habits = Column(String)  # 饮食习惯，例如是否有规律进餐，是否吃快餐等
+    diet_goal = Column(String)  # 饮食目标，例如每日摄入2000卡目标，蛋白质摄入100g
     
     # 健身信息
     fitness_level = Column(String)  # 健身水平
     exercise_frequency = Column(Integer)  # 每周运动频率
     preferred_exercises = Column(JSON)  # 偏好的运动类型
     fitness_goals = Column(JSON)  # 健身目标
+    short_term_goals = Column(JSON)  # 短期健身目标，例如增肌5kg，体脂降到15%
+    long_term_goals = Column(JSON)   # 长期健身目标，例如保持健康，提高运动表现
+    goal_progress = Column(Float)    # 目标进度百分比
+    training_type = Column(String)     # 训练类型，如力量训练、跑步、有氧运动等
+    training_progress = Column(Float)  # 训练进度百分比
+    muscle_group_analysis = Column(JSON)  # 肌肉群分析，记录训练中涉及的肌肉群
+    sleep_duration = Column(Float)     # 每晚睡眠时长（小时）
+    deep_sleep_percentage = Column(Float)  # 深度睡眠比例（%）
+    fatigue_score = Column(Integer)    # 疲劳感评分（1-5）
+    recovery_activities = Column(JSON)  # 恢复性活动记录，如拉伸、瑜伽等
+    performance_metrics = Column(JSON)  # 运动表现指标，如最大力量、耐力、跑步速度等
+    exercise_history = Column(JSON)     # 运动历史记录
+    training_time_preference = Column(String)  # 训练时间偏好，例如早晨、下午、晚上
+    equipment_preferences = Column(JSON)  # 设备偏好，例如哑铃、跑步机、动感单车等
     
     # 扩展属性
     extended_attributes = Column(JSON, default={})
@@ -87,7 +107,9 @@ class UserProfileModel(Base):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "nickname": self.nickname,
             "birth_date": self.birth_date.isoformat() if self.birth_date else None,
+            "age": self.age,
             "gender": self.gender,
             "height": self.height,
             "weight": self.weight,
@@ -95,6 +117,8 @@ class UserProfileModel(Base):
             "muscle_mass": self.muscle_mass,
             "bmr": self.bmr,
             "tdee": self.tdee,
+            "bmi": self.bmi,
+            "water_ratio": self.water_ratio,
             "health_conditions": self.health_conditions,
             "health_goals": self.health_goals,
             "cooking_skill_level": self.cooking_skill_level,
@@ -103,10 +127,26 @@ class UserProfileModel(Base):
             "allergies": self.allergies,
             "calorie_preference": self.calorie_preference,
             "nutrition_goals": self.nutrition_goals,
+            "eating_habits": self.eating_habits,
+            "diet_goal": self.diet_goal,
             "fitness_level": self.fitness_level,
             "exercise_frequency": self.exercise_frequency,
             "preferred_exercises": self.preferred_exercises,
             "fitness_goals": self.fitness_goals,
+            "short_term_goals": self.short_term_goals,
+            "long_term_goals": self.long_term_goals,
+            "goal_progress": self.goal_progress,
+            "training_type": self.training_type,
+            "training_progress": self.training_progress,
+            "muscle_group_analysis": self.muscle_group_analysis,
+            "sleep_duration": self.sleep_duration,
+            "deep_sleep_percentage": self.deep_sleep_percentage,
+            "fatigue_score": self.fatigue_score,
+            "recovery_activities": self.recovery_activities,
+            "performance_metrics": self.performance_metrics,
+            "exercise_history": self.exercise_history,
+            "training_time_preference": self.training_time_preference,
+            "equipment_preferences": self.equipment_preferences,
             "extended_attributes": self.extended_attributes,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat()

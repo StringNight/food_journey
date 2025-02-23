@@ -43,9 +43,9 @@ app = FastAPI(
     title="Food Journey API",
     description="Food Journey 应用的后端 API",
     version="1.0.0",
-    docs_url="/api/v1/docs",  # Swagger UI 路由
-    redoc_url="/api/v1/redoc",  # ReDoc 路由
-    openapi_url="/api/v1/openapi.json"  # OpenAPI JSON 路由
+    docs_url="/docs",  # Swagger UI 路由
+    redoc_url="/redoc",  # ReDoc 路由
+    openapi_url="/openapi.json"  # OpenAPI JSON 路由
 )
 
 # 配置速率限制中间件
@@ -127,6 +127,8 @@ app.include_router(recipes.router, prefix="/api/v1/recipes", tags=["食谱"])
 app.include_router(favorites.router, prefix="/api/v1/favorites", tags=["收藏"])
 app.include_router(workout.router, prefix="/api/v1/workouts", tags=["运动"])
 
+app.openapi = lambda: custom_openapi(app)  # 绑定自定义OpenAPI生成函数，确保文档端点可访问
+
 @app.get("/")
 @limiter.limit("10/minute")  # 每分钟最多10个请求
 async def root(request: Request):
@@ -191,9 +193,6 @@ async def general_exception_handler(request: Request, exc: Exception):
             "type": "internal_error"
         }
     )
-
-# 使用自定义OpenAPI文档
-app.openapi = lambda: custom_openapi(app)
 
 # 如果是直接运行此文件（不是作为模块导入）
 if __name__ == "__main__":
