@@ -15,7 +15,7 @@ class ExerciseType(str, enum.Enum):
 class Workout(Base):
     """训练记录主表"""
     __tablename__ = "workouts"
-
+    
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String, ForeignKey("users.id"), nullable=False)
     workout_date = Column(DateTime, default=lambda: datetime.now(), nullable=False)
@@ -28,6 +28,7 @@ class Workout(Base):
     # 关联关系
     exercises = relationship("WorkoutExercise", back_populates="workout")
     
+    # 修改关系定义，使用字符串引用
     user = relationship("User", back_populates="workouts")
 
 class WorkoutExercise(Base):
