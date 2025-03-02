@@ -28,13 +28,13 @@ class AIServiceClient:
         """初始化AI服务客户端"""
         # 初始化各个服务的客户端
         self.chat_client = Client(
-            os.getenv("CHAT_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live/")
+            os.getenv("CHAT_SERVICE_URL", "https://9eb0b44bb3a74141ba.gradio.live/")
         )
         self.voice_client = Client(
-            os.getenv("VOICE_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live")
+            os.getenv("VOICE_SERVICE_URL", "https://9eb0b44bb3a74141ba.gradio.live")
         )
         self.food_client = Client(
-            os.getenv("FOOD_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live")
+            os.getenv("FOOD_SERVICE_URL", "https://9eb0b44bb3a74141ba.gradio.live")
         )
         
         logging.info("AI服务客户端初始化成功")
