@@ -24,290 +24,68 @@ class AIServiceClient:
     负责与独立的AI服务进行通信，处理语音识别、LLM对话和图像识别请求
     """
     
-    def __init__(self):
-        """初始化AI服务客户端"""
-        # 初始化各个服务的客户端
-        self.chat_client = Client(
-            os.getenv("CHAT_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live/")
-        )
-        self.voice_client = Client(
-            os.getenv("VOICE_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live")
-        )
-        self.food_client = Client(
-            os.getenv("FOOD_SERVICE_URL", "https://bbd3fefffc5ab84ee7.gradio.live")
-        )
+    def __init__(self, api_url=None):
+        # 保留原始初始化代码，但不实际连接
+        self.api_url = api_url
+        self.client = None
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("AI服务客户端初始化成功 (Mock 模式)")
+    
+    async def chat_stream(self, messages):
+        """模拟流式聊天响应"""
+        # 模拟延迟
+        await asyncio.sleep(0.5)
         
-        logging.info("AI服务客户端初始化成功")
-        
-    async def process_voice(self, audio_file: Union[str, BinaryIO, bytes]) -> str:
-        """处理语音文件，转写为文本
-        
-        参数:
-            audio_file: 音频文件路径或URL
-        返回:
-            str: 识别出的文本
-        """
-        try:
-            # 如果是文件路径，转换为URL或处理本地文件
-            if isinstance(audio_file, str):
-                if audio_file.startswith("/uploads/voices/"):
-                    # 将相对路径转换为完整URL
-                    audio_url = f"{os.getenv('BASE_URL', 'http://localhost:8000')}{audio_file}"
-                    logging.info(f"处理语音文件URL: {audio_url}")
-                else:
-                    audio_url = audio_file
-                    logging.info(f"处理外部语音URL: {audio_url}")
-                    
-                try:
-                    # 调用语音识别服务
-                    result = self.voice_client.predict(
-                        audio=handle_file(audio_url),
-                        api_name="/voice_transcribe"
-                    )
-                    logging.info(f"语音识别结果: {result}")
-                except Exception as e:
-                    logging.error(f"语音识别服务调用失败: {str(e)}")
-                    raise ValueError(f"语音识别服务调用失败: {str(e)}")
-                
-                if isinstance(result, dict):
-                    if "error" in result:
-                        raise ValueError(f"语音识别失败: {result['error']}")
-                    return result.get("text", "")
-                return str(result)
-                
-            elif isinstance(audio_file, (bytes, BinaryIO)):
-                logging.info("处理二进制音频数据")
-                # 如果是字节数据或文件对象，保存为临时文件
-                with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
-                    if isinstance(audio_file, bytes):
-                        temp_file.write(audio_file)
-                    else:
-                        temp_file.write(audio_file.read())
-                    temp_path = temp_file.name
-                    logging.info(f"临时文件保存至: {temp_path}")
-                
-                try:
-                    # 使用临时文件路径调用语音识别服务
-                    result = self.voice_client.predict(
-                        audio=handle_file(temp_path),
-                        api_name="/voice_transcribe"
-                    )
-                    logging.info(f"语音识别结果: {result}")
-                except Exception as e:
-                    logging.error(f"语音识别服务调用失败: {str(e)}")
-                    raise ValueError(f"语音识别服务调用失败: {str(e)}")
-                finally:
-                    # 清理临时文件
-                    try:
-                        os.unlink(temp_path)
-                        logging.info(f"临时文件已删除: {temp_path}")
-                    except Exception as e:
-                        logging.warning(f"临时文件删除失败: {str(e)}")
-                
-                if isinstance(result, dict):
-                    if "error" in result:
-                        raise ValueError(f"语音识别失败: {result['error']}")
-                    return result.get("text", "")
-                return str(result)
-            
-            else:
-                raise ValueError("不支持的音频输入类型")
-                
-        except Exception as e:
-            logging.error(f"语音识别失败: {str(e)}")
-            raise ValueError(f"语音识别失败: {str(e)}")
-            
-    def _build_chat_messages(
-        self,
-        user_profile: Dict[str, Any],
-        current_message: str,
-        chat_history: Optional[List[Dict[str, str]]] = None
-    ) -> List[Dict[str, str]]:
-        """构建聊天消息列表
-        
-        Args:
-            user_profile: 用户画像信息
-            current_message: 当前用户消息
-            chat_history: 历史对话记录
-            
-        Returns:
-            List[Dict[str, str]]: 构建好的消息列表
-        """
-        messages = []
-        
-        # 1. 添加系统提示词
-        system_prompt = """你是一名专业的营养学家、健康管理师和运动指导专家。请基于用户画像和对话内容，为用户提供全方位的健康生活指导方案。
-
-营养建议要点：
-1. 宏量营养素分配：
-   - 根据用户的BMI、体脂率和运动水平，计算每日所需的蛋白质、碳水化合物和脂肪比例
-   - 考虑用户的运动强度和时间，调整碳水化合物的补充时机
-   - 确保优质蛋白的摄入，推荐具体的蛋白质来源
-
-2. 微量营养素补充：
-   - 基于用户的健康状况和营养目标，建议所需的维生素和矿物质补充
-   - 推荐富含特定营养素的食材
-   - 注意可能的营养素相互作用
-
-3. 膳食规划：
-   - 设计符合用户口味和烹饪水平的食谱
-   - 考虑用户的饮食限制和过敏原
-   - 提供详细的食材选购指南和烹饪方法
-   - 建议适合的进餐时间和份量
-
-健康管理建议：
-1. 体重管理：
-   - 根据用户的BMI和体脂率，制定合理的体重目标
-   - 设计可持续的减重/增重计划
-   - 建议每周体重监测频率
-
-2. 健康风险评估：
-   - 分析用户现有的健康问题
-   - 评估潜在的健康风险
-   - 提供针对性的预防建议
-
-3. 生活方式指导：
-   - 作息时间建议
-   - 压力管理方法
-   - 饮水建议
-   - 建议戒除不良习惯
-
-运动指导方案：
-1. 有氧运动：
-   - 根据用户的体能水平推荐合适的有氧运动
-   - 指导心率控制范围
-   - 建议运动时长和频率
-
-2. 力量训练：
-   - 设计适合用户水平的训练计划
-   - 推荐具体的动作和组数
-   - 注意动作要领和安全事项
-
-3. 运动营养策略：
-   - 运动前后的营养补充建议
-   - 运动期间的补水方案
-   - 恢复期的营养摄入指导
-
-回复要求：
-1. 专业性：
-   - 使用准确的专业术语
-   - 提供科学依据
-   - 引用权威研究或指南（如有）
-
-2. 个性化：
-   - 充分考虑用户的个人情况和限制
-   - 根据用户的生活方式调整建议
-   - 考虑实施建议的可行性
-
-3. 安全性：
-   - 注意可能的禁忌症
-   - 提醒潜在风险
-   - 建议必要时咨询医生
-
-4. 动态调整：
-   - 根据用户反馈调整方案
-   - 设定阶段性目标
-   - 提供进展监测方法
-
-5. 输入处理：
-   - 对于图片输入：分析食物的营养价值，评估是否符合用户的健康目标
-   - 对于语音输入：确保回复简明易懂，适合口头表达
-   - 对于文字输入：提供详细的专业建议和具体的执行方案
-
-6. 用户画像更新：
-   - 识别用户提供的新信息，包括但不限于：
-     * 身高、体重的变化
-     * 新的健康状况或症状
-     * 饮食习惯的改变
-     * 运动习惯的变化
-     * 新的过敏反应
-     * 生活方式的调整
-     * 健康目标的更新
-   - 分析用户的行为变化
-   - 及时更新相关建议
-   - 如果发现需要更新用户画像，请在回复的最后使用以下格式提供更新建议：
-
-===用户画像更新建议===
-{
-    "updates": {
-        "birth_date": "2024-01-11",  // 可选
-        "gender": "string",  // 可选，枚举值：男|女|其他
-        "height": 170.0,  // 可选，单位：厘米
-        "weight": 65.0,  // 可选，单位：千克
-        "body_fat_percentage": 20.0,  // 可选，单位：%
-        "muscle_mass": 50.0,  // 可选，单位：千克
-        "health_conditions": ["高血压", "糖尿病"],  // 可选
-        "health_goals": ["减重", "增肌"],  // 可选
-        "cooking_skill_level": "初级",  // 可选，枚举值：初级|中级|高级
-        "favorite_cuisines": ["中餐", "日料"],  // 可选
-        "dietary_restrictions": ["无麸质", "素食"],  // 可选
-        "allergies": ["花生", "海鲜"],  // 可选
-        "calorie_preference": 2000,  // 可选，单位：卡路里
-        "nutrition_goals": {  // 可选
-            "protein": 150,  // 单位：克
-            "carbs": 200,  // 单位：克
-            "fat": 60  // 单位：克
-        },
-        "fitness_level": "中级",  // 可选，枚举值：初级|中级|高级
-        "exercise_frequency": 3,  // 可选，范围：0-7
-        "preferred_exercises": ["跑步", "力量训练"],  // 可选
-        "fitness_goals": ["增肌", "提高耐力"],  // 可选
-        "update_reason": "基于用户提供的信息..."  // 必填，更新原因说明
-    }
-}
-===================
-
-7. 非相关问题处理：
-   - 礼貌地说明你只能回答与饮食、营养、运动、健康相关的问题
-   - 不要给出任何非饮食、营养、运动、健康相关的问题的回答
-   - 引导用户询问相关领域的问题
-   - 如果问题部分相关，尽量从健康角度给出建议
-
-请确保每次回复都体现专业性、针对性和全面性，帮助用户建立健康的生活方式。如果用户询问与饮食、营养、运动、健康无关的问题，请礼貌地说明你的专业范围并建议用户寻求相关领域的专家帮助。"""
-        
-        messages.append({
-            "role": "system",
-            "content": system_prompt
-        })
-        
-        # 2. 添加用户画像信息
-        if user_profile:
-            profile_str = f"""用户画像信息：
-- 性别：{user_profile.get('gender', '未知')}
-- 年龄：{user_profile.get('age', '未知')}岁
-- 身高：{user_profile.get('height', '未知')}cm
-- 体重：{user_profile.get('weight', '未知')}kg
-- BMI：{user_profile.get('bmi', '未知')}
-- 体脂率：{user_profile.get('body_fat_percentage', '未知')}%
-- 健康状况：{', '.join(user_profile.get('health_conditions', ['无']))}
-- 健康目标：{', '.join(user_profile.get('health_goals', ['无']))}
-- 饮食偏好：{', '.join(user_profile.get('food_preferences', ['无']))}
-- 饮食限制：{', '.join(user_profile.get('dietary_restrictions', ['无']))}
-- 食物过敏：{', '.join(user_profile.get('allergies', ['无']))}
-- 烹饪水平：{user_profile.get('cooking_level', '初级')}
-- 营养目标：{', '.join(user_profile.get('nutrition_goals', ['无']))}
-- 健身水平：{user_profile.get('fitness_level', '未知')}
-- 运动频率：每周{user_profile.get('exercise_frequency', '未知')}次
-- 健身目标：{', '.join(user_profile.get('fitness_goals', ['无']))}"""
-            
-            messages.append({
-                "role": "system",
-                "content": profile_str
-            })
-        
-        # 3. 添加历史对话记录
-        if chat_history:
-            messages.extend(chat_history)
-        
-        # 4. 添加当前用户消息
-        messages.append({
-            "role": "user",
-            "content": current_message
-        })
-        
+        # 模拟流式输出
+        chunks = ["你", "好", "，", "我", "是", "AI", "助", "手", "。", "有", "什", "么", "可", "以", "帮", "助", "你", "的", "吗", "？"]
+        for chunk in chunks:
+            await asyncio.sleep(0.1)  # 模拟网络延迟
+            yield chunk
+    
+    async def process_voice(self, voice_input):
+        """模拟语音处理"""
+        await asyncio.sleep(1)  # 模拟处理时间
+        return "hello"
+    
+    async def recognize_food(self, image_path):
+        """模拟食物识别"""
+        await asyncio.sleep(1)  # 模拟处理时间
+        return {
+            "success": True,
+            "food_items": [
+                {"name": "苹果", "confidence": 0.95},
+                {"name": "香蕉", "confidence": 0.85}
+            ]
+        }
+    
+    def extract_profile_updates(self, content):
+        """模拟从AI回复中提取用户画像更新信息"""
+        # 随机决定是否返回更新
+        if random.random() > 0.7:
+            return {
+                "height": 175,
+                "weight": 70,
+                "health_goals": ["减肥", "增肌"]
+            }
+        return None
+    
+    async def process_profile_updates(self, user_id, updates, db):
+        """模拟处理用户画像更新"""
+        self.logger.info(f"模拟更新用户画像: {user_id}, 更新: {updates}")
+        return True
+    
+    def _build_chat_messages(self, user_profile, current_message, chat_history=None):
+        """构建聊天消息列表"""
+        messages = [
+            {"role": "system", "content": "你是一个健康饮食顾问。"},
+            {"role": "user", "content": current_message}
+        ]
         return messages
+
+# 创建客户端实例
+ai_client = AIServiceClient()
             
-    async def chat_stream(
+async def chat_stream(
         self,
         messages: List[Dict[str, str]],
         model: str = "deepseek-r1:14b",
@@ -392,7 +170,7 @@ class AIServiceClient:
             logging.error(f"流式聊天请求失败: {e}")
             raise
             
-    async def recognize_food(self, image_data: Union[str, BinaryIO, bytes]) -> Dict:
+async def recognize_food(self, image_data: Union[str, BinaryIO, bytes]) -> Dict:
         """识别图片中的食物
         
         Args:
@@ -472,12 +250,12 @@ class AIServiceClient:
                 "message": f"食物识别失败: {error_message}"
             }
             
-    async def close(self):
+async def close(self):
         """关闭客户端连接"""
         # Gradio Client 会自动管理连接，不需要手动关闭
         pass 
 
-    def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
+def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
         """从AI助手的回复中提取用户画像更新建议
         
         Args:
@@ -509,7 +287,7 @@ class AIServiceClient:
             logging.error(f"解析用户画像更新建议失败: {e}")
             return None
 
-    async def process_profile_updates(
+async def process_profile_updates(
         self,
         user_id: str,
         updates: Dict[str, Any],
@@ -583,4 +361,4 @@ class AIServiceClient:
                 "success": False,
                 "message": f"用户画像更新失败: {str(e)}",
                 "updated_fields": []
-            } 
+            }
