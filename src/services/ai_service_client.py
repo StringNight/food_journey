@@ -11,6 +11,7 @@ import base64
 import tempfile
 import asyncio
 import time
+import random  # 添加这行导入
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
