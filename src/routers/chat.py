@@ -331,7 +331,7 @@ async def voice_chat_stream(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """处理语音流式聊天请求"""
+    """处理语音流式聊天请求，直接返回流式响应"""
     try:
         # 验证文件类型和大小
         content_type = file.content_type.lower()
@@ -341,19 +341,14 @@ async def voice_chat_stream(
                 detail=f"不支持的音频格式: {content_type}。支持的格式: {', '.join(ALLOWED_AUDIO_TYPES)}",
             )
 
-        file_size = 0
-        file_content = b""
-        # MODIFIED
-        # async for chunk in file.stream():
-        #     file_content += chunk
-        #     file_size += len(chunk)
-        #     if file_size > MAX_FILE_SIZE:
-        #         raise HTTPException(
-        #             status_code=413,
-        #             detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
-        #         )
         file_content = await file.read()
         file_size = len(file_content)
+        
+        if file_size > MAX_FILE_SIZE:
+            raise HTTPException(
+                status_code=413,
+                detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
+            )
 
         # 保存语音文件, 根据文件类型选择正确的扩展名
         if content_type == "audio/wav":
@@ -373,68 +368,58 @@ async def voice_chat_stream(
 
         voice_filename = f"{uuid.uuid4()}.{ext}"
         voice_path = VOICE_DIR / voice_filename
+        voice_url = f"/uploads/voices/{voice_filename}"
 
+        # 保存文件
+        with open(voice_path, "wb") as f:
+            f.write(file_content)
+        logger.info(f"语音文件已保存: {voice_path}")
+
+        # 语音转文字
         try:
-            with open(voice_path, "wb") as f:
-                f.write(file_content)
-            logger.info(f"语音文件已保存: {voice_path}")
+            transcribed_text = await ai_client.process_voice(voice_url)
+            if not transcribed_text:
+                raise ValueError("语音识别结果为空")
+            logger.info(f"语音识别成功: {transcribed_text}")
+        except ValueError as e:
+            logger.error(f"语音识别失败: {str(e)}")
+            transcribed_text = "无法识别语音内容"
 
-            # 语音转文字 - 使用语音文件的URL作为输入
-            voice_url = f"/uploads/voices/{voice_filename}"
-            try:
-                transcribed_text = await ai_client.process_voice(voice_url)
-                if not transcribed_text:
-                    raise ValueError("语音识别结果为空")
-                logger.info(f"语音识别成功: {transcribed_text}")
+        # 获取用户画像和聊天历史
+        user_profile = await get_user_profile(current_user.id, db)
+        chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
 
-            except ValueError as e:
-                logger.error(f"语音识别失败: {str(e)}")
-                raise HTTPException(status_code=400, detail=f"语音识别失败: {str(e)}")
+        # 保存用户消息
+        user_message = ChatMessage(
+            id=str(uuid.uuid4()),
+            user_id=current_user.id,
+            type=MessageType.voice,
+            content=transcribed_text,
+            voice_url=voice_url,
+            transcribed_text=transcribed_text,
+            is_user=True,
+            created_at=datetime.now(),
+        )
+        db.add(user_message)
+        await db.commit()
 
-            # 获取用户画像和聊天历史
-            user_profile = await get_user_profile(current_user.id, db)
-            chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
+        # 构建消息列表
+        messages = ai_client._build_chat_messages(
+            user_profile=user_profile,
+            current_message=transcribed_text,
+            chat_history=chat_history,
+        )
 
-            # 保存用户消息
-            user_message = ChatMessage(
-                id=str(uuid.uuid4()),
+        # 直接返回流式响应
+        return StreamingResponse(
+            process_stream_response(
                 user_id=current_user.id,
-                type=MessageType.voice,
-                content=transcribed_text,
-                voice_url=f"/uploads/voices/{voice_filename}",
-                transcribed_text=transcribed_text,
-                is_user=True,
-                created_at=datetime.now(),
-            )
-            db.add(user_message)
-            await db.commit()
-
-            # 构建消息列表
-            messages = ai_client._build_chat_messages(
-                user_profile=user_profile,
-                current_message=transcribed_text,
-                chat_history=chat_history,
-            )
-
-            return StreamingResponse(
-                process_stream_response(
-                    user_id=current_user.id,
-                    db=db,
-                    messages=messages,
-                    user_message=user_message,
-                ),
-                media_type="text/event-stream",
-            )
-
-        except Exception as e:
-            # 清理语音文件
-            try:
-                if voice_path.exists():
-                    voice_path.unlink()
-                    logger.info(f"语音文件已删除: {voice_path}")
-            except Exception as cleanup_error:
-                logger.warning(f"清理语音文件失败: {cleanup_error}")
-            raise e
+                db=db,
+                messages=messages,
+                user_message=user_message,
+            ),
+            media_type="text/event-stream",
+        )
 
     except HTTPException:
         raise
@@ -451,7 +436,7 @@ async def image_chat_stream(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """处理图片流式聊天请求"""
+    """处理图片流式聊天请求，直接返回流式响应"""
     try:
         # 验证文件类型和大小
         if file.content_type not in ALLOWED_IMAGE_TYPES:
@@ -459,23 +444,29 @@ async def image_chat_stream(
                 status_code=400, detail=f"不支持的图片格式: {file.content_type}"
             )
 
-        file_size = 0
-        file_content = b""
-        async for chunk in file.stream():
-            file_content += chunk
-            file_size += len(chunk)
-            if file_size > MAX_FILE_SIZE:
-                raise HTTPException(
-                    status_code=413, detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
-                )
+        # 读取文件内容 - 修改这里，确保完全读取文件内容
+        file_content = await file.read()
+        file_size = len(file_content)
+        
+        if file_size > MAX_FILE_SIZE:
+            raise HTTPException(
+                status_code=413, detail=f"文件大小超过限制: {MAX_FILE_SIZE} bytes"
+            )
 
         # 保存图片文件
         image_filename = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
         image_path = IMAGE_DIR / image_filename
+        image_url = f"/uploads/images/{image_filename}"
+        
+        # 保存文件
         with open(image_path, "wb") as f:
             f.write(file_content)
+        logger.info(f"图片文件已保存: {image_path}")
 
-        # 识别图片内容
+        # 确保文件指针重置，以防后续需要再次读取
+        await file.seek(0)
+
+        # 识别图片内容 - 修改为使用文件路径而不是文件对象
         recognition_result = await ai_client.recognize_food(str(image_path))
         if not recognition_result["success"]:
             raise HTTPException(
@@ -504,7 +495,7 @@ async def image_chat_stream(
             user_id=current_user.id,
             type=MessageType.image,
             content=full_message,
-            image_url=f"/uploads/images/{image_filename}",
+            image_url=image_url,
             is_user=True,
             created_at=datetime.now(),
         )
@@ -518,6 +509,7 @@ async def image_chat_stream(
             chat_history=chat_history,
         )
 
+        # 直接返回流式响应
         return StreamingResponse(
             process_stream_response(
                 user_id=current_user.id,
