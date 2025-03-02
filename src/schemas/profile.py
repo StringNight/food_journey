@@ -129,6 +129,16 @@ class FitnessPreferencesUpdate(BaseModel):
     )
     preferred_exercises: Optional[List[str]] = Field(None, description="偏好的运动类型")
     fitness_goals: Optional[List[str]] = Field(None, description="健身目标")
+    sleep_duration: Optional[float] = Field(None, description="每晚睡眠时长（小时）", ge=0)
+    deep_sleep_percentage: Optional[float] = Field(None, description="深度睡眠比例（%）", ge=0, le=100)
+    fatigue_score: Optional[int] = Field(None, description="疲劳感评分（1-5）", ge=1, le=5)
+    recovery_activities: Optional[List[str]] = Field(None, description="恢复性活动记录")
+    short_term_goals: Optional[List[str]] = Field(None, description="短期健身目标")
+    long_term_goals: Optional[List[str]] = Field(None, description="长期健身目标")
+    goal_progress: Optional[float] = Field(None, description="目标进度百分比", ge=0, le=100)
+    training_type: Optional[str] = Field(None, description="训练类型")
+    training_progress: Optional[float] = Field(None, description="训练进度百分比", ge=0, le=100)
+    muscle_group_analysis: Optional[Dict[str, Any]] = Field(None, description="肌肉群分析")
     extended_attributes: Optional[Dict] = Field(None, description="扩展属性")
 
 class UpdateResponse(BaseModel):

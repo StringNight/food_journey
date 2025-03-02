@@ -59,28 +59,325 @@ class AIServiceClient:
             ]
         }
     
-    def extract_profile_updates(self, content):
-        """模拟从AI回复中提取用户画像更新信息"""
-        # 随机决定是否返回更新
-        if random.random() > 0.7:
-            return {
-                "height": 175,
-                "weight": 70,
-                "health_goals": ["减肥", "增肌"]
-            }
-        return None
+    def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
+        """从AI助手的回复中提取用户画像更新建议
+        
+        Args:
+            response: AI助手的回复文本
+            
+        Returns:
+            Optional[Dict[str, Any]]: 提取的更新建议，如果没有更新建议则返回None
+        """
+        try:
+            # 查找更新建议部分
+            start_marker = "===用户画像更新建议==="
+            end_marker = "==================="
+            
+            if start_marker not in response or end_marker not in response:
+                return None
+                
+            # 提取JSON部分
+            start_idx = response.index(start_marker) + len(start_marker)
+            end_idx = response.index(end_marker, start_idx)
+            json_str = response[start_idx:end_idx].strip()
+            
+            # 记录日志
+            logging.info(f"提取的JSON数据: {json_str}")
+            
+            try:
+                # 解析JSON
+                updates_data = json.loads(json_str)
+                
+                # 验证结构
+                if not isinstance(updates_data, dict) or "updates" not in updates_data:
+                    logging.warning(f"用户画像更新数据格式错误: {updates_data}")
+                    return None
+                
+                # 获取更新数据
+                updates = updates_data["updates"]
+                
+                # 类型转换和验证
+                self._validate_and_convert_updates(updates)
+                
+                return updates
+            except json.JSONDecodeError as e:
+                logging.error(f"JSON解析错误: {e}, 原始文本: {json_str}")
+                return None
+                
+        except Exception as e:
+            logging.error(f"解析用户画像更新建议失败: {e}")
+            return None
+            
+    def _validate_and_convert_updates(self, updates: Dict[str, Any]) -> None:
+        """验证并转换更新数据的类型
+        
+        Args:
+            updates: 更新数据字典
+        """
+        # 数值型字段列表
+        numeric_fields = [
+            "weight", "height", "body_fat_percentage", "muscle_mass", 
+            "bmr", "tdee", "bmi", "water_ratio", "sleep_duration", 
+            "deep_sleep_percentage", "goal_progress", "training_progress"
+        ]
+        
+        # 整数型字段列表
+        int_fields = [
+            "age", "exercise_frequency", "fatigue_score", 
+            "calorie_preference", "bmr", "tdee"
+        ]
+        
+        # 列表型字段列表
+        list_fields = [
+            "health_goals", "health_conditions", "favorite_cuisines", 
+            "dietary_restrictions", "allergies", "preferred_exercises", 
+            "fitness_goals", "recovery_activities", "short_term_goals",
+            "long_term_goals", "muscle_group_analysis"
+        ]
+        
+        # 处理数值型字段
+        for field in numeric_fields:
+            if field in updates and updates[field] is not None:
+                try:
+                    updates[field] = float(updates[field])
+                except (ValueError, TypeError):
+                    logging.warning(f"字段 {field} 的值 {updates[field]} 无法转换为数值")
+                    updates.pop(field, None)
+        
+        # 处理整数型字段
+        for field in int_fields:
+            if field in updates and updates[field] is not None:
+                try:
+                    updates[field] = int(float(updates[field]))
+                except (ValueError, TypeError):
+                    logging.warning(f"字段 {field} 的值 {updates[field]} 无法转换为整数")
+                    updates.pop(field, None)
+        
+        # 处理列表型字段
+        for field in list_fields:
+            if field in updates and updates[field] is not None:
+                if not isinstance(updates[field], list):
+                    logging.warning(f"字段 {field} 的值不是列表类型: {updates[field]}")
+                    updates.pop(field, None)
     
-    async def process_profile_updates(self, user_id, updates, db):
-        """模拟处理用户画像更新"""
-        self.logger.info(f"模拟更新用户画像: {user_id}, 更新: {updates}")
-        return True
+    async def process_profile_updates(
+            self,
+            user_id: str,
+            updates: Dict[str, Any],
+            db: AsyncSession
+        ) -> Dict[str, Any]:
+            """处理用户画像更新建议
+            
+            Args:
+                user_id: 用户ID
+                updates: 更新内容
+                db: 数据库会话
+                
+            Returns:
+                Dict[str, Any]: {
+                    "success": bool,
+                    "message": str,
+                    "updated_fields": List[str]  # 实际更新的字段列表
+                }
+            """
+            try:
+                # 1. 获取当前用户画像
+                query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
+                result = await db.execute(query)
+                profile = result.scalar_one_or_none()
+                
+                if not profile:
+                    # 如果用户画像不存在，创建新的
+                    profile = UserProfileModel(user_id=user_id)
+                    db.add(profile)
+                
+                # 2. 记录实际更新的字段
+                updated_fields = []
+                
+                # 3. 应用更新
+                for field, value in updates.items():
+                    # 检查字段是否存在于模型中
+                    if hasattr(profile, field):
+                        # 避免覆盖有效数据为None或空值
+                        if value is not None and (
+                            # 如果是列表类型，确保非空
+                            (isinstance(value, list) and len(value) > 0) or
+                            # 如果是字符串类型，确保非空
+                            (isinstance(value, str) and value.strip()) or
+                            # 其他类型直接使用
+                            (not isinstance(value, (list, str)))
+                        ):
+                            # 检查值是否真的变化了
+                            current_value = getattr(profile, field)
+                            if current_value != value:
+                                setattr(profile, field, value)
+                                updated_fields.append(field)
+                                logging.info(f"更新字段 '{field}': {current_value} -> {value}")
+                
+                if updated_fields:
+                    # 更新时间戳
+                    profile.updated_at = datetime.now()
+                    
+                    # 提交更改
+                    await db.commit()
+                    
+                    # 记录日志
+                    logging.info(
+                        f"用户画像更新成功: user_id={user_id}, "
+                        f"fields={updated_fields}"
+                    )
+                    
+                    return {
+                        "success": True,
+                        "message": "用户画像更新成功",
+                        "updated_fields": updated_fields
+                    }
+                else:
+                    return {
+                        "success": True,
+                        "message": "没有需要更新的字段",
+                        "updated_fields": []
+                    }
+                    
+            except Exception as e:
+                await db.rollback()
+                error_message = f"用户画像更新失败: {str(e)}"
+                logging.error(error_message)
+                return {
+                    "success": False,
+                    "message": error_message,
+                    "updated_fields": []
+                }
     
     def _build_chat_messages(self, user_profile, current_message, chat_history=None):
         """构建聊天消息列表"""
+        system_prompt = """你是美食之旅的AI智能顾问，一个结合营养科学、健身训练、烹饪艺术和健康管理的专业系统。你拥有以下专业领域的深厚知识和能力：
+
+【营养学专业知识】
+- 精通宏量营养素(蛋白质、碳水化合物、脂肪)与微量营养素(维生素、矿物质)平衡
+- 能够根据用户的健康状况、目标和偏好设计个性化营养方案
+- 掌握各类特殊饮食法(如生酮、间歇性断食、地中海饮食等)的科学原理与适用人群
+- 能分析食物的营养成分、生物利用度与代谢通路
+
+【健身与运动科学】
+- 提供科学的力量训练、有氧运动、柔韧性训练和功能性训练指导
+- 根据用户的体能水平和健身目标(增肌、减脂、增强耐力等)制定个性化训练计划
+- 分析运动生理学原理，包括肌肉增长机制、能量系统与恢复原理
+- 提供运动表现优化和伤病预防的专业建议
+
+【烹饪技艺与食材科学】
+- 精通全球各地烹饪技法，从基础刀工到复杂烹饪工艺
+- 了解食材选择、储存和处理的最佳实践
+- 能将营养科学原理应用于美食制作，平衡健康与美味
+- 提供厨房设备使用、食谱改良和美食摄影的专业建议
+
+【健康管理与生活方式优化】
+- 整合睡眠质量、压力管理和心理健康因素
+- 根据用户的生物节律和生活习惯提供个性化健康管理方案
+- 分析用户健康数据，识别潜在风险因素和改进机会
+- 提供科学的生活方式干预策略，促进整体健康
+
+【个性化体验与进步追踪】
+- 记录并分析用户的饮食、运动和健康数据的变化趋势
+- 根据用户反馈不断调整和优化建议
+- 提供激励性的进步反馈和行为改变策略
+- 根据用户目标制定短期、中期和长期的可实现计划
+
+【回答原则与限制】
+- 仅回答与健康、营养、饮食、健身、烹饪和生活方式优化相关的问题
+- 对于非相关领域的问题(如政治、娱乐、游戏等)，明确表示这超出了你的专业范围
+- 不提供医疗诊断或取代专业医疗建议的内容
+- 拒绝回答任何违反法律、伦理或可能对用户造成伤害的问题
+
+【回答方式】
+- 提供综合性回答，整合营养、健身、烹饪和健康管理的多个维度
+- 确保建议相互协调，考虑各方面因素的相互作用和影响
+- 使用科学证据支持观点，同时保持语言通俗易懂
+- 在适当情况下提供具体、可操作的步骤或方案
+
+在回答问题时，你会考虑用户的全面健康画像，包括身体状况、饮食偏好、运动习惯、烹饪技能和健康目标，确保建议真正满足用户的独特需求。你会优先考虑循证医学研究成果，同时保持友好、鼓励的沟通风格，激发用户持续进步的动力。
+
+当用户提到以下数据时，请提取并按指定格式记录：
+
+1. 身体数据：
+   - 体重(weight): 数值，单位kg
+   - 体脂率(body_fat_percentage): 数值，单位%
+   - 肌肉量(muscle_mass): 数值，单位kg
+   - 基础代谢率(bmr): 整数，单位kcal
+
+2. 健身与锻炼数据：
+   - 训练类型(training_type): 字符串，如"力量训练"、"跑步"等
+   - 训练细节：包括组数(sets)、次数(reps)、重量(weight)等
+   - 训练进度(training_progress): 数值，单位%
+   - 健身目标(fitness_goals): 字符串列表
+   - 短期目标(short_term_goals): 字符串列表
+   - 长期目标(long_term_goals): 字符串列表
+   - 目标进度(goal_progress): 数值，单位%
+   - 肌肉群分析(muscle_group_analysis): 描述训练的肌肉群
+
+3. 恢复与睡眠数据：
+   - 睡眠时长(sleep_duration): 数值，单位小时
+   - 深度睡眠比例(deep_sleep_percentage): 数值，单位%
+   - 疲劳感评分(fatigue_score): 整数，范围1-5
+   - 恢复活动(recovery_activities): 字符串列表，如"拉伸"、"瑜伽"等
+
+4. 饮食与营养数据：
+   - 每日卡路里摄入(daily_calories): 数值，单位kcal
+   - 蛋白质摄入(protein_intake): 数值，单位g
+   - 碳水化合物摄入(carbs_intake): 数值，单位g
+   - 脂肪摄入(fat_intake): 数值，单位g
+   - 水分摄入(water_intake): 数值，单位ml
+   - 膳食模式(diet_pattern): 字符串，如"生酮饮食"、"间歇性断食"等
+   - 食物偏好(food_preferences): 字符串列表
+   - 进餐时间(meal_times): 时间列表
+
+如果你识别到以上任何数据，请在回复的末尾添加下面的格式化内容：
+
+===用户画像更新建议===
+{
+  "updates": {
+    "weight": 数字,
+    "body_fat_percentage": 数字,
+    "muscle_mass": 数字,
+    "bmr": 整数,
+    "sleep_duration": 数字,
+    "deep_sleep_percentage": 数字,
+    "fatigue_score": 整数,
+    "fitness_goals": ["目标1", "目标2", ...],
+    "short_term_goals": ["目标1", "目标2", ...],
+    "long_term_goals": ["目标1", "目标2", ...],
+    "training_type": "训练类型",
+    "training_progress": 数字,
+    "goal_progress": 数字,
+    "muscle_group_analysis": {"肌肉群": "分析"},
+    "recovery_activities": ["活动1", "活动2", ...],
+    "daily_calories": 数字,
+    "protein_intake": 数字,
+    "carbs_intake": 数字,
+    "fat_intake": 数字,
+    "water_intake": 数字,
+    "diet_pattern": "饮食模式",
+    "food_preferences": ["偏好1", "偏好2", ...],
+    "meal_times": ["时间1", "时间2", ...],
+    "extended_attributes": {
+      "recovery_advice": "建议内容",
+      "其他属性": "值"
+    }
+  }
+}
+===================
+
+只包含用户实际提到的数据字段，数值必须精确，单位应转换为系统标准单位(kg, %, 小时等)。不要猜测或添加用户未明确提及的信息。"""
+
         messages = [
-            {"role": "system", "content": "你是一个健康饮食顾问。"},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": current_message}
         ]
+        
+        # 如果有聊天历史，添加到消息中
+        if chat_history:
+            messages = [messages[0]] + chat_history + [messages[-1]]
+            
         return messages
 
 # 创建客户端实例
@@ -255,111 +552,3 @@ async def close(self):
         """关闭客户端连接"""
         # Gradio Client 会自动管理连接，不需要手动关闭
         pass 
-
-def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
-        """从AI助手的回复中提取用户画像更新建议
-        
-        Args:
-            response: AI助手的回复文本
-            
-        Returns:
-            Optional[Dict[str, Any]]: 提取的更新建议，如果没有更新建议则返回None
-        """
-        try:
-            # 查找更新建议部分
-            start_marker = "===用户画像更新建议==="
-            end_marker = "==================="
-            
-            if start_marker not in response or end_marker not in response:
-                return None
-                
-            # 提取JSON部分
-            start_idx = response.index(start_marker) + len(start_marker)
-            end_idx = response.index(end_marker, start_idx)
-            json_str = response[start_idx:end_idx].strip()
-            
-            # 解析JSON
-            updates = json.loads(json_str)
-            
-            # 直接返回更新建议，不再强制要求包含 'update_reason' 字段，以支持所有新的用户画像字段
-            return updates["updates"]
-            
-        except (ValueError, json.JSONDecodeError) as e:
-            logging.error(f"解析用户画像更新建议失败: {e}")
-            return None
-
-async def process_profile_updates(
-        self,
-        user_id: str,
-        updates: Dict[str, Any],
-        db: AsyncSession
-    ) -> Dict[str, Any]:
-        """处理用户画像更新建议
-        
-        Args:
-            user_id: 用户ID
-            updates: 更新内容
-            db: 数据库会话
-            
-        Returns:
-            Dict[str, Any]: {
-                "success": bool,
-                "message": str,
-                "updated_fields": List[str]  # 实际更新的字段列表
-            }
-        """
-        try:
-            # 1. 获取当前用户画像
-            query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
-            result = await db.execute(query)
-            profile = result.scalar_one_or_none()
-            
-            if not profile:
-                # 如果用户画像不存在，创建新的
-                profile = UserProfileModel(user_id=user_id)
-                db.add(profile)
-            
-            # 2. 记录实际更新的字段
-            updated_fields = []
-            update_reason = updates.pop("update_reason", "AI助手建议的更新")
-            
-            # 3. 应用更新
-            for field, value in updates.items():
-                if hasattr(profile, field) and getattr(profile, field) != value:
-                    setattr(profile, field, value)
-                    updated_fields.append(field)
-            
-            if updated_fields:
-                # 更新时间戳
-                profile.updated_at = datetime.now()
-                
-                # 提交更改
-                await db.commit()
-                
-                # 记录日志
-                logging.info(
-                    f"用户画像更新成功: user_id={user_id}, "
-                    f"fields={updated_fields}, reason={update_reason}"
-                )
-                
-                return {
-                    "success": True,
-                    "message": "用户画像更新成功",
-                    "updated_fields": updated_fields
-                }
-            else:
-                return {
-                    "success": True,
-                    "message": "用户画像无需更新",
-                    "updated_fields": []
-                }
-                
-        except Exception as e:
-            logging.error(f"处理用户画像更新失败: {e}")
-            # 回滚事务
-            await db.rollback()
-            return {
-                "success": False,
-                "message": f"用户画像更新失败: {str(e)}",
-                "updated_fields": []
-            }

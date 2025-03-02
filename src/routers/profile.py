@@ -12,6 +12,7 @@ from ..schemas.profile import (
     ExerciseRecord, MealRecord, DailyNutritionSummary
 )
 import logging
+import traceback
 
 router = APIRouter()
 
@@ -176,48 +177,69 @@ async def update_fitness_preferences(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """更新用户的运动偏好
-    
-    Args:
-        data: 运动偏好更新数据
-        current_user: 当前用户
-        db: 数据库会话
-    
-    Returns:
-        UpdateResponse: 包含更新结果的响应
-    """
+    """更新用户的健身偏好"""
     try:
-        update_data = data.dict(exclude_unset=True)
         updated_fields = []
         
-        # 更新用户属性
-        for field, value in update_data.items():
-            if hasattr(current_user, field) and value is not None:
-                if isinstance(value, list):
-                    # 对于列表类型的字段，合并新旧值并去重
-                    current_values = set(getattr(current_user, field) or [])
-                    new_values = set(value)
-                    updated_values = list(current_values | new_values)
-                    setattr(current_user, field, updated_values)
+        # 开始更新属性
+        for field, value in data.dict(exclude_unset=True).items():
+            if hasattr(current_user, field):
+                if field in ["preferred_exercises", "fitness_goals", "recovery_activities", 
+                            "short_term_goals", "long_term_goals"] and value:
+                    # 如果是列表类型字段，合并值并确保唯一性
+                    current_value = getattr(current_user, field) or []
+                    combined_value = list(set(current_value + value))
+                    setattr(current_user, field, combined_value)
+                elif field in ["muscle_group_analysis", "extended_attributes"] and value:
+                    # 如果是字典类型字段，更新而不是覆盖
+                    current_value = getattr(current_user, field) or {}
+                    current_value.update(value)
+                    setattr(current_user, field, current_value)
                 else:
                     setattr(current_user, field, value)
                 updated_fields.append(field)
+            else:
+                # 扩展属性字段处理
+                try:
+                    if not current_user.extended_attributes:
+                        current_user.extended_attributes = {}
+                    
+                    # 将未识别的字段添加到extended_attributes中
+                    current_user.extended_attributes[field] = value
+                    updated_fields.append(f"extended_attributes.{field}")
+                except Exception as e:
+                    logging.warning(f"无法将字段 {field} 添加到extended_attributes: {str(e)}")
         
+        # 对于恢复数据的特殊处理
+        if hasattr(data, "sleep_duration") and data.sleep_duration is not None:
+            current_user.sleep_data = current_user.sleep_data or {}
+            current_user.sleep_data["duration"] = data.sleep_duration
+            updated_fields.append("sleep_data.duration")
+            
+        if hasattr(data, "deep_sleep_percentage") and data.deep_sleep_percentage is not None:
+            current_user.sleep_data = current_user.sleep_data or {}
+            current_user.sleep_data["deep_sleep_percentage"] = data.deep_sleep_percentage
+            updated_fields.append("sleep_data.deep_sleep_percentage")
+            
+        if hasattr(data, "fatigue_score") and data.fatigue_score is not None:
+            current_user.recovery_data = current_user.recovery_data or {}
+            current_user.recovery_data["fatigue_score"] = data.fatigue_score
+            updated_fields.append("recovery_data.fatigue_score")
+            
+        # 保存更改
         current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
             schema_version="1.0",
-            message="运动偏好更新成功",
+            message="更新用户健身偏好成功",
             updated_fields=updated_fields
         )
     except Exception as e:
         await db.rollback()
-        logging.error(f"更新运动偏好失败: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"更新运动偏好失败: {str(e)}"
-        )
+        logging.error(f"更新用户健身偏好时出错: {str(e)}")
+        logging.error(traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"更新用户健身偏好失败: {str(e)}")
 
 @router.get("/stats", response_model=HealthStatsResponse)
 async def get_health_stats(
