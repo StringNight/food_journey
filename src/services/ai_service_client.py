@@ -49,7 +49,7 @@ class AIServiceClient:
             str: 识别出的文本
         """
         try:
-            # 如果是文件路径，转换为URL或处理本地文件
+            # 如果是文件路径，转换为numpy格式
             if isinstance(audio_file, str):
                 if audio_file.startswith("/uploads/voices/"):
                     # 将相对路径转换为完整URL
@@ -58,16 +58,45 @@ class AIServiceClient:
                 else:
                     audio_url = audio_file
                     logging.info(f"处理外部语音URL: {audio_url}")
-                    
+                
                 try:
-                    # 调用语音识别服务
+                    # 将音频文件转换为numpy格式
+                    import scipy.io.wavfile
+                    import numpy as np
+                    
+                    # 下载文件到临时位置
+                    with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
+                        if audio_url.startswith(('http://', 'https://')):
+                            # 如果是URL，下载文件
+                            with httpx.stream('GET', audio_url) as r:
+                                for chunk in r.iter_bytes():
+                                    temp_file.write(chunk)
+                        else:
+                            # 如果是本地文件路径，直接复制
+                            with open(audio_url, 'rb') as src_file:
+                                temp_file.write(src_file.read())
+                        temp_path = temp_file.name
+                    
+                    # 读取音频文件为numpy格式
+                    sample_rate, audio_array = scipy.io.wavfile.read(temp_path)
+                    logging.info(f"音频文件转换为numpy格式: 采样率={sample_rate}, 形状={audio_array.shape}")
+                    
+                    # 调用语音识别服务，传递numpy格式
                     result = self.voice_client.predict(
-                        audio=handle_file(audio_url),
+                        audio=(sample_rate, audio_array),
                         api_name="/voice_transcribe"
                     )
                     logging.info(f"语音识别结果: {result}")
+                    
+                    # 清理临时文件
+                    try:
+                        os.unlink(temp_path)
+                        logging.info(f"临时文件已删除: {temp_path}")
+                    except Exception as e:
+                        logging.warning(f"临时文件删除失败: {str(e)}")
+                        
                 except Exception as e:
-                    logging.error(f"语音识别服务调用失败: {str(e)}")
+                    logging.error(f"音频转换或语音识别服务调用失败: {str(e)}")
                     raise ValueError(f"语音识别服务调用失败: {str(e)}")
                 
                 if isinstance(result, dict):
@@ -88,14 +117,23 @@ class AIServiceClient:
                     logging.info(f"临时文件保存至: {temp_path}")
                 
                 try:
-                    # 使用临时文件路径调用语音识别服务
+                    # 将音频文件转换为numpy格式
+                    import scipy.io.wavfile
+                    import numpy as np
+                    
+                    # 读取音频文件为numpy格式
+                    sample_rate, audio_array = scipy.io.wavfile.read(temp_path)
+                    logging.info(f"音频文件转换为numpy格式: 采样率={sample_rate}, 形状={audio_array.shape}")
+                    
+                    # 调用语音识别服务，传递numpy格式
                     result = self.voice_client.predict(
-                        audio=handle_file(temp_path),
+                        audio=(sample_rate, audio_array),
                         api_name="/voice_transcribe"
                     )
                     logging.info(f"语音识别结果: {result}")
+                    
                 except Exception as e:
-                    logging.error(f"语音识别服务调用失败: {str(e)}")
+                    logging.error(f"音频转换或语音识别服务调用失败: {str(e)}")
                     raise ValueError(f"语音识别服务调用失败: {str(e)}")
                 finally:
                     # 清理临时文件
@@ -584,4 +622,4 @@ class AIServiceClient:
                 "success": False,
                 "message": f"用户画像更新失败: {str(e)}",
                 "updated_fields": []
-            } 
+            }
