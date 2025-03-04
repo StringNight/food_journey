@@ -311,7 +311,7 @@ class AIServiceClient:
     async def chat_stream(
         self,
         messages: List[Dict[str, str]],
-        model: str = "deepseek-r1:14b",
+        model: str = "qwen2.5:14b",
         max_tokens: int = 2000,
         user_profile: Optional[Dict[str, Any]] = None
     ) -> AsyncGenerator[str, None]:
