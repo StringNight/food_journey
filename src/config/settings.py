@@ -42,12 +42,6 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
     OPENAI_MODEL: str = "gpt-3.5-turbo"
     
-    # 邮件设置
-    SMTP_SERVER: str = os.getenv("SMTP_SERVER", "")
-    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
-    SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
-    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    
     # 文件上传设置
     UPLOAD_DIR: str = "uploads"
     MAX_UPLOAD_SIZE: int = 5 * 1024 * 1024  # 5MB

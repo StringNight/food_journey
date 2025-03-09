@@ -134,7 +134,7 @@ PUT `/api/v1/profile/fitness` - 更新用户的健身习惯和目标（如运动
     openapi_schema["tags"] = [
         {
             "name": "认证",
-            "description": "用户认证相关接口，包括注册、登录、重置密码等"
+            "description": "用户认证相关接口，包括注册、登录等"
         },
         {
             "name": "用户档案",
@@ -163,7 +163,6 @@ PUT `/api/v1/profile/fitness` - 更新用户的健身习惯和目标（如运动
                     "user_profile": {
                         "id": "user-123",
                         "username": "test_user",
-                        "email": "test@example.com",
                         "avatar_url": "https://example.com/avatar.jpg",
                         "birth_date": "1990-01-01",
                         "gender": "男",

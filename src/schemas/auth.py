@@ -243,21 +243,33 @@ class LoginResponse(BaseModel):
 # 错误响应模型
 class ValidationErrorItem(BaseModel):
     """验证错误项模型"""
-    loc: List[str] = Field(..., description="错误位置")
-    msg: str = Field(..., description="错误信息")
+    field: str = Field(..., description="错误字段名")
+    field_path: str = Field(..., description="错误字段完整路径")
+    message: str = Field(..., description="错误信息")
     type: str = Field(..., description="错误类型")
 
 class ValidationErrorResponse(BaseModel):
     """验证错误响应模型"""
-    detail: List[ValidationErrorItem] = Field(..., description="错误详情")
+    detail: str = Field(..., description="错误概述")
+    type: str = Field(..., description="错误类型")
+    errors: List[ValidationErrorItem] = Field(..., description="详细错误列表")
 
     class Config:
         json_schema_extra = {
             "example": {
-                "detail": [
+                "detail": "输入数据验证失败",
+                "type": "validation_error",
+                "errors": [
                     {
-                        "loc": ["body", "username"],
-                        "msg": "用户名只能包含字母、数字、下划线和连字符",
+                        "field": "username",
+                        "field_path": "body.username",
+                        "message": "用户名只能包含字母、数字、下划线和连字符",
+                        "type": "value_error"
+                    },
+                    {
+                        "field": "password",
+                        "field_path": "body.password",
+                        "message": "密码必须包含至少一个大写字母",
                         "type": "value_error"
                     }
                 ]
