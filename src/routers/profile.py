@@ -13,6 +13,7 @@ from ..schemas.profile import (
 )
 import logging
 import traceback
+import uuid
 
 router = APIRouter()
 
@@ -31,44 +32,71 @@ async def get_profile(
         CompleteProfile: 包含用户所有档案信息的响应
     """
     try:
+        # 使用显式查询获取用户的profile数据，而不是通过ORM关系
+        from ..models.user import UserProfileModel
+        
+        # 显式查询用户配置文件
+        query = select(UserProfileModel).filter(UserProfileModel.user_id == current_user.id)
+        result = await db.execute(query)
+        user_profile = result.scalar_one_or_none()
+        
+        # 创建用户档案响应，明确指定各个字段的默认值
         return CompleteProfile(
             schema_version="1.0",
             user_profile={
                 "id": current_user.id,
                 "username": current_user.username,
-                "email": current_user.email,
                 "avatar_url": current_user.avatar_url,
-                "birth_date": current_user.birth_date,
-                "gender": current_user.gender,
+                # 从查询结果中获取这些字段，如果profile不存在则返回None
+                "birth_date": user_profile.birth_date if user_profile else None,
+                "gender": user_profile.gender if user_profile else None,
                 "created_at": current_user.created_at,
                 "updated_at": current_user.updated_at
             },
             health_profile={
-                "height": current_user.height,
-                "weight": current_user.weight,
-                "body_fat_percentage": current_user.body_fat_percentage,
-                "muscle_mass": current_user.muscle_mass,
-                "bmr": current_user.bmr,
-                "tdee": current_user.tdee,
-                "health_conditions": current_user.health_conditions
+                "height": user_profile.height if user_profile else None,
+                "weight": user_profile.weight if user_profile else None,
+                "body_fat_percentage": user_profile.body_fat_percentage if user_profile else None,
+                "muscle_mass": user_profile.muscle_mass if user_profile else None,
+                "bmr": user_profile.bmr if user_profile else None,
+                "tdee": user_profile.tdee if user_profile else None,
+                "health_conditions": user_profile.health_conditions if user_profile else None,
+                "bmi": user_profile.bmi if user_profile else None,
+                "water_ratio": user_profile.water_ratio if user_profile else None
             },
             diet_profile={
-                "cooking_skill_level": current_user.cooking_skill_level,
-                "favorite_cuisines": current_user.favorite_cuisines,
-                "dietary_restrictions": current_user.dietary_restrictions,
-                "allergies": current_user.allergies,
-                "nutrition_goals": current_user.nutrition_goals
+                "cooking_skill_level": user_profile.cooking_skill_level if user_profile else None,
+                "favorite_cuisines": user_profile.favorite_cuisines if user_profile else None,
+                "dietary_restrictions": user_profile.dietary_restrictions if user_profile else None,
+                "allergies": user_profile.allergies if user_profile else None,
+                "nutrition_goals": user_profile.nutrition_goals if user_profile else None,
+                "calorie_preference": user_profile.calorie_preference if user_profile else None,
+                "eating_habits": user_profile.eating_habits if user_profile else None,
+                "diet_goal": user_profile.diet_goal if user_profile else None
             },
             fitness_profile={
-                "fitness_level": current_user.fitness_level,
-                "exercise_frequency": current_user.exercise_frequency,
-                "preferred_exercises": current_user.preferred_exercises,
-                "fitness_goals": current_user.fitness_goals
+                "fitness_level": user_profile.fitness_level if user_profile else None,
+                "exercise_frequency": user_profile.exercise_frequency if user_profile else None,
+                "preferred_exercises": user_profile.preferred_exercises if user_profile else None,
+                "fitness_goals": user_profile.fitness_goals if user_profile else None,
+                "short_term_goals": user_profile.short_term_goals if user_profile else None,
+                "long_term_goals": user_profile.long_term_goals if user_profile else None,
+                "goal_progress": user_profile.goal_progress if user_profile else None,
+                "training_type": user_profile.training_type if user_profile else None,
+                "training_progress": user_profile.training_progress if user_profile else None,
+                "muscle_group_analysis": user_profile.muscle_group_analysis if user_profile else None,
+                "sleep_duration": user_profile.sleep_duration if user_profile else None,
+                "deep_sleep_percentage": user_profile.deep_sleep_percentage if user_profile else None,
+                "fatigue_score": user_profile.fatigue_score if user_profile else None,
+                "recovery_activities": user_profile.recovery_activities if user_profile else None,
+                "performance_metrics": user_profile.performance_metrics if user_profile else None,
+                "exercise_history": user_profile.exercise_history if user_profile else None
             },
-            extended_attributes=current_user.extended_attributes or {}
+            extended_attributes=user_profile.extended_attributes if user_profile else {}
         )
     except Exception as e:
         logging.error(f"获取用户档案失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"获取用户档案失败: {str(e)}"
@@ -80,7 +108,7 @@ async def update_basic_info(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """更新用户的基础信息和健康数据
+    """更新用户的基础信息
     
     Args:
         data: 基础信息更新数据
@@ -94,17 +122,57 @@ async def update_basic_info(
         update_data = data.dict(exclude_unset=True)
         updated_fields = []
         
-        # 更新用户属性
+        # 使用显式查询获取用户的profile数据
+        from ..models.user import UserProfileModel
+        import uuid
+        
+        # 查询用户配置文件
+        query = select(UserProfileModel).filter(UserProfileModel.user_id == current_user.id)
+        result = await db.execute(query)
+        user_profile = result.scalar_one_or_none()
+        
+        # 如果用户没有profile，创建一个新的
+        if not user_profile:
+            # 创建一个新的profile实例
+            user_profile = UserProfileModel(
+                id=str(uuid.uuid4()),
+                user_id=current_user.id
+            )
+            db.add(user_profile)
+            updated_fields.append("user_profile_created")
+        
+        # 更新用户和profile属性
+        user_fields = ['username', 'avatar_url']
+        profile_fields = [
+            'birth_date', 'gender', 'height', 'weight', 'body_fat_percentage', 
+            'muscle_mass', 'bmr', 'tdee', 'health_conditions', 'extended_attributes'
+        ]
+        
         for field, value in update_data.items():
-            if hasattr(current_user, field) and value is not None:
+            if value is None:
+                continue
+                
+            if field in user_fields and hasattr(current_user, field):
                 setattr(current_user, field, value)
+                updated_fields.append(field)
+            elif field in profile_fields and hasattr(user_profile, field):
+                setattr(user_profile, field, value)
                 updated_fields.append(field)
         
         # 如果更新了身高和体重，自动计算BMI
-        if "height" in updated_fields and "weight" in updated_fields:
-            height_m = current_user.height / 100
-            current_user.bmi = round(current_user.weight / (height_m * height_m), 1)
-            updated_fields.append("bmi")
+        height_updated = 'height' in update_data
+        weight_updated = 'weight' in update_data
+        
+        if height_updated or weight_updated:
+            # 如果只更新了一个，获取另一个的当前值
+            height = update_data.get('height', user_profile.height if user_profile else None)
+            weight = update_data.get('weight', user_profile.weight if user_profile else None)
+            
+            # 只有当两个值都不为None时才计算BMI
+            if height and weight and height > 0:
+                height_m = height / 100  # 将厘米转换为米
+                user_profile.bmi = round(weight / (height_m * height_m), 1)
+                updated_fields.append("bmi")
         
         current_user.updated_at = datetime.now()
         await db.commit()
@@ -117,6 +185,7 @@ async def update_basic_info(
     except Exception as e:
         await db.rollback()
         logging.error(f"更新基础信息失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"更新基础信息失败: {str(e)}"
@@ -139,23 +208,55 @@ async def update_diet_preferences(
         UpdateResponse: 包含更新结果的响应
     """
     try:
-        update_data = data.dict(exclude_unset=True)
         updated_fields = []
         
-        # 更新用户属性
-        for field, value in update_data.items():
-            if hasattr(current_user, field) and value is not None:
-                if isinstance(value, list):
-                    # 对于列表类型的字段，合并新旧值并去重
-                    current_values = set(getattr(current_user, field) or [])
-                    new_values = set(value)
-                    updated_values = list(current_values | new_values)
-                    setattr(current_user, field, updated_values)
-                else:
-                    setattr(current_user, field, value)
-                updated_fields.append(field)
+        # 使用显式查询获取用户的profile数据
+        from ..models.user import UserProfileModel
+        import uuid
         
-        current_user.updated_at = datetime.now()
+        # 查询用户配置文件
+        query = select(UserProfileModel).filter(UserProfileModel.user_id == current_user.id)
+        result = await db.execute(query)
+        user_profile = result.scalar_one_or_none()
+        
+        # 如果用户没有profile，创建一个新的
+        if not user_profile:
+            # 创建一个新的profile实例
+            user_profile = UserProfileModel(
+                id=str(uuid.uuid4()),
+                user_id=current_user.id
+            )
+            db.add(user_profile)
+            updated_fields.append("user_profile_created")
+        
+        # 更新饮食偏好
+        for field, value in data.dict(exclude_unset=True).items():
+            if hasattr(user_profile, field):
+                if field in ["favorite_cuisines", "dietary_restrictions", "allergies"] and value:
+                    # 如果是列表类型字段，合并值并确保唯一性
+                    current_value = getattr(user_profile, field) or []
+                    combined_value = list(set(current_value + value))
+                    setattr(user_profile, field, combined_value)
+                elif field == "nutrition_goals" and value:
+                    # 如果是字典类型字段，更新而不是覆盖
+                    current_value = user_profile.nutrition_goals or {}
+                    current_value.update(value)
+                    user_profile.nutrition_goals = current_value
+                else:
+                    setattr(user_profile, field, value)
+                updated_fields.append(field)
+            else:
+                # 扩展属性字段处理
+                try:
+                    if not user_profile.extended_attributes:
+                        user_profile.extended_attributes = {}
+                    
+                    # 将未识别的字段添加到extended_attributes中
+                    user_profile.extended_attributes[field] = value
+                    updated_fields.append(f"extended_attributes.{field}")
+                except Exception as e:
+                    logging.warning(f"无法将字段 {field} 添加到extended_attributes: {str(e)}")
+        
         await db.commit()
         
         return UpdateResponse(
@@ -166,6 +267,7 @@ async def update_diet_preferences(
     except Exception as e:
         await db.rollback()
         logging.error(f"更新饮食偏好失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"更新饮食偏好失败: {str(e)}"
@@ -181,65 +283,69 @@ async def update_fitness_preferences(
     try:
         updated_fields = []
         
+        # 使用显式查询获取用户的profile数据
+        from ..models.user import UserProfileModel
+        import uuid
+        
+        # 查询用户配置文件
+        query = select(UserProfileModel).filter(UserProfileModel.user_id == current_user.id)
+        result = await db.execute(query)
+        user_profile = result.scalar_one_or_none()
+        
+        # 如果用户没有profile，创建一个新的
+        if not user_profile:
+            # 创建一个新的profile实例
+            user_profile = UserProfileModel(
+                id=str(uuid.uuid4()),
+                user_id=current_user.id
+            )
+            db.add(user_profile)
+            updated_fields.append("user_profile_created")
+        
         # 开始更新属性
         for field, value in data.dict(exclude_unset=True).items():
-            if hasattr(current_user, field):
+            if hasattr(user_profile, field):
                 if field in ["preferred_exercises", "fitness_goals", "recovery_activities", 
                             "short_term_goals", "long_term_goals"] and value:
                     # 如果是列表类型字段，合并值并确保唯一性
-                    current_value = getattr(current_user, field) or []
+                    current_value = getattr(user_profile, field) or []
                     combined_value = list(set(current_value + value))
-                    setattr(current_user, field, combined_value)
+                    setattr(user_profile, field, combined_value)
                 elif field in ["muscle_group_analysis", "extended_attributes"] and value:
                     # 如果是字典类型字段，更新而不是覆盖
-                    current_value = getattr(current_user, field) or {}
+                    current_value = getattr(user_profile, field) or {}
                     current_value.update(value)
-                    setattr(current_user, field, current_value)
+                    setattr(user_profile, field, current_value)
                 else:
-                    setattr(current_user, field, value)
+                    setattr(user_profile, field, value)
                 updated_fields.append(field)
             else:
                 # 扩展属性字段处理
                 try:
-                    if not current_user.extended_attributes:
-                        current_user.extended_attributes = {}
+                    if not user_profile.extended_attributes:
+                        user_profile.extended_attributes = {}
                     
                     # 将未识别的字段添加到extended_attributes中
-                    current_user.extended_attributes[field] = value
+                    user_profile.extended_attributes[field] = value
                     updated_fields.append(f"extended_attributes.{field}")
                 except Exception as e:
                     logging.warning(f"无法将字段 {field} 添加到extended_attributes: {str(e)}")
         
-        # 对于恢复数据的特殊处理
-        if hasattr(data, "sleep_duration") and data.sleep_duration is not None:
-            current_user.sleep_data = current_user.sleep_data or {}
-            current_user.sleep_data["duration"] = data.sleep_duration
-            updated_fields.append("sleep_data.duration")
-            
-        if hasattr(data, "deep_sleep_percentage") and data.deep_sleep_percentage is not None:
-            current_user.sleep_data = current_user.sleep_data or {}
-            current_user.sleep_data["deep_sleep_percentage"] = data.deep_sleep_percentage
-            updated_fields.append("sleep_data.deep_sleep_percentage")
-            
-        if hasattr(data, "fatigue_score") and data.fatigue_score is not None:
-            current_user.recovery_data = current_user.recovery_data or {}
-            current_user.recovery_data["fatigue_score"] = data.fatigue_score
-            updated_fields.append("recovery_data.fatigue_score")
-            
-        # 保存更改
-        current_user.updated_at = datetime.now()
         await db.commit()
         
         return UpdateResponse(
             schema_version="1.0",
-            message="更新用户健身偏好成功",
+            message="健身偏好更新成功",
             updated_fields=updated_fields
         )
     except Exception as e:
         await db.rollback()
-        logging.error(f"更新用户健身偏好时出错: {str(e)}")
+        logging.error(f"更新健身偏好失败: {str(e)}")
         logging.error(traceback.format_exc())
-        raise HTTPException(status_code=500, detail=f"更新用户健身偏好失败: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"更新健身偏好失败: {str(e)}"
+        )
 
 @router.get("/stats", response_model=HealthStatsResponse)
 async def get_health_stats(
@@ -262,6 +368,20 @@ async def get_health_stats(
         HealthStatsResponse: 包含健康数据统计的响应
     """
     try:
+        # 使用显式查询获取用户的profile数据
+        from ..models.user import UserProfileModel
+        
+        # 查询用户配置文件
+        query = select(UserProfileModel).filter(UserProfileModel.user_id == current_user.id)
+        result = await db.execute(query)
+        user_profile = result.scalar_one_or_none()
+        
+        # 如果用户没有profile，使用默认值
+        weight = user_profile.weight if user_profile and user_profile.weight else 70.0
+        body_fat = user_profile.body_fat_percentage if user_profile and user_profile.body_fat_percentage else 20.0
+        muscle_mass = user_profile.muscle_mass if user_profile and user_profile.muscle_mass else 35.0
+        favorite_cuisines = user_profile.favorite_cuisines if user_profile and user_profile.favorite_cuisines else ["中式", "西式"]
+        
         # 这里需要实现具体的统计逻辑
         # 可以从各个相关表中查询数据并进行统计
         
@@ -269,9 +389,9 @@ async def get_health_stats(
             schema_version="1.0",
             period=f"{start_date}/{end_date}",
             body_metrics_trend={
-                "weight": [current_user.weight],  # 示例数据
-                "body_fat": [current_user.body_fat_percentage],
-                "muscle_mass": [current_user.muscle_mass]
+                "weight": [weight],  # 示例数据
+                "body_fat": [body_fat],
+                "muscle_mass": [muscle_mass]
             },
             nutrition_summary={
                 "average_daily_calories": 2000,  # 示例数据
@@ -282,7 +402,7 @@ async def get_health_stats(
                 },
                 "meal_patterns": {
                     "most_common_breakfast": ["燕麦", "鸡蛋"],
-                    "most_common_cuisines": current_user.favorite_cuisines
+                    "most_common_cuisines": favorite_cuisines
                 }
             },
             fitness_summary={
@@ -301,10 +421,11 @@ async def get_health_stats(
             }
         )
     except Exception as e:
-        logging.error(f"获取健康数据统计失败: {str(e)}")
+        logging.error(f"获取健康统计数据失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
-            detail=f"获取健康数据统计失败: {str(e)}"
+            detail=f"获取健康统计数据失败: {str(e)}"
         )
 
 @router.post("/exercise", response_model=ExerciseRecord)

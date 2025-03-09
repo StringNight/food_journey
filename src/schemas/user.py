@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field, ConfigDict, validator
+from pydantic import BaseModel, Field, ConfigDict, validator
 from typing import Optional, List
 from datetime import datetime, date
 import re
@@ -13,10 +13,6 @@ class UserBase(BaseModel):
         min_length=3,
         max_length=50,
         description="用户名，3-50个字符"
-    )
-    email: EmailStr = Field(
-        ...,
-        description="电子邮件地址"
     )
 
 class UserCreate(UserBase):
@@ -34,24 +30,6 @@ class UserCreate(UserBase):
         min_length=6,
         description="确认密码"
     )
-    
-    @validator('email')
-    def validate_email(cls, v):
-        """验证邮箱格式是否合法
-        
-        Args:
-            v: 邮箱地址
-            
-        Returns:
-            str: 验证通过的邮箱地址
-            
-        Raises:
-            ValueError: 当邮箱格式不合法时抛出
-        """
-        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        if not re.match(email_regex, str(v)):
-            raise ValueError('邮箱格式不正确')
-        return v
     
     @validator('confirm_password')
     def passwords_match(cls, v, values, **kwargs):

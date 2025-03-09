@@ -13,7 +13,6 @@ class User(Base):
     __tablename__ = 'users'
     
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    email = Column(String, unique=True, index=True, nullable=True)
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     avatar_url = Column(String, nullable=True)
