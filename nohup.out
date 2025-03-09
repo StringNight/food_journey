@@ -342,3 +342,267 @@
 2025-02-22 23:23:29 [INFO] __main__: 正在清理资源...
 2025-02-22 23:23:29 [INFO] __main__: 正在关闭 FastAPI 服务...
 2025-02-22 23:23:29 [INFO] __main__: FastAPI 服务已关闭
+2025-03-05 22:17:00 [INFO] root: 日志系统初始化完成 - 级别: DEBUG, 文件: logs/app-2025-03-05.log, 控制台: True
+2025-03-05 22:17:00 [INFO] __main__: 正在启动服务...
+2025-03-05 22:17:00 [INFO] __main__: FastAPI服务已启动
+2025-03-05 22:17:01 [INFO] __main__: [FastAPI-Err] INFO:     Will watch for changes in these directories: ['/root/food_journey']
+2025-03-05 22:17:01 [INFO] __main__: [FastAPI-Err] INFO:     Uvicorn running on https://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-03-05 22:17:01 [INFO] __main__: [FastAPI-Err] INFO:     Started reloader process [173366] using StatReload
+2025-03-05 22:17:11 [INFO] __main__: [FastAPI-Err] INFO:     Started server process [173370]
+2025-03-05 22:17:11 [INFO] __main__: [FastAPI-Err] INFO:     Waiting for application startup.
+2025-03-05 22:17:11 [INFO] __main__: [FastAPI-Err] INFO:     Application startup complete.
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] Loaded as API: https://gradio.infsols.com/ ✔
+2025-03-06 03:05:06 [INFO] __main__: [FastAPI-Out] INFO:     106.75.13.68:59424 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 03:06:08 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.205:50912 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 03:06:21 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.205:37026 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 03:06:26 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.205:37074 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-06 03:06:26 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-06 03:06:51 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.205:39888 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-06 03:06:55 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.205:39900 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-06 03:06:55 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-06 03:13:53 [INFO] __main__: [FastAPI-Out] INFO:     106.75.135.116:63472 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 03:13:54 [INFO] __main__: [FastAPI-Out] INFO:     106.75.135.116:63664 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-06 03:30:28 [INFO] __main__: [FastAPI-Out] INFO:     106.75.128.199:49530 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 03:30:28 [INFO] __main__: [FastAPI-Out] INFO:     106.75.128.199:49574 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-06 04:50:11 [INFO] __main__: [FastAPI-Out] INFO:     59.82.21.175:33910 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 05:44:22 [INFO] __main__: [FastAPI-Out] INFO:     59.82.21.174:10155 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 06:50:16 [INFO] __main__: [FastAPI-Out] INFO:     119.4.194.171:35080 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 06:51:08 [INFO] __main__: [FastAPI-Out] INFO:     125.82.243.236:31332 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 09:53:36 [INFO] __main__: [FastAPI-Out] INFO:     162.216.149.131:65466 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 10:11:21 [INFO] __main__: [FastAPI-Out] INFO:     8.219.63.114:58818 - "GET / HTTP/1.0" 500 Internal Server Error
+2025-03-06 10:11:21 [INFO] __main__: [FastAPI-Out] INFO:     8.219.63.114:58830 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 10:11:22 [INFO] __main__: [FastAPI-Out] INFO:     8.219.63.114:58844 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-06 12:03:59 [INFO] __main__: [FastAPI-Out] INFO:     162.243.106.182:50166 - "GET /ab2g HTTP/1.1" 404 Not Found
+2025-03-06 12:04:00 [INFO] __main__: [FastAPI-Out] INFO:     162.243.106.182:50168 - "GET /ab2h HTTP/1.1" 404 Not Found
+2025-03-06 12:04:02 [INFO] __main__: [FastAPI-Out] INFO:     162.243.106.182:50186 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 12:04:04 [INFO] __main__: [FastAPI-Out] INFO:     162.243.106.182:35684 - "GET /login HTTP/1.1" 404 Not Found
+2025-03-06 12:08:04 [INFO] __main__: [FastAPI-Out] INFO:     162.216.150.185:58218 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 16:36:17 [INFO] __main__: [FastAPI-Out] INFO:     113.141.82.88:58310 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 16:37:39 [INFO] __main__: [FastAPI-Out] INFO:     113.141.82.92:57802 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 17:04:48 [INFO] __main__: [FastAPI-Out] INFO:     185.247.137.212:39963 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 17:20:36 [INFO] __main__: [FastAPI-Out] INFO:     172.212.103.103:52614 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 21:00:14 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52734 - "GET /api/v1/auth/profile HTTP/1.1" 401 Unauthorized
+2025-03-06 21:00:45 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=zzz888181
+2025-03-06 21:00:45 [INFO] __main__: [FastAPI-Err] WARNING:src.routers.auth:登录失败，用户名或密码错误: username=zzz888181, attempts=1
+2025-03-06 21:00:45 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:52923 - "POST /api/v1/auth/login/json HTTP/1.1" 401 Unauthorized
+2025-03-06 21:01:02 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=zzz888181
+2025-03-06 21:01:02 [INFO] __main__: [FastAPI-Err] WARNING:src.routers.auth:登录失败，用户名或密码错误: username=zzz888181, attempts=2
+2025-03-06 21:01:02 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53015 - "POST /api/v1/auth/login/json HTTP/1.1" 401 Unauthorized
+2025-03-06 21:01:14 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=zzz888181
+2025-03-06 21:01:14 [INFO] __main__: [FastAPI-Err] WARNING:src.routers.auth:登录失败，用户名或密码错误: username=zzz888181, attempts=3
+2025-03-06 21:01:14 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53069 - "POST /api/v1/auth/login/json HTTP/1.1" 401 Unauthorized
+2025-03-06 21:01:55 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始用户注册: username=zzz888181
+2025-03-06 21:01:55 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户注册成功: user_id=3fb9e9f3-fe0e-4843-9c18-c2acfc571095 username=zzz888181
+2025-03-06 21:01:55 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53244 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+2025-03-06 21:01:58 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53244 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-06 22:15:29 [INFO] __main__: [FastAPI-Out] INFO:     18.222.186.38:37246 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 22:45:35 [INFO] __main__: [FastAPI-Out] INFO:     59.82.21.51:3382 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-06 23:09:05 [INFO] __main__: [FastAPI-Out] INFO:     8.147.233.204:55562 - "GET /.env HTTP/1.1" 404 Not Found
+2025-03-06 23:34:10 [INFO] __main__: [FastAPI-Out] INFO:     147.185.132.101:60088 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 00:00:06 [INFO] __main__: [FastAPI-Out] INFO:     121.40.167.163:35130 - "GET /.env HTTP/1.1" 404 Not Found
+2025-03-07 03:37:34 [INFO] __main__: [FastAPI-Out] INFO:     8.130.175.69:39438 - "GET /.env HTTP/1.1" 404 Not Found
+2025-03-07 07:57:36 [INFO] __main__: [FastAPI-Out] INFO:     159.223.73.235:40526 - "GET /ab2g HTTP/1.1" 404 Not Found
+2025-03-07 07:57:38 [INFO] __main__: [FastAPI-Out] INFO:     159.223.73.235:59664 - "GET /ab2h HTTP/1.1" 404 Not Found
+2025-03-07 07:57:47 [INFO] __main__: [FastAPI-Out] INFO:     159.223.73.235:59678 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 07:57:50 [INFO] __main__: [FastAPI-Out] INFO:     159.223.73.235:56784 - "GET /login HTTP/1.1" 404 Not Found
+2025-03-07 08:25:07 [INFO] __main__: [FastAPI-Out] INFO:     87.121.84.132:48064 - "CONNECT ifconfig.co%3A443 HTTP/1.1" 404 Not Found
+2025-03-07 10:59:44 [INFO] __main__: [FastAPI-Out] INFO:     162.216.150.54:59296 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 11:29:10 [INFO] __main__: [FastAPI-Out] INFO:     35.203.211.104:60008 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 13:04:15 [INFO] __main__: [FastAPI-Out] INFO:     147.185.133.88:63792 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 13:39:50 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-46, started daemon 140616239388224)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-07 13:39:50 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/anyio/lowlevel.py:27: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-46, started daemon 140616239388224)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-07 13:39:50 [INFO] __main__: [FastAPI-Err] await get_async_backend().checkpoint()
+2025-03-07 13:39:50 [INFO] __main__: [FastAPI-Out] INFO:     223.113.128.180:54108 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 13:39:51 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-07 13:40:45 [INFO] __main__: [FastAPI-Out] INFO:     52.81.254.49:51674 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 13:40:45 [INFO] __main__: [FastAPI-Out] INFO:     52.81.254.49:51688 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-07 13:40:45 [INFO] __main__: [FastAPI-Out] INFO:     52.81.254.49:51710 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2025-03-07 13:40:45 [INFO] __main__: [FastAPI-Out] INFO:     52.81.254.49:51704 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2025-03-07 18:09:18 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.96:49700 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 18:09:27 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.96:56526 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 18:09:27 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.96:56562 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-07 18:09:27 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-07 18:09:41 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.96:47998 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-07 18:09:42 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.96:48028 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-07 18:09:42 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-07 18:14:42 [INFO] __main__: [FastAPI-Out] INFO:     20.98.140.236:55850 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 21:56:02 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.207:45934 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 21:56:13 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.207:37922 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-07 21:56:16 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.207:56634 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-07 21:56:16 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-07 21:56:26 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.207:57716 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-07 21:56:27 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.207:57722 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-07 21:56:27 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-07 22:25:33 [INFO] __main__: [FastAPI-Out] INFO:     147.185.132.137:61082 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 02:34:14 [INFO] __main__: [FastAPI-Out] INFO:     118.194.228.239:40582 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 02:34:20 [INFO] __main__: [FastAPI-Out] INFO:     118.194.228.239:33922 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-08 02:34:21 [INFO] __main__: [FastAPI-Out] INFO:     118.194.228.239:33934 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2025-03-08 02:34:22 [INFO] __main__: [FastAPI-Out] INFO:     118.194.228.239:33942 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2025-03-08 03:14:55 [INFO] __main__: [FastAPI-Out] INFO:     170.64.195.55:58314 - "GET /ab2g HTTP/1.1" 404 Not Found
+2025-03-08 03:14:57 [INFO] __main__: [FastAPI-Out] INFO:     170.64.195.55:58324 - "GET /ab2h HTTP/1.1" 404 Not Found
+2025-03-08 03:14:59 [INFO] __main__: [FastAPI-Out] INFO:     170.64.195.55:32812 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 03:15:01 [INFO] __main__: [FastAPI-Out] INFO:     170.64.195.55:32834 - "GET /login HTTP/1.1" 404 Not Found
+2025-03-08 07:47:08 [INFO] __main__: [FastAPI-Out] INFO:     147.185.133.117:64532 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 12:04:10 [INFO] __main__: [FastAPI-Out] INFO:     35.203.210.239:60570 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 19:21:40 [INFO] __main__: [FastAPI-Out] INFO:     119.84.143.161:59454 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 19:22:04 [INFO] __main__: [FastAPI-Out] INFO:     119.84.143.161:52488 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-08 20:46:03 [INFO] __main__: [FastAPI-Out] INFO:     13.89.125.23:57668 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 21:41:32 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.193:35046 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 21:41:35 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.193:54352 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-08 21:41:35 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-08 21:41:48 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.94:49446 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 21:41:51 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.94:41094 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-08 21:41:51 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-08 21:42:21 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.193:48118 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-08 21:42:24 [INFO] __main__: [FastAPI-Out] INFO:     167.94.138.193:51096 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-08 21:42:24 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-08 21:42:37 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.94:32920 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-08 21:42:41 [INFO] __main__: [FastAPI-Out] INFO:     206.168.34.94:43718 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-08 21:42:41 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-08 22:04:05 [INFO] __main__: [FastAPI-Out] INFO:     35.203.211.35:64868 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 22:30:54 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31664 - "GET /api/v1/auth/profile HTTP/1.1" 401 Unauthorized
+2025-03-08 22:31:09 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=Test0305
+2025-03-08 22:31:09 [INFO] __main__: [FastAPI-Err] WARNING:src.routers.auth:登录失败，用户名或密码错误: username=Test0305, attempts=1
+2025-03-08 22:31:10 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31223 - "POST /api/v1/auth/login/json HTTP/1.1" 401 Unauthorized
+2025-03-08 22:31:41 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始用户注册: username=Test0308
+2025-03-08 22:31:41 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户注册成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8 username=Test0308
+2025-03-08 22:31:41 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29083 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+2025-03-08 22:31:47 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29083 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:33:03 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31822 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:35:40 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29883 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:38:28 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 22:38:28 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 22:38:28 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30925 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 22:38:32 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30925 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:38:47 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32211 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:41:00 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32151 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:41:46 [INFO] __main__: [FastAPI-Out] INFO:     106.15.131.125:35073 - "HEAD /start/index.html HTTP/1.1" 404 Not Found
+2025-03-08 22:41:46 [INFO] __main__: [FastAPI-Out] INFO:     106.15.131.125:35074 - "HEAD /pscc/ HTTP/1.1" 404 Not Found
+2025-03-08 22:42:50 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31033 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:45:07 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32123 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:49:07 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28715 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:50:17 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29037 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 22:50:25 [INFO] __main__: [FastAPI-Out] INFO:     165.227.21.245:33844 - "GET /ab2g HTTP/1.1" 404 Not Found
+2025-03-08 22:50:26 [INFO] __main__: [FastAPI-Out] INFO:     165.227.21.245:33858 - "GET /ab2h HTTP/1.1" 404 Not Found
+2025-03-08 22:50:27 [INFO] __main__: [FastAPI-Out] INFO:     165.227.21.245:33882 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-08 22:50:28 [INFO] __main__: [FastAPI-Out] INFO:     165.227.21.245:33906 - "GET /login HTTP/1.1" 404 Not Found
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-83, started daemon 140615719302720)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-83, started daemon 140615719302720)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-86, started daemon 140615710910016)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-86, started daemon 140615710910016)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-89, started daemon 140615702517312)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-89, started daemon 140615702517312)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-92, started daemon 140615216002624)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-92, started daemon 140615216002624)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-95, started daemon 140615207609920)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-95, started daemon 140615207609920)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-98, started daemon 140615199217216)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-98, started daemon 140615199217216)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-101, started daemon 140615190824512)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] /root/food_journey/.venv/lib/python3.10/site-packages/starlette/routing.py:76: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-101, started daemon 140615190824512)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Err] await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2025-03-08 22:57:02 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29379 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:57:41 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 22:57:41 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 22:57:41 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29976 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 22:57:44 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29976 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:59:18 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31252 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 22:59:35 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29153 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 23:00:44 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29757 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 23:01:50 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30468 - "POST /api/v1/chat/voice HTTP/1.1" 200 OK
+2025-03-08 23:17:34 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:17:34 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:17:34 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31093 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:24:16 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:24:16 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:24:16 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30747 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:24:21 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30851 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:25:06 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:25:06 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:25:06 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30054 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:25:34 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:30203 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:26:39 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:26:39 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:26:39 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31365 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:26:50 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31422 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:27:27 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:27:27 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:27:27 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32715 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:27:31 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32715 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:29:23 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:29:23 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:29:23 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32465 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:29:30 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31105 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:29:37 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31105 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:30:31 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:30:31 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:30:31 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:31956 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:30:42 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:32067 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-08 23:31:50 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始获取用户资料: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:31:50 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:获取用户资料成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-08 23:31:50 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:28772 - "GET /api/v1/auth/profile HTTP/1.1" 200 OK
+2025-03-08 23:32:00 [INFO] __main__: [FastAPI-Out] INFO:     101.229.72.224:29092 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-09 02:39:30 [INFO] __main__: [FastAPI-Out] INFO:     87.121.84.132:39722 - "CONNECT ifconfig.co%3A443 HTTP/1.1" 404 Not Found
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-109, started daemon 140615182431808)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-109, started daemon 140615182431808)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-112, started daemon 140615174039104)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-112, started daemon 140615174039104)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-115, started daemon 140615165646400)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-115, started daemon 140615165646400)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-118, started daemon 140615157253696)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-118, started daemon 140615157253696)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-134, started daemon 140615148860992)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-134, started daemon 140615148860992)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-139, started daemon 140615140468288)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-139, started daemon 140615140468288)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-142, started daemon 140615132075584)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-142, started daemon 140615132075584)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-147, started daemon 140615123682880)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-147, started daemon 140615123682880)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] ERROR:sqlalchemy.pool.impl.NullPool:The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-152, started daemon 140615115290176)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] /usr/lib/python3.10/asyncio/base_events.py:721: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <Connection(Thread-152, started daemon 140615115290176)>>, which will be dropped, as it cannot be safely terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Err] timer = self.call_at(self.time() + delay, callback, *args,
+2025-03-09 04:09:21 [INFO] __main__: [FastAPI-Out] INFO:     59.82.21.126:2726 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 04:23:12 [INFO] __main__: [FastAPI-Out] INFO:     162.216.150.58:63728 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 04:25:04 [INFO] __main__: [FastAPI-Out] INFO:     113.215.189.65:40932 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 05:32:43 [INFO] __main__: [FastAPI-Out] INFO:     39.99.151.240:60104 - "GET / HTTP/1.0" 500 Internal Server Error
+2025-03-09 05:32:43 [INFO] __main__: [FastAPI-Out] INFO:     39.99.151.240:60372 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 05:32:43 [INFO] __main__: [FastAPI-Out] INFO:     39.99.151.240:60660 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-09 05:33:26 [INFO] __main__: [FastAPI-Out] INFO:     39.99.153.238:57636 - "GET / HTTP/1.0" 500 Internal Server Error
+2025-03-09 05:33:27 [INFO] __main__: [FastAPI-Out] INFO:     39.99.153.238:57804 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 05:33:27 [INFO] __main__: [FastAPI-Out] INFO:     39.99.153.238:58014 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-09 05:38:31 [INFO] __main__: [FastAPI-Out] INFO:     113.141.88.166:32870 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 07:44:50 [INFO] __main__: [FastAPI-Out] INFO:     154.212.141.148:33876 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 11:08:50 [INFO] __main__: [FastAPI-Out] INFO:     147.185.132.32:61480 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 11:39:39 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.110:49414 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 11:39:49 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.110:50576 - "GET / HTTP/1.1" 500 Internal Server Error
+2025-03-09 11:39:50 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.110:50584 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-09 11:39:50 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-09 11:40:05 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.110:45566 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-03-09 11:40:07 [INFO] __main__: [FastAPI-Out] INFO:     167.94.145.110:45638 - "PRI %2A HTTP/2.0" 404 Not Found
+2025-03-09 11:40:07 [INFO] __main__: [FastAPI-Err] WARNING:  Invalid HTTP request received.
+2025-03-09 11:44:55 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53469 - "GET /api/v1/auth/profile HTTP/1.1" 401 Unauthorized
+2025-03-09 11:45:16 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:开始处理用户JSON登录请求: username=Test0308
+2025-03-09 11:45:16 [INFO] __main__: [FastAPI-Err] INFO:src.routers.auth:用户登录成功: user_id=ef96129f-f991-4f8c-aa85-00a3199c5ba8
+2025-03-09 11:45:16 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:53962 - "POST /api/v1/auth/login/json HTTP/1.1" 200 OK
+2025-03-09 11:45:27 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:54271 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
+2025-03-09 12:08:32 [INFO] __main__: [FastAPI-Out] INFO:     124.79.135.20:51473 - "POST /api/v1/chat/stream HTTP/1.1" 200 OK
