@@ -195,17 +195,62 @@ async def process_stream_response(
     )
     db.add(system_message)
 
-    # 尝试从AI回复中提取用户画像更新信息
-    updates = ai_client.extract_profile_updates(content)
-    if updates:
-        await ai_client.process_profile_updates(user_id=user_id, updates=updates, db=db)
+    # 用于跟踪是否需要前端刷新数据
+    profile_updated = False
 
-    await db.commit()
+    try:
+        # 尝试从AI回复中提取用户画像更新信息
+        logger.info(f"正在从AI回复中提取用户画像更新信息，用户ID: {user_id}")
+        updates = ai_client.extract_profile_updates(content)
+        
+        if updates:
+            logger.info(f"检测到用户画像更新，用户ID: {user_id}, 更新内容: {updates}")
+            
+            # 记录当前事务状态
+            logger.info(f"提取到的用户画像更新，准备处理，事务状态：{db.is_active}")
+            
+            # 处理用户画像更新
+            update_result = await ai_client.process_profile_updates(
+                user_id=user_id, 
+                updates=updates, 
+                db=db
+            )
+            
+            if update_result["success"] and update_result["updated_fields"]:
+                logger.info(f"用户画像更新成功，用户ID: {user_id}, 更新字段: {update_result['updated_fields']}")
+                # 手动执行flush以确保更新写入数据库
+                await db.flush()
+                logger.info(f"已执行flush操作保存用户画像更新，用户ID: {user_id}")
+                profile_updated = True
+            else:
+                logger.error(f"用户画像更新失败或无更新，用户ID: {user_id}, 结果: {update_result}")
+        else:
+            logger.info(f"未检测到用户画像更新，用户ID: {user_id}")
+
+        # 不在这里提交数据库事务，让路由处理程序来处理
+    except Exception as e:
+        logger.error(f"处理用户画像更新过程中出错: {str(e)}")
+        # 打印详细堆栈信息以便调试
+        import traceback
+        logger.error(f"出错详细信息: {traceback.format_exc()}")
+        # 不要让更新错误影响到主流程，但也不要在这里回滚，让路由处理程序来处理
 
     # 获取用于响应的历史消息并正确格式化为JSON字符串
     history = await get_chat_history_for_response(user_id, db)
     history_data = {"type": "history", "data": history}
     yield f"data: {json.dumps(history_data)}\n\n"
+    
+    # 如果用户画像已更新，发送一个通知让前端刷新数据
+    if profile_updated:
+        refresh_data = {
+            "type": "profile_updated", 
+            "data": {
+                "message": "用户画像已更新，请刷新健身数据",
+                "timestamp": datetime.now().isoformat()
+            }
+        }
+        logger.info(f"发送用户画像更新通知到前端，用户ID: {user_id}")
+        yield f"data: {json.dumps(refresh_data)}\n\n"
 
 
 @router.post("/stream")
@@ -244,25 +289,45 @@ async def text_chat_stream(
         )
         db.add(user_message)
         await db.commit()
-
+        
         # 构建消息列表
         messages = ai_client._build_chat_messages(
             user_profile=user_profile,
             current_message=message,
             chat_history=chat_history,
         )
-
+        
+        response_stream = process_stream_response(
+            user_id=current_user.id,
+            db=db,
+            messages=messages,
+            user_message=user_message,
+        )
+        
+        # 注册一个回调，确保流式响应完成后提交数据库事务
+        async def stream_with_commit():
+            try:
+                logger.info(f"开始流式响应处理，用户ID: {current_user.id}")
+                async for chunk in response_stream:
+                    yield chunk
+                # 在提交事务前先执行flush确保所有操作可见
+                logger.info(f"流式响应完成，准备提交数据库事务，用户ID: {current_user.id}")
+                await db.flush()
+                await db.commit()
+                logger.info(f"流式响应完成，数据库事务已提交，用户ID: {current_user.id}")
+            except Exception as e:
+                # 异常情况下回滚事务
+                logger.error(f"流式响应出错，回滚数据库事务: {str(e)}, 用户ID: {current_user.id}")
+                await db.rollback()
+                raise
+                
         return StreamingResponse(
-            process_stream_response(
-                user_id=current_user.id,
-                db=db,
-                messages=messages,
-                user_message=user_message,
-            ),
+            stream_with_commit(),
             media_type="text/event-stream",
         )
 
     except Exception as e:
+        # 确保发生异常时回滚数据库事务
         await db.rollback()
         logger.error(f"流式文本处理失败: {str(e)}")
         if isinstance(e, HTTPException):
@@ -410,14 +475,33 @@ async def voice_chat_stream(
             chat_history=chat_history,
         )
 
-        # 直接返回流式响应
+        # 创建流式响应
+        response_stream = process_stream_response(
+            user_id=current_user.id,
+            db=db,
+            messages=messages,
+            user_message=user_message,
+        )
+        
+        # 注册一个回调，确保流式响应完成后提交数据库事务
+        async def stream_with_commit():
+            try:
+                logger.info(f"开始流式响应处理，用户ID: {current_user.id}")
+                async for chunk in response_stream:
+                    yield chunk
+                # 在提交事务前先执行flush确保所有操作可见
+                logger.info(f"流式响应完成，准备提交数据库事务，用户ID: {current_user.id}")
+                await db.flush()
+                await db.commit()
+                logger.info(f"流式响应完成，数据库事务已提交，用户ID: {current_user.id}")
+            except Exception as e:
+                # 异常情况下回滚事务
+                logger.error(f"流式响应出错，回滚数据库事务: {str(e)}, 用户ID: {current_user.id}")
+                await db.rollback()
+                raise
+                
         return StreamingResponse(
-            process_stream_response(
-                user_id=current_user.id,
-                db=db,
-                messages=messages,
-                user_message=user_message,
-            ),
+            stream_with_commit(),
             media_type="text/event-stream",
         )
 
@@ -509,14 +593,33 @@ async def image_chat_stream(
             chat_history=chat_history,
         )
 
-        # 直接返回流式响应
+        # 创建流式响应
+        response_stream = process_stream_response(
+            user_id=current_user.id,
+            db=db,
+            messages=messages,
+            user_message=user_message,
+        )
+        
+        # 注册一个回调，确保流式响应完成后提交数据库事务
+        async def stream_with_commit():
+            try:
+                logger.info(f"开始流式响应处理，用户ID: {current_user.id}")
+                async for chunk in response_stream:
+                    yield chunk
+                # 在提交事务前先执行flush确保所有操作可见
+                logger.info(f"流式响应完成，准备提交数据库事务，用户ID: {current_user.id}")
+                await db.flush()
+                await db.commit()
+                logger.info(f"流式响应完成，数据库事务已提交，用户ID: {current_user.id}")
+            except Exception as e:
+                # 异常情况下回滚事务
+                logger.error(f"流式响应出错，回滚数据库事务: {str(e)}, 用户ID: {current_user.id}")
+                await db.rollback()
+                raise
+                
         return StreamingResponse(
-            process_stream_response(
-                user_id=current_user.id,
-                db=db,
-                messages=messages,
-                user_message=user_message,
-            ),
+            stream_with_commit(),
             media_type="text/event-stream",
         )
 

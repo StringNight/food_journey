@@ -5,3 +5,5 @@ nohup.out
 *.db
 *.jpg
 *.m4a
+uploads/*
+.DS_Store
