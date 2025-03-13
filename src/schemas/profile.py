@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Any
 from datetime import datetime, date
 
@@ -64,7 +64,6 @@ class UserProfile(BaseModel):
     id: str = Field(..., description="用户ID")
     username: str = Field(..., description="用户名")
     nickname: Optional[str] = Field(None, description="昵称")
-    email: EmailStr = Field(..., description="邮箱")
     avatar_url: Optional[str] = Field(None, description="头像URL")
     birth_date: Optional[date] = Field(None, description="出生日期")
     age: Optional[int] = Field(None, description="年龄")

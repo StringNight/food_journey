@@ -161,12 +161,30 @@ async def value_error_handler(request: Request, exc: ValueError):
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     """处理请求验证错误"""
+    # 提取所有错误信息
+    error_details = []
+    for error in exc.errors():
+        # 提取字段位置
+        field = error["loc"][-1] if error["loc"] else "unknown_field"
+        field_path = ".".join(str(loc) for loc in error["loc"])
+        
+        # 获取错误消息和类型
+        error_msg = error["msg"]
+        error_type = error["type"]
+        
+        error_details.append({
+            "field": field,
+            "field_path": field_path,
+            "message": error_msg,
+            "type": error_type
+        })
+    
     return JSONResponse(
         status_code=422,
         content={
-            "detail": "请求数据验证失败",
+            "detail": "输入数据验证失败",
             "type": "validation_error",
-            "errors": [{"loc": err["loc"], "msg": err["msg"]} for err in exc.errors()]
+            "errors": error_details
         }
     )
 

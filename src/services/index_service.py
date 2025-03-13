@@ -94,16 +94,11 @@ class IndexService:
             CREATE INDEX IF NOT EXISTS idx_users_username 
             ON users (username)
             """,
-            # 邮箱索引
-            """
-            CREATE INDEX IF NOT EXISTS idx_users_email 
-            ON users (email)
-            """,
             # 最后登录时间索引
             """
             CREATE INDEX IF NOT EXISTS idx_users_last_login 
             ON users (last_login DESC)
-            """
+            """,
         ]
         
         for index in indexes:

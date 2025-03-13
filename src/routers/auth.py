@@ -133,6 +133,7 @@ async def reset_failed_login_attempts(username: str, cache: CacheManager) -> Non
     response_model=RegisterResponse,
     responses={
         400: {"model": ValidationErrorResponse},
+        422: {"model": ValidationErrorResponse},
         429: {"model": RateLimitErrorResponse},
         500: {"model": ErrorResponse}
     }
@@ -232,8 +233,10 @@ async def register(
 @router.post("/login",
     response_model=LoginResponse,
     responses={
+        400: {"model": ErrorResponse},
         401: {"model": ErrorResponse},
         403: {"model": AccountLockedErrorResponse},
+        422: {"model": ValidationErrorResponse},
         429: {"model": RateLimitErrorResponse},
         500: {"model": ErrorResponse}
     }
@@ -338,8 +341,10 @@ async def login(
 @router.post("/login/json",
     response_model=LoginJsonResponse,
     responses={
+        400: {"model": ErrorResponse},
         401: {"model": ErrorResponse},
         403: {"model": AccountLockedErrorResponse},
+        422: {"model": ValidationErrorResponse},
         429: {"model": RateLimitErrorResponse},
         500: {"model": ErrorResponse}
     }
@@ -483,7 +488,16 @@ async def get_profile(
             detail="获取用户资料失败，请稍后重试"
         )
 
-@router.post("/change-password", status_code=status.HTTP_200_OK)
+@router.post("/change-password", 
+    status_code=status.HTTP_200_OK,
+    responses={
+        400: {"model": ErrorResponse},
+        401: {"model": ErrorResponse},
+        422: {"model": ValidationErrorResponse},
+        429: {"model": RateLimitErrorResponse},
+        500: {"model": ErrorResponse}
+    }
+)
 @limiter.limit("60/minute")
 async def change_password(
     request: Request,

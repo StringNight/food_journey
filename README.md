@@ -47,7 +47,6 @@ food_journey_backend/
 │   ├── services/         # 业务逻辑服务
 │   │   ├── __init__.py   # 服务包初始化
 │   │   ├── ai_service_client.py    # AI服务客户端
-│   │   ├── email_service.py        # 邮件服务
 │   │   ├── recipe_service.py       # 食谱服务
 │   │   ├── user_service.py         # 用户服务
 │   │   └── recommendation_service.py # 推荐服务
@@ -116,7 +115,7 @@ food_journey_backend/
 
 ### 2. 路由模块 (src/routers/)
 - `api.py`: 主路由聚合器，组合所有子路由
-- `auth.py`: 处理用户认证，包括注册、登录、密码重置等
+- `auth.py`: 处理用户认证，包括注册、登录等
 - `chat.py`: 处理AI聊天功能，支持文本、语音和图片交互
 - `favorites.py`: 管理用户的食谱收藏
 - `profile.py`: 管理用户档案，包括基本信息、饮食偏好、运动偏好等
@@ -145,7 +144,6 @@ food_journey_backend/
 
 ### 5. 服务层 (src/services/)
 - `ai_service_client.py`: AI服务客户端，处理与AI模型的交互
-- `email_service.py`: 邮件服务，处理密码重置等邮件发送
 - `recommendation_service.py`: 个性化推荐服务，基于用户偏好生成推荐
 
 ### 6. 认证模块 (src/auth/)
@@ -174,9 +172,10 @@ food_journey_backend/
 ## 主要功能
 
 1. 用户管理
-   - 注册和登录
+   - 用户注册
+   - 用户登录
    - 个人资料管理
-   - 密码重置
+   - 修改密码
    - 头像上传
 
 2. 食谱管理

@@ -304,14 +304,24 @@ class AIServiceClient:
 
 请确保每次回复都体现专业性、针对性和全面性，帮助用户建立健康的生活方式。如果用户询问与饮食、营养、运动、健康无关的问题，请礼貌地说明你的专业范围并建议用户寻求相关领域的专家帮助。"""
         
-        messages.append({
-            "role": "system",
-            "content": system_prompt
-        })
+        # 检查历史消息中是否已包含系统消息
+        has_system_msg = False
+        if chat_history:
+            for msg in chat_history:
+                if msg.get("role") == "system":
+                    has_system_msg = True
+                    break
         
-        # 2. 添加用户画像信息
-        if user_profile:
-            profile_str = f"""用户画像信息：
+        # 只有在历史消息不包含系统消息时才添加
+        if not has_system_msg:
+            messages.append({
+                "role": "system",
+                "content": system_prompt
+            })
+        
+            # 2. 添加用户画像信息
+            if user_profile:
+                profile_str = f"""用户画像信息：
 - 性别：{user_profile.get('gender', '未知')}
 - 年龄：{user_profile.get('age', '未知')}岁
 - 身高：{user_profile.get('height', '未知')}cm
@@ -328,11 +338,11 @@ class AIServiceClient:
 - 健身水平：{user_profile.get('fitness_level', '未知')}
 - 运动频率：每周{user_profile.get('exercise_frequency', '未知')}次
 - 健身目标：{', '.join(user_profile.get('fitness_goals', ['无']))}"""
-            
-            messages.append({
-                "role": "system",
-                "content": profile_str
-            })
+                
+                messages.append({
+                    "role": "system",
+                    "content": profile_str
+                })
         
         # 3. 添加历史对话记录
         if chat_history:
@@ -343,6 +353,9 @@ class AIServiceClient:
             "role": "user",
             "content": current_message
         })
+        
+        # 记录最终构建的消息列表
+        logging.debug(f"构建的完整消息列表: {json.dumps(messages, ensure_ascii=False)}")
         
         return messages
             
@@ -365,22 +378,41 @@ class AIServiceClient:
             str: 生成的文本片段
         """
         try:
-            # 获取最后一条用户消息
-            current_message = ""
-            chat_history = []
+            # 检查消息列表是否为空
+            if not messages:
+                yield "请提供消息"
+                return
+                
+            # 分离系统消息、用户消息和助手消息
+            system_messages = [msg for msg in messages if msg["role"] == "system"]
+            user_messages = [msg for msg in messages if msg["role"] == "user"]
+            assistant_messages = [msg for msg in messages if msg["role"] == "assistant"]
             
-            for msg in messages:
-                if msg["role"] == "user":
-                    current_message = msg["content"]
-                else:
-                    chat_history.append(msg)
+            if not user_messages:
+                yield "请提供用户消息"
+                return
+                
+            # 获取最后一条用户消息作为当前消息
+            current_message = user_messages[-1]["content"]
             
-            # 使用_build_chat_messages构建完整的消息列表
-            full_messages = self._build_chat_messages(
-                user_profile=user_profile or {},
-                current_message=current_message,
-                chat_history=chat_history
-            )
+            # 方法一：直接使用传入的完整消息列表发送到模型（保留所有历史）
+            # 这种方式会保留原始的消息顺序和内容
+            full_messages = messages
+            
+            # 方法二：使用_build_chat_messages构建消息列表
+            # 这种方式会根据需要添加系统提示词和用户画像，但可能改变消息顺序
+            # 如果需要使用这种方式，请取消下面的注释并注释掉上面的"方法一"
+
+            # # 过滤掉最后一条用户消息，因为它将单独处理
+            # chat_history = [msg for msg in messages if msg != user_messages[-1]]
+            # full_messages = self._build_chat_messages(
+            #     user_profile=user_profile or {},
+            #     current_message=current_message,
+            #     chat_history=chat_history
+            # )
+            
+            # 记录发送给模型的消息，便于调试
+            logging.debug(f"发送给模型的完整消息: {json.dumps(full_messages, ensure_ascii=False)}")
             
             # 调用预测接口获取流式响应
             result = self.chat_client.submit(
@@ -526,11 +558,19 @@ class AIServiceClient:
             Optional[Dict[str, Any]]: 提取的更新建议，如果没有更新建议则返回None
         """
         try:
+            # 记录完整的响应以便调试
+            logging.info(f"尝试从以下AI回复中提取用户画像更新建议: {response[:200]}...")
+            
             # 查找更新建议部分
             start_marker = "===用户画像更新建议==="
             end_marker = "==================="
             
-            if start_marker not in response or end_marker not in response:
+            if start_marker not in response:
+                logging.info(f"未找到用户画像更新建议开始标记: '{start_marker}'")
+                return None
+                
+            if end_marker not in response:
+                logging.info(f"未找到用户画像更新建议结束标记: '{end_marker}'")
                 return None
                 
             # 提取JSON部分
@@ -538,14 +578,28 @@ class AIServiceClient:
             end_idx = response.index(end_marker, start_idx)
             json_str = response[start_idx:end_idx].strip()
             
-            # 解析JSON
-            updates = json.loads(json_str)
+            # 记录提取到的JSON字符串
+            logging.info(f"从AI回复中提取到用户画像更新建议: {json_str}")
             
-            # 直接返回更新建议，不再强制要求包含 'update_reason' 字段，以支持所有新的用户画像字段
-            return updates["updates"]
+            try:
+                # 解析JSON
+                updates = json.loads(json_str)
+                
+                if "updates" not in updates:
+                    logging.error(f"用户画像更新JSON缺少'updates'字段: {json_str}")
+                    return None
+                
+                # 记录解析后的更新内容
+                logging.info(f"解析后的用户画像更新: {updates['updates']}")
+                
+                # 直接返回更新建议，不再强制要求包含 'update_reason' 字段，以支持所有新的用户画像字段
+                return updates["updates"]
+            except json.JSONDecodeError as json_err:
+                logging.error(f"解析用户画像更新JSON失败: {str(json_err)}, 原始字符串: {json_str}")
+                return None
             
-        except (ValueError, json.JSONDecodeError) as e:
-            logging.error(f"解析用户画像更新建议失败: {e}")
+        except Exception as e:
+            logging.error(f"提取用户画像更新建议失败: {str(e)}, 响应内容: {response[:200]}...")
             return None
 
     async def process_profile_updates(
@@ -559,7 +613,7 @@ class AIServiceClient:
         Args:
             user_id: 用户ID
             updates: 更新内容
-            db: 数据库会话
+            db: 数据库会话（由调用者提供和管理）
             
         Returns:
             Dict[str, Any]: {
@@ -569,6 +623,9 @@ class AIServiceClient:
             }
         """
         try:
+            # 记录当前数据库会话状态
+            logging.info(f"开始处理用户画像更新，用户ID: {user_id}, 事务状态: {db.is_active}")
+            
             # 1. 获取当前用户画像
             query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
             result = await db.execute(query)
@@ -576,38 +633,60 @@ class AIServiceClient:
             
             if not profile:
                 # 如果用户画像不存在，创建新的
-                profile = UserProfileModel(user_id=user_id)
+                import uuid
+                profile_id = str(uuid.uuid4())
+                logging.info(f"为用户 {user_id} 创建新的用户画像，ID: {profile_id}")
+                profile = UserProfileModel(id=profile_id, user_id=user_id)
                 db.add(profile)
+                logging.info(f"已将新用户画像添加到会话，用户ID: {user_id}")
+            else:
+                logging.info(f"找到现有用户画像，用户ID: {user_id}, 画像ID: {profile.id}")
             
             # 2. 记录实际更新的字段
             updated_fields = []
             update_reason = updates.pop("update_reason", "AI助手建议的更新")
             
+            # 输出要更新的字段列表
+            logging.info(f"要更新的字段列表: {list(updates.keys())}")
+            
             # 3. 应用更新
             for field, value in updates.items():
-                if hasattr(profile, field) and getattr(profile, field) != value:
-                    setattr(profile, field, value)
-                    updated_fields.append(field)
+                try:
+                    if hasattr(profile, field):
+                        old_value = getattr(profile, field)
+                        # 检查值是否实际发生变化
+                        if old_value != value:
+                            logging.info(f"更新用户画像字段: {field}, 旧值: {old_value}, 新值: {value}")
+                            setattr(profile, field, value)
+                            updated_fields.append(field)
+                        else:
+                            logging.info(f"字段 {field} 值未变化，保持 {old_value}")
+                    else:
+                        logging.warning(f"用户画像模型没有字段: {field}，无法更新")
+                except Exception as field_error:
+                    logging.error(f"更新字段 {field} 失败: {str(field_error)}")
             
             if updated_fields:
                 # 更新时间戳
                 profile.updated_at = datetime.now()
                 
-                # 提交更改
-                await db.commit()
+                # 执行一次flush确保数据库更改可见
+                await db.flush()
                 
-                # 记录日志
+                # 记录日志但不提交，由调用者负责提交事务
                 logging.info(
-                    f"用户画像更新成功: user_id={user_id}, "
-                    f"fields={updated_fields}, reason={update_reason}"
+                    f"用户画像更新准备完成: user_id={user_id}, "
+                    f"fields={updated_fields}, reason={update_reason}, "
+                    f"当前事务状态: {db.is_active}"
                 )
                 
                 return {
                     "success": True,
-                    "message": "用户画像更新成功",
+                    "message": "用户画像更新准备完成",
                     "updated_fields": updated_fields
                 }
             else:
+                logging.info(f"用户画像无需更新: user_id={user_id}, reason={update_reason}")
                 return {
                     "success": True,
                     "message": "用户画像无需更新",
@@ -616,8 +695,10 @@ class AIServiceClient:
                 
         except Exception as e:
             logging.error(f"处理用户画像更新失败: {e}")
-            # 回滚事务
-            await db.rollback()
+            # 记录详细的错误堆栈
+            import traceback
+            logging.error(f"处理用户画像更新详细错误: {traceback.format_exc()}")
+            # 由调用者负责处理回滚
             return {
                 "success": False,
                 "message": f"用户画像更新失败: {str(e)}",
