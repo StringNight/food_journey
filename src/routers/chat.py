@@ -202,8 +202,9 @@ async def process_stream_response(
     # 用于跟踪是否需要前端刷新数据
     profile_updated = False
 
+    # 在process_stream_response函数中修改用户画像更新部分
     try:
-        # 尝试从AI回复中提取用户画像更新信息
+    # 尝试从AI回复中提取用户画像更新信息
         logger.info(f"正在从AI回复中提取用户画像更新信息，用户ID: {user_id}")
         updates = ai_client.extract_profile_updates(content)
         
@@ -213,50 +214,61 @@ async def process_stream_response(
             # 记录当前事务状态
             logger.info(f"提取到的用户画像更新，准备处理，事务状态：{db.is_active}")
             
-            # 处理用户画像更新 - 确保这个函数内部不会提交事务
-            update_result = await ai_client.process_profile_updates(
-                user_id=user_id, 
-                updates=updates, 
-                db=db
-            )
-            
-            if update_result["success"] and update_result["updated_fields"]:
-                logger.info(f"用户画像更新成功，用户ID: {user_id}, 更新字段: {update_result['updated_fields']}")
-                # 只使用flush，不要在这里commit
-                await db.flush()
-                logger.info(f"已执行flush操作保存用户画像更新，用户ID: {user_id}")
-                profile_updated = True
-            else:
-                logger.error(f"用户画像更新失败或无更新，用户ID: {user_id}, 结果: {update_result}")
-        else:
-            logger.info(f"未检测到用户画像更新，用户ID: {user_id}")
-
-        # 不在这里提交数据库事务，让路由处理程序来处理
+            # 使用独立的数据库会话处理用户画像更新，避免影响主事务
+            async with AsyncSession(db.bind) as update_db:
+                try:
+                    # 开始一个新事务
+                    await update_db.begin()
+                    
+                    # 处理用户画像更新
+                    update_result = await ai_client.process_profile_updates(
+                        user_id=user_id, 
+                        updates=updates, 
+                        db=update_db
+                    )
+                    
+                    if update_result["success"] and update_result["updated_fields"]:
+                        # 立即提交事务，确保数据更新被保存
+                        await update_db.commit()
+                        logger.info(f"用户画像更新成功并已提交，用户ID: {user_id}, 更新字段: {update_result['updated_fields']}")
+                        
+                        # 发送通知前端刷新用户画像数据
+                        profile_updated = True
+                        update_notification = {
+                            "type": "profile_updated",
+                            "data": {
+                                "message": "用户画像已更新",
+                                "updated_fields": update_result["updated_fields"]
+                            }
+                        }
+                        yield f"data: {json.dumps(update_notification)}\n\n"
+                except Exception as update_error:
+                    # 回滚更新事务，但不影响主事务
+                    await update_db.rollback()
+                    logger.error(f"用户画像更新失败，已回滚更新事务: {str(update_error)}")
     except Exception as e:
         logger.error(f"处理用户画像更新过程中出错: {str(e)}")
         # 打印详细堆栈信息以便调试
         import traceback
         logger.error(f"出错详细信息: {traceback.format_exc()}")
-        # 不要让更新错误影响到主流程，但也不要在这里回滚，让路由处理程序来处理
+        # 不要让更新错误影响到主流程
 
-    # 获取用于响应的历史消息并正确格式化为JSON字符串
-    history = await get_chat_history_for_response(user_id, db)
-    history_data = {"type": "history", "data": history}
-    yield f"data: {json.dumps(history_data)}\n\n"
-    
-    # 如果用户画像已更新，发送一个通知让前端刷新数据
-    if profile_updated:
-        refresh_data = {
-            "type": "profile_updated", 
-            "data": {
-                "message": "用户画像已更新，请刷新健身数据",
-                "timestamp": datetime.now().isoformat()
+        # 获取用于响应的历史消息并正确格式化为JSON字符串
+        history = await get_chat_history_for_response(user_id, db)
+        history_data = {"type": "history", "data": history}
+        yield f"data: {json.dumps(history_data)}\n\n"
+        
+        # 如果用户画像已更新，发送一个通知让前端刷新数据
+        if profile_updated:
+            refresh_data = {
+                "type": "profile_updated", 
+                "data": {
+                    "message": "用户画像已更新，请刷新健身数据",
+                    "timestamp": datetime.now().isoformat()
+                }
             }
-        }
-        logger.info(f"发送用户画像更新通知到前端，用户ID: {user_id}")
-        yield f"data: {json.dumps(refresh_data)}\n\n"
-
-
+            logger.info(f"发送用户画像更新通知到前端，用户ID: {user_id}")
+            yield f"data: {json.dumps(refresh_data)}\n\n"
 
 @router.post("/stream")
 async def stream_chat(

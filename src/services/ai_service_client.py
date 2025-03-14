@@ -660,25 +660,16 @@ class AIServiceClient:
             logging.error(f"提取用户画像更新建议失败: {str(e)}, 响应内容: {response[:200]}...")
             return None
 
-    async def process_profile_updates(
-        self,
-        user_id: str,
-        updates: Dict[str, Any],
-        db: AsyncSession
-    ) -> Dict[str, Any]:
-        """处理用户画像更新建议
+    async def process_profile_updates(self, user_id: str, updates: Dict[str, Any], db: AsyncSession) -> Dict[str, Any]:
+        """处理用户画像更新
         
         Args:
             user_id: 用户ID
             updates: 更新内容
-            db: 数据库会话（由调用者提供和管理）
+            db: 数据库会话
             
         Returns:
-            Dict[str, Any]: {
-                "success": bool,
-                "message": str,
-                "updated_fields": List[str]  # 实际更新的字段列表
-            }
+            Dict[str, Any]: 处理结果
         """
         try:
             # 记录当前数据库会话状态
@@ -701,76 +692,44 @@ class AIServiceClient:
                 logging.info(f"找到现有用户画像，用户ID: {user_id}, 画像ID: {profile.id}")
             
             # 2. 记录实际更新的字段
-            updated_fields = []
-            update_reason = updates.pop("update_reason", "AI助手建议的更新")
+            updated_fields = {}
+            update_reason = updates.pop("update_reason", "AI助手建议的更新") if isinstance(updates, dict) else "AI助手建议的更新"
             
             # 输出要更新的字段列表
-            logging.info(f"要更新的字段列表: {list(updates.keys())}")
+            logging.info(f"要更新的字段列表: {list(updates.keys()) if isinstance(updates, dict) else '无效更新'}")
             
             # 3. 应用更新
-            for field, value in updates.items():
-                try:
-                    if hasattr(profile, field):
-                        old_value = getattr(profile, field)
-                        # 检查值是否实际发生变化
-                        if old_value != value:
-                            logging.info(f"更新用户画像字段: {field}, 旧值: {old_value}, 新值: {value}")
-                            setattr(profile, field, value)
-                            updated_fields.append(field)
+            if isinstance(updates, dict):
+                for field, value in updates.items():
+                    try:
+                        if hasattr(profile, field):
+                            old_value = getattr(profile, field)
+                            # 检查值是否实际发生变化
+                            if old_value != value:
+                                logging.info(f"更新用户画像字段: {field}, 旧值: {old_value}, 新值: {value}")
+                                setattr(profile, field, value)
+                                updated_fields[field] = {
+                                    "old": old_value,
+                                    "new": value
+                                }
+                            else:
+                                logging.info(f"字段 {field} 值未变化，保持 {old_value}")
                         else:
-                            logging.info(f"字段 {field} 值未变化，保持 {old_value}")
-                    else:
-                        logging.warning(f"用户画像模型没有字段: {field}，无法更新")
-                except Exception as field_error:
-                    logging.error(f"更新字段 {field} 失败: {str(field_error)}")
-                
+                            logging.warning(f"用户画像模型没有字段: {field}，无法更新")
+                    except Exception as field_error:
+                        logging.error(f"更新字段 {field} 失败: {str(field_error)}")
+            
             if updated_fields:
                 # 更新时间戳
                 profile.updated_at = datetime.now()
                 
-                # 执行一次flush确保数据库更改可见
+                # 只执行flush，不提交事务，由调用者决定何时提交
                 try:
-                    # 添加重试逻辑，处理数据库锁定问题
-                    max_retries = 7
-                    retry_count = 0
-                    retry_delay = 0.5  # 初始延迟0.5秒
-                    
-                    while retry_count < max_retries:
-                        try:
-                            await db.flush()
-                            # 尝试立即提交事务，释放锁
-                            await db.commit()
-                            # 提交成功后，开始新事务
-                            await db.begin()
-                            logging.info(f"成功提交用户画像更新事务并开始新事务，用户ID: {user_id}")
-                            break  # 成功则跳出循环
-                        except Exception as flush_error:
-                            if "database is locked" in str(flush_error).lower() and retry_count < max_retries - 1:
-                                # 如果是数据库锁定错误且未达到最大重试次数，则重试
-                                retry_count += 1
-                                logging.warning(f"数据库锁定，等待重试 ({retry_count}/{max_retries})...")
-                                # 尝试回滚当前事务
-                                try:
-                                    await db.rollback()
-                                    logging.info(f"已回滚事务，准备重试，用户ID: {user_id}")
-                                    # 开始新事务
-                                    await db.begin()
-                                except Exception as rollback_error:
-                                    logging.error(f"回滚事务失败: {rollback_error}")
-                                
-                                await asyncio.sleep(retry_delay)
-                                retry_delay *= 2  # 指数退避
-                            else:
-                                # 其他错误或已达到最大重试次数，则抛出
-                                raise
+                    await db.flush()
+                    logging.info(f"成功刷新用户画像更新，用户ID: {user_id}")
                 except Exception as flush_error:
                     logging.error(f"刷新数据库失败: {flush_error}")
-                    # 尝试回滚事务
-                    try:
-                        await db.rollback()
-                        logging.info(f"已回滚事务，用户ID: {user_id}")
-                    except Exception as rollback_error:
-                        logging.error(f"回滚事务失败: {rollback_error}")
+                    # 不在这里回滚，由调用者处理
                     raise
                     
                 # 记录日志
@@ -790,7 +749,7 @@ class AIServiceClient:
                 return {
                     "success": True,
                     "message": "用户画像无需更新",
-                    "updated_fields": []
+                    "updated_fields": {}
                 }
                 
         except Exception as e:
@@ -798,15 +757,9 @@ class AIServiceClient:
             # 记录详细的错误堆栈
             import traceback
             logging.error(f"处理用户画像更新详细错误: {traceback.format_exc()}")
-            # 尝试回滚事务
-            try:
-                await db.rollback()
-                logging.info(f"已回滚事务，用户ID: {user_id}")
-            except Exception as rollback_error:
-                logging.error(f"回滚事务失败: {rollback_error}")
-            # 由调用者负责处理回滚
+            # 不在这里回滚，由调用者处理
             return {
                 "success": False,
                 "message": f"用户画像更新失败: {str(e)}",
-                "updated_fields": []
+                "updated_fields": {}
             }
