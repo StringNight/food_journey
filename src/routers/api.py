@@ -12,7 +12,7 @@ async def root():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Welcome to Infsols</title>
+        <title>Welcome to Infsols (上海寰解科技有限公司）</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
