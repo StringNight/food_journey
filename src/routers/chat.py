@@ -169,6 +169,7 @@ async def get_recent_chat_history(
     return history
 
 
+# 修改这个函数，整合新旧功能
 async def process_stream_response(
     user_id: str,
     db: AsyncSession,
@@ -176,6 +177,7 @@ async def process_stream_response(
     user_message: ChatMessage,
 ):
     """处理流式响应的通用函数"""
+    # 使用列表收集响应内容
     full_content = []
     async for chunk in ai_client.chat_stream(messages=messages):
         full_content.append(chunk)
@@ -194,6 +196,7 @@ async def process_stream_response(
         created_at=datetime.now(),
     )
     db.add(system_message)
+    await db.flush()  # 确保消息被保存
 
     # 用于跟踪是否需要前端刷新数据
     profile_updated = False
@@ -253,50 +256,47 @@ async def process_stream_response(
         yield f"data: {json.dumps(refresh_data)}\n\n"
 
 
+
 @router.post("/stream")
-async def text_chat_stream(
-    text_request: TextRequest,
+async def stream_chat(
+    request: TextRequest,
     current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db)
 ):
-    """处理文本流式聊天请求"""
+    """处理流式聊天请求"""
     try:
-        # 验证消息内容
-        if not isinstance(text_request.message, str):
-            raise HTTPException(status_code=400, detail="消息必须是字符串类型")
-
-        message = text_request.message.strip()
-        if not message:
-            raise HTTPException(status_code=400, detail="消息不能为空")
-
-        if len(message) > MAX_MESSAGE_LENGTH:
-            raise HTTPException(
-                status_code=413, detail=f"消息长度不能超过{MAX_MESSAGE_LENGTH}字符"
-            )
-
+        # 生成消息ID
+        message_id = str(uuid.uuid4())
+        
+        # 保存用户消息 - 修改这里，使用固定的 "text" 类型而不是 request.type
+        user_message = ChatMessage(
+            id=message_id,
+            user_id=current_user.id,
+            content=request.message,
+            type=MessageType.text,  # 使用固定的文本类型
+            is_user=True,
+            created_at=datetime.now()
+        )
+        
+        # 添加到数据库
+        db.add(user_message)
+        
         # 获取用户画像和聊天历史
         user_profile = await get_user_profile(current_user.id, db)
         chat_history = await get_recent_chat_history(current_user.id, db, limit=5)
-
-        # 保存用户消息
-        user_message = ChatMessage(
-            id=str(uuid.uuid4()),
-            user_id=current_user.id,
-            type=MessageType.text,
-            content=message,
-            is_user=True,
-            created_at=datetime.now(),
-        )
-        db.add(user_message)
+        
+        # 立即提交用户消息，释放锁
         await db.commit()
+        logger.info(f"用户消息已保存并提交，用户ID: {current_user.id}, 消息ID: {message_id}")
         
         # 构建消息列表
         messages = ai_client._build_chat_messages(
             user_profile=user_profile,
-            current_message=message,
+            current_message=request.message,
             chat_history=chat_history,
         )
         
+        # 创建流式响应
         response_stream = process_stream_response(
             user_id=current_user.id,
             db=db,
@@ -318,25 +318,31 @@ async def text_chat_stream(
             except Exception as e:
                 # 异常情况下回滚事务
                 logger.error(f"流式响应出错，回滚数据库事务: {str(e)}, 用户ID: {current_user.id}")
-                await db.rollback()
+                try:
+                    await db.rollback()
+                    logger.info(f"已回滚事务，用户ID: {current_user.id}")
+                except Exception as rollback_error:
+                    logger.error(f"回滚事务失败: {rollback_error}")
                 raise
-                
+        
         return StreamingResponse(
             stream_with_commit(),
             media_type="text/event-stream",
         )
-
+        
     except Exception as e:
-        # 确保发生异常时回滚数据库事务
-        await db.rollback()
-        logger.error(f"流式文本处理失败: {str(e)}")
-        if isinstance(e, HTTPException):
-            raise e
-        raise HTTPException(status_code=500, detail=f"流式文本处理失败: {str(e)}")
+        logger.error(f"流式文本处理失败: {e}")
+        # 确保回滚事务
+        try:
+            await db.rollback()
+            logger.info(f"已回滚事务，用户ID: {current_user.id}")
+        except Exception as rollback_error:
+            logger.error(f"回滚事务失败: {rollback_error}")
+        raise HTTPException(status_code=500, detail=f"处理请求失败: {str(e)}")
 
 
-@router.post("/voice_transcribe")
-async def voice_transcribe(
+@router.post("/text_transcribe")
+async def text_transcribe(
     file: UploadFile = File(...),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)

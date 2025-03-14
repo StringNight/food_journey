@@ -177,48 +177,6 @@ class AIServiceClient:
         # 1. 添加系统提示词
         system_prompt = """你是一名专业的营养学家、健康管理师和运动指导专家。请基于用户画像和对话内容，为用户提供全方位的健康生活指导方案。
 
-0. 用户画像更新：
-   - 识别用户提供的新信息，包括但不限于：
-     * 身高、体重的变化
-     * 新的健康状况或症状
-     * 饮食习惯的改变
-     * 运动习惯的变化
-     * 新的过敏反应
-     * 生活方式的调整
-     * 健康目标的更新
-   - 分析用户的行为变化
-   - 及时更新相关建议
-   - 如果发现需要更新用户画像，请在回复消息的最后部分使用以下格式提供更新建议（以===用户画像更新建议===开始，到===================结束，严格遵守格式要求，不要有任何其它额外标记信息，如```Json等）：
-===用户画像更新建议===
-{
-    "updates": {
-        "birth_date": "2024-01-11",  // 可选
-        "gender": "string",  // 可选，枚举值：男|女|其他
-        "height": 170.0,  // 可选，单位：厘米
-        "weight": 65.0,  // 可选，单位：千克
-        "body_fat_percentage": 20.0,  // 可选，单位：%
-        "muscle_mass": 50.0,  // 可选，单位：千克
-        "health_conditions": ["高血压", "糖尿病"],  // 可选
-        "health_goals": ["减重", "增肌"],  // 可选
-        "cooking_skill_level": "初级",  // 可选，枚举值：初级|中级|高级
-        "favorite_cuisines": ["中餐", "日料"],  // 可选
-        "dietary_restrictions": ["无麸质", "素食"],  // 可选
-        "allergies": ["花生", "海鲜"],  // 可选
-        "calorie_preference": 2000,  // 可选，单位：卡路里
-        "nutrition_goals": {  // 可选
-            "protein": 150,  // 单位：克
-            "carbs": 200,  // 单位：克
-            "fat": 60  // 单位：克
-        },
-        "fitness_level": "中级",  // 可选，枚举值：初级|中级|高级
-        "exercise_frequency": 3,  // 可选，范围：0-7
-        "preferred_exercises": ["跑步", "力量训练"],  // 可选
-        "fitness_goals": ["增肌", "提高耐力"],  // 可选
-        "update_reason": "基于用户提供的信息..."  // 必填，更新原因说明
-    }
-}
-===================
-
 营养建议要点：
 1. 宏量营养素分配：
    - 根据用户的BMI、体脂率和运动水平，计算每日所需的蛋白质、碳水化合物和脂肪比例
@@ -547,6 +505,107 @@ class AIServiceClient:
         # Gradio Client 会自动管理连接，不需要手动关闭
         pass 
 
+    async def analyze_user_message(
+        self,
+        user_id: str,
+        message: str,
+        db: AsyncSession
+    ) -> Dict[str, Any]:
+        """分析用户消息，提取可能的用户画像更新信息"""
+        try:
+            logging.info(f"开始分析用户消息，用户ID: {user_id}")
+            
+            # 获取当前用户画像
+            query = select(UserProfileModel).filter(UserProfileModel.user_id == user_id)
+            result = await db.execute(query)
+            profile = result.scalar_one_or_none()
+            
+            if not profile:
+                # 如果用户画像不存在，创建新的
+                import uuid
+                profile_id = str(uuid.uuid4())
+                logging.info(f"为用户 {user_id} 创建新的用户画像，ID: {profile_id}")
+                profile = UserProfileModel(id=profile_id, user_id=user_id)
+                db.add(profile)
+                # 立即刷新会话，确保用户画像被添加到数据库
+                await db.flush()
+                logging.info(f"已将新用户画像添加到会话并刷新，用户ID: {user_id}")
+            
+            # 使用LLM分析用户消息中的信息更新
+            system_prompt = """你是一个专门用于分析用户消息并提取用户画像信息的AI助手。
+请分析用户消息中可能包含的个人信息，如身高、体重、年龄、性别、健康状况、饮食偏好、运动习惯等。
+只提取明确提及的信息，不要猜测。如果没有相关信息，返回空对象。
+返回格式必须是有效的JSON，包含以下可能的字段（只包含用户明确提及的字段）：
+{
+    "birth_date": "YYYY-MM-DD",  // 出生日期，格式为ISO日期
+    "gender": "男|女|其他",  // 性别
+    "height": 170.0,  // 身高，单位：厘米
+    "weight": 65.0,  // 体重，单位：千克
+    "body_fat_percentage": 20.0,  // 体脂率，单位：%
+    "muscle_mass": 50.0,  // 肌肉量，单位：千克
+    "health_conditions": ["高血压", "糖尿病"],  // 健康状况
+    "health_goals": ["减重", "增肌"],  // 健康目标
+    "cooking_skill_level": "初级|中级|高级",  // 烹饪技能水平
+    "favorite_cuisines": ["中餐", "日料"],  // 喜爱的菜系
+    "dietary_restrictions": ["无麸质", "素食"],  // 饮食限制
+    "allergies": ["花生", "海鲜"],  // 过敏原
+    "calorie_preference": 2000,  // 卡路里偏好，单位：卡路里
+    "nutrition_goals": {  // 营养目标
+        "protein": 150,  // 蛋白质，单位：克
+        "carbs": 200,  // 碳水化合物，单位：克
+        "fat": 60  // 脂肪，单位：克
+    },
+    "fitness_level": "初级|中级|高级",  // 健身水平
+    "exercise_frequency": 3,  // 运动频率，每周次数
+    "preferred_exercises": ["跑步", "力量训练"],  // 偏好的运动方式
+    "fitness_goals": ["增肌", "提高耐力"],  // 健身目标
+    "update_reason": "基于用户提供的信息..."  // 更新原因说明
+}
+只返回JSON对象，不要有任何其他文字说明。如果没有提取到任何信息，返回空对象 {}。"""
+
+            # 构建消息列表
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": message}
+            ]
+            
+            # 调用LLM分析用户消息
+            full_response = ""
+            async for chunk in self.chat_stream(messages=messages, max_tokens=500):
+                full_response += chunk
+            
+            # 尝试解析JSON响应
+            try:
+                updates = json.loads(full_response.strip())
+                logging.info(f"从用户消息中提取到的信息: {updates}")
+                
+                # 如果没有提取到任何信息，返回无更新
+                if not updates:
+                    return {"has_updates": False, "updates": {}}
+                    
+                # 添加更新原因
+                if "update_reason" not in updates:
+                    updates["update_reason"] = "基于用户提供的信息自动更新"
+                    
+                # 处理提取到的信息更新
+                result = await self.process_profile_updates(user_id, updates, db)
+                
+                if result["success"] and result["updated_fields"]:
+                    return {
+                        "has_updates": True,
+                        "updates": updates
+                    }
+                else:
+                    return {"has_updates": False, "updates": {}}
+                    
+            except json.JSONDecodeError as e:
+                logging.error(f"解析LLM响应失败: {e}, 响应内容: {full_response}")
+                return {"has_updates": False, "updates": {}}
+                
+        except Exception as e:
+            logging.error(f"分析用户消息失败: {e}")
+            return {"has_updates": False, "updates": {}}
+
     def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
         """从AI助手的回复中提取用户画像更新建议
         
@@ -664,24 +723,66 @@ class AIServiceClient:
                         logging.warning(f"用户画像模型没有字段: {field}，无法更新")
                 except Exception as field_error:
                     logging.error(f"更新字段 {field} 失败: {str(field_error)}")
-            
+                
             if updated_fields:
                 # 更新时间戳
                 profile.updated_at = datetime.now()
                 
                 # 执行一次flush确保数据库更改可见
-                await db.flush()
-                
-                # 记录日志但不提交，由调用者负责提交事务
+                try:
+                    # 添加重试逻辑，处理数据库锁定问题
+                    max_retries = 7
+                    retry_count = 0
+                    retry_delay = 0.5  # 初始延迟0.5秒
+                    
+                    while retry_count < max_retries:
+                        try:
+                            await db.flush()
+                            # 尝试立即提交事务，释放锁
+                            await db.commit()
+                            # 提交成功后，开始新事务
+                            await db.begin()
+                            logging.info(f"成功提交用户画像更新事务并开始新事务，用户ID: {user_id}")
+                            break  # 成功则跳出循环
+                        except Exception as flush_error:
+                            if "database is locked" in str(flush_error).lower() and retry_count < max_retries - 1:
+                                # 如果是数据库锁定错误且未达到最大重试次数，则重试
+                                retry_count += 1
+                                logging.warning(f"数据库锁定，等待重试 ({retry_count}/{max_retries})...")
+                                # 尝试回滚当前事务
+                                try:
+                                    await db.rollback()
+                                    logging.info(f"已回滚事务，准备重试，用户ID: {user_id}")
+                                    # 开始新事务
+                                    await db.begin()
+                                except Exception as rollback_error:
+                                    logging.error(f"回滚事务失败: {rollback_error}")
+                                
+                                await asyncio.sleep(retry_delay)
+                                retry_delay *= 2  # 指数退避
+                            else:
+                                # 其他错误或已达到最大重试次数，则抛出
+                                raise
+                except Exception as flush_error:
+                    logging.error(f"刷新数据库失败: {flush_error}")
+                    # 尝试回滚事务
+                    try:
+                        await db.rollback()
+                        logging.info(f"已回滚事务，用户ID: {user_id}")
+                    except Exception as rollback_error:
+                        logging.error(f"回滚事务失败: {rollback_error}")
+                    raise
+                    
+                # 记录日志
                 logging.info(
-                    f"用户画像更新准备完成: user_id={user_id}, "
+                    f"用户画像更新完成: user_id={user_id}, "
                     f"fields={updated_fields}, reason={update_reason}, "
                     f"当前事务状态: {db.is_active}"
                 )
                 
                 return {
                     "success": True,
-                    "message": "用户画像更新准备完成",
+                    "message": "用户画像更新完成",
                     "updated_fields": updated_fields
                 }
             else:
@@ -697,6 +798,12 @@ class AIServiceClient:
             # 记录详细的错误堆栈
             import traceback
             logging.error(f"处理用户画像更新详细错误: {traceback.format_exc()}")
+            # 尝试回滚事务
+            try:
+                await db.rollback()
+                logging.info(f"已回滚事务，用户ID: {user_id}")
+            except Exception as rollback_error:
+                logging.error(f"回滚事务失败: {rollback_error}")
             # 由调用者负责处理回滚
             return {
                 "success": False,

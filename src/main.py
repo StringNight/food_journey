@@ -17,15 +17,15 @@ from .docs import custom_openapi
 import asyncio
 from .config.limiter import limiter
 
-# 禁用所有日志输出
-logging.getLogger().setLevel(logging.CRITICAL)
-logging.getLogger('uvicorn').setLevel(logging.CRITICAL)
-logging.getLogger('fastapi').setLevel(logging.CRITICAL)
-logging.getLogger('httpx').setLevel(logging.CRITICAL)
-logging.getLogger('httpcore').setLevel(logging.CRITICAL)
-logging.getLogger('matplotlib').setLevel(logging.CRITICAL)
-logging.getLogger('PIL').setLevel(logging.CRITICAL)
-logging.getLogger('gradio').setLevel(logging.CRITICAL)
+# 配置日志级别为INFO或DEBUG以查看更多日志
+logging.getLogger().setLevel(logging.INFO)  # 或者使用logging.DEBUG查看所有日志
+logging.getLogger('uvicorn').setLevel(logging.INFO)
+logging.getLogger('fastapi').setLevel(logging.INFO)
+logging.getLogger('httpx').setLevel(logging.WARNING)  # 这些库的日志可能太多，保持WARNING级别
+logging.getLogger('httpcore').setLevel(logging.WARNING)
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
+logging.getLogger('PIL').setLevel(logging.WARNING)
+logging.getLogger('gradio').setLevel(logging.INFO)
 
 # 导入所有模型以确保在创建表之前加载它们
 from .models import (
