@@ -44,7 +44,7 @@ async def root():
     <body>
         <div class="container">
             <h1>Welcome to Infsols</h1>
-            <p>上海寰解科技有限公司</p>
+            <h2>上海寰解科技有限公司</h2>
         </div>
     </body>
     </html>
