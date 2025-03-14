@@ -196,7 +196,8 @@ async def process_stream_response(
         created_at=datetime.now(),
     )
     db.add(system_message)
-    await db.flush()  # 确保消息被保存
+    # 只使用flush，不要在这里commit
+    await db.flush()  
 
     # 用于跟踪是否需要前端刷新数据
     profile_updated = False
@@ -212,7 +213,7 @@ async def process_stream_response(
             # 记录当前事务状态
             logger.info(f"提取到的用户画像更新，准备处理，事务状态：{db.is_active}")
             
-            # 处理用户画像更新
+            # 处理用户画像更新 - 确保这个函数内部不会提交事务
             update_result = await ai_client.process_profile_updates(
                 user_id=user_id, 
                 updates=updates, 
@@ -221,7 +222,7 @@ async def process_stream_response(
             
             if update_result["success"] and update_result["updated_fields"]:
                 logger.info(f"用户画像更新成功，用户ID: {user_id}, 更新字段: {update_result['updated_fields']}")
-                # 手动执行flush以确保更新写入数据库
+                # 只使用flush，不要在这里commit
                 await db.flush()
                 logger.info(f"已执行flush操作保存用户画像更新，用户ID: {user_id}")
                 profile_updated = True
