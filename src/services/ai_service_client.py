@@ -706,7 +706,7 @@ class AIServiceClient:
         Args:
             user_id: 用户ID
             updates: 更新内容
-            db: 数据库会话
+            db: 数据库会话（由调用者提供和管理）
             
         Returns:
             Dict[str, Any]: 处理结果
@@ -737,6 +737,9 @@ class AIServiceClient:
             
             # 输出要更新的字段列表
             logging.info(f"要更新的字段列表: {list(updates.keys()) if isinstance(updates, dict) else '无效更新'}")
+            
+            # 输出要更新的字段列表
+            logging.info(f"要更新的字段列表: {list(updates.keys())}")
             
             # 3. 应用更新
             if isinstance(updates, dict):

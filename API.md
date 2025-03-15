@@ -426,6 +426,142 @@ print(result)
 
 说明: 请确保前端在调用此接口时启用stream模式，以支持流式返回。
 
+## 训练记录API
+
+### 记录训练数据
+
+```
+POST /api/v1/profile/exercise
+```
+
+记录一次训练数据，包含各组次的详细信息。
+
+**请求体**
+```json
+{
+  "id": "uuid-optional",
+  "exercise_name": "硬拉",
+  "exercise_type": "力量",
+  "sets": [
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    },
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    }
+  ],
+  "calories_burned": 150.5,
+  "notes": "今天感觉状态很好",
+  "recorded_at": "2024-01-11T15:30:00Z"
+}
+```
+
+**响应体**
+```json
+{
+  "id": "uuid",
+  "user_id": "user-uuid",
+  "exercise_name": "硬拉",
+  "exercise_type": "力量",
+  "sets": [
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    },
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    }
+  ],
+  "calories_burned": 150.5,
+  "notes": "今天感觉状态很好",
+  "recorded_at": "2024-01-11T15:30:00Z",
+  "created_at": "2024-01-11T15:31:22Z",
+  "updated_at": "2024-01-11T15:31:22Z"
+}
+```
+
+### 快速记录多组训练数据
+
+```
+POST /api/v1/profile/exercise/multi-sets
+```
+
+快速记录多组相同参数的训练数据。适用于记录多组相同重量、相同次数的训练。
+
+**请求体**
+```json
+{
+  "id": "uuid-optional",
+  "exercise_name": "硬拉",
+  "exercise_type": "力量",
+  "num_sets": 3,
+  "reps": 10,
+  "weight": 60.0,
+  "calories_burned": 150.5,
+  "notes": "记录3组10次，每组60kg的硬拉",
+  "recorded_at": "2024-01-11T15:30:00Z"
+}
+```
+
+**响应体**
+```json
+{
+  "id": "uuid",
+  "user_id": "user-uuid",
+  "exercise_name": "硬拉",
+  "exercise_type": "力量",
+  "sets": [
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    },
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    },
+    {
+      "reps": 10,
+      "weight": 60.0,
+      "duration": null,
+      "distance": null
+    }
+  ],
+  "calories_burned": 150.5,
+  "notes": "记录3组10次，每组60kg的硬拉",
+  "recorded_at": "2024-01-11T15:30:00Z",
+  "created_at": "2024-01-11T15:31:22Z",
+  "updated_at": "2024-01-11T15:31:22Z"
+}
+```
+
+参数说明：
+- `id`: 可选，记录ID，如不提供将自动生成
+- `exercise_name`: 必填，训练名称
+- `exercise_type`: 必填，训练类型，可选值：力量、有氧、拉伸、其他
+- `num_sets`: 必填，要记录的组数
+- `reps`: 必填，每组重复次数
+- `weight`: 可选，重量（千克）
+- `duration`: 可选，持续时间（秒）
+- `distance`: 可选，距离（米）
+- `calories_burned`: 可选，消耗卡路里
+- `notes`: 可选，备注
+- `recorded_at`: 可选，记录时间，如不提供将使用当前时间
+
 ## 错误处理
 
 ### 验证错误
@@ -471,4 +607,211 @@ print(result)
 - 401 Unauthorized: 未认证或认证失败
 - 403 Forbidden: 账户被锁定或没有权限
 - 429 Too Many Requests: 请求频率超过限制
-- 500 Internal Server Error: 服务器内部错误 
+- 500 Internal Server Error: 服务器内部错误
+
+## 用户档案服务 (Profile Service)
+
+### 获取用户档案
+
+```
+GET /profile
+```
+
+**响应**
+```json
+{
+    "schema_version": "1.0",
+    "user_profile": {
+        "id": "string",
+        "username": "string",
+        "nickname": "string",
+        "avatar_url": "string",
+        "birth_date": "2023-01-01",
+        "age": 30,
+        "gender": "男",
+        "created_at": "2023-01-01T12:00:00Z",
+        "updated_at": "2023-01-01T12:00:00Z"
+    },
+    "health_profile": {
+        "height": 175,
+        "weight": 70,
+        "body_fat_percentage": 20,
+        "muscle_mass": 55,
+        "bmr": 1500,
+        "tdee": 2200,
+        "health_conditions": ["健康"],
+        "bmi": 22.9,
+        "water_ratio": 60
+    },
+    "diet_profile": {
+        "cooking_skill_level": "中级",
+        "favorite_cuisines": ["中餐", "日料"],
+        "dietary_restrictions": [],
+        "allergies": [],
+        "nutrition_goals": {
+            "protein": 120,
+            "carbs": 250,
+            "fat": 60
+        },
+        "calorie_preference": 2000,
+        "eating_habits": "规律三餐",
+        "diet_goal": "保持体重"
+    },
+    "fitness_profile": {
+        "fitness_level": "中级",
+        "exercise_frequency": 3,
+        "preferred_exercises": ["力量训练", "跑步"],
+        "fitness_goals": ["增肌", "提高耐力"],
+        "short_term_goals": ["增加5kg肌肉"],
+        "long_term_goals": ["保持健康"],
+        "goal_progress": 35,
+        "training_type": "力量训练",
+        "training_progress": 40,
+        "muscle_group_analysis": {
+            "胸肌": 30,
+            "背肌": 45,
+            "腿部": 35
+        },
+        "sleep_duration": 7.5,
+        "deep_sleep_percentage": 25,
+        "fatigue_score": 2,
+        "recovery_activities": ["拉伸", "按摩"],
+        "performance_metrics": {
+            "卧推": 80,
+            "深蹲": 120
+        },
+        "exercise_history": [],
+        "training_time_preference": "早晨",
+        "equipment_preferences": ["哑铃", "杠铃"]
+    },
+    "extended_attributes": {}
+}
+```
+
+### 更新用户基本信息
+
+```
+PUT /profile/basic
+```
+
+**请求体**
+```json
+{
+    "birth_date": "1990-01-01",
+    "gender": "男",
+    "height": 175,
+    "weight": 70,
+    "body_fat_percentage": 20,
+    "muscle_mass": 55,
+    "health_conditions": ["健康"]
+}
+```
+
+**响应**
+```json
+{
+    "schema_version": "1.0",
+    "message": "基础信息更新成功",
+    "updated_fields": ["birth_date", "gender", "height", "weight", "body_fat_percentage", "muscle_mass", "health_conditions"]
+}
+```
+
+### 更新饮食偏好
+
+```
+PUT /profile/diet
+```
+
+**请求体**
+```json
+{
+    "cooking_skill_level": "中级",
+    "favorite_cuisines": ["中餐", "日料"],
+    "dietary_restrictions": [],
+    "allergies": [],
+    "nutrition_goals": {
+        "protein": 120,
+        "carbs": 250,
+        "fat": 60
+    },
+    "calorie_preference": 2000,
+    "extended_attributes": {
+        "diet_advice": "增加蛋白质摄入，减少糖分摄入"
+    }
+}
+```
+
+**响应**
+```json
+{
+    "schema_version": "1.0",
+    "message": "饮食偏好更新成功",
+    "updated_fields": ["cooking_skill_level", "favorite_cuisines", "nutrition_goals", "calorie_preference", "extended_attributes.diet_advice"]
+}
+```
+
+### 记录餐食
+
+```
+POST /profile/meal
+```
+
+**请求体**
+```json
+{
+    "meal_type": "早餐",
+    "food_items": [
+        {
+            "food_name": "全麦面包",
+            "portion": 100,
+            "calories": 250,
+            "protein": 8,
+            "carbs": 45,
+            "fat": 3
+        },
+        {
+            "food_name": "鸡蛋",
+            "portion": 50,
+            "calories": 75,
+            "protein": 6,
+            "carbs": 1,
+            "fat": 5
+        }
+    ],
+    "total_calories": 325,
+    "notes": "早餐记录",
+    "recorded_at": "2023-01-01T08:00:00Z"
+}
+```
+
+**响应**
+```json
+{
+    "id": "string",
+    "user_id": "string",
+    "meal_type": "早餐",
+    "food_items": [
+        {
+            "food_name": "全麦面包",
+            "portion": 100,
+            "calories": 250,
+            "protein": 8,
+            "carbs": 45,
+            "fat": 3
+        },
+        {
+            "food_name": "鸡蛋",
+            "portion": 50,
+            "calories": 75,
+            "protein": 6,
+            "carbs": 1,
+            "fat": 5
+        }
+    ],
+    "total_calories": 325,
+    "notes": "早餐记录",
+    "recorded_at": "2023-01-01T08:00:00Z",
+    "created_at": "2023-01-01T08:05:00Z",
+    "updated_at": "2023-01-01T08:05:00Z"
+}
+``` 

@@ -9,11 +9,13 @@ from ..auth.jwt import get_current_user
 from ..schemas.profile import (
     CompleteProfile, BasicInfoUpdate, DietPreferencesUpdate,
     FitnessPreferencesUpdate, HealthStatsResponse, UpdateResponse,
-    ExerciseRecord, MealRecord, DailyNutritionSummary
+    ExerciseRecord, MealRecord, DailyNutritionSummary, ExerciseRecordCreate,
+    ExerciseSetMultiCreate, MealRecordCreate
 )
 import logging
 import traceback
 import uuid
+from sqlalchemy.orm import selectinload
 
 router = APIRouter()
 
@@ -430,7 +432,7 @@ async def get_health_stats(
 
 @router.post("/exercise", response_model=ExerciseRecord)
 async def record_exercise(
-    data: ExerciseRecord,
+    data: ExerciseRecordCreate,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
@@ -445,32 +447,219 @@ async def record_exercise(
         ExerciseRecord: 创建的运动记录
     """
     try:
-        exercise_record = ExerciseRecord(
+        # 导入datetime
+        from datetime import datetime
+        
+        # 创建一个UUID
+        from uuid import uuid4
+        
+        # 获取当前时间
+        now = datetime.now()
+        
+        # 使用模型中的ExerciseRecord，而不是schema中的
+        from ..models.workout import ExerciseRecord as DBExerciseRecord
+        from ..models.workout import ExerciseSet as DBExerciseSet, ExerciseType
+        
+        # 创建数据库记录
+        exercise_record = DBExerciseRecord(
+            id=data.id if data.id else str(uuid4()),
             user_id=current_user.id,
             exercise_name=data.exercise_name,
-            exercise_type=data.exercise_type,
+            exercise_type=ExerciseType(data.exercise_type), # 确保传入正确的枚举类型
             calories_burned=data.calories_burned,
             notes=data.notes,
-            recorded_at=data.recorded_at or datetime.now(),
-            sets=[ExerciseSet(**set_data.dict()) for set_data in data.sets]
+            recorded_at=data.recorded_at or now,
+            created_at=now,
+            updated_at=now
         )
         
         db.add(exercise_record)
-        await db.commit()
-        await db.refresh(exercise_record)
+        await db.flush()  # 获取ID
         
-        return exercise_record
+        # 创建运动组数记录
+        for set_data in data.sets:
+            db_set = DBExerciseSet(
+                exercise_record_id=exercise_record.id,
+                reps=set_data.reps,
+                weight=set_data.weight,
+                duration=set_data.duration,
+                distance=set_data.distance
+            )
+            db.add(db_set)
+        
+        await db.commit()
+        
+        # 刷新实例以获取所有关系数据
+        # 避免使用 db.refresh 在此处，因为它可能会导致异步问题
+        # 而是直接使用已有的数据构建返回对象
+        
+        # 构造返回的schema对象
+        from ..schemas.profile import ExerciseRecord as SchemaExerciseRecord
+        from ..schemas.profile import ExerciseSet as SchemaExerciseSet
+        
+        # 从数据库查询包含集合的记录
+        stmt = select(DBExerciseRecord).options(
+            selectinload(DBExerciseRecord.sets)
+        ).where(DBExerciseRecord.id == exercise_record.id)
+        result = await db.execute(stmt)
+        db_record = result.scalar_one_or_none()
+        
+        if not db_record:
+            raise HTTPException(status_code=404, detail="添加记录后无法检索")
+            
+        return SchemaExerciseRecord(
+            id=db_record.id,
+            user_id=db_record.user_id,
+            exercise_name=db_record.exercise_name,
+            exercise_type=db_record.exercise_type.value,  # 枚举值需要取.value
+            sets=[
+                SchemaExerciseSet(
+                    reps=db_set.reps,
+                    weight=db_set.weight,
+                    duration=db_set.duration,
+                    distance=db_set.distance
+                ) for db_set in db_record.sets
+            ],
+            calories_burned=db_record.calories_burned,
+            notes=db_record.notes,
+            recorded_at=db_record.recorded_at,
+            created_at=db_record.created_at,
+            updated_at=db_record.updated_at
+        )
     except Exception as e:
         await db.rollback()
         logging.error(f"记录运动数据失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"记录运动数据失败: {str(e)}"
         )
 
+@router.post("/exercise/multi-sets", response_model=ExerciseRecord)
+async def record_exercise_multi_sets(
+    data: ExerciseSetMultiCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """记录用户的多组训练数据，可以指定相同配置的重复组数
+    
+    Args:
+        data: 含有组数信息的训练记录数据
+        current_user: 当前用户
+        db: 数据库会话
+        
+    Returns:
+        ExerciseRecord: 创建的运动记录
+    """
+    try:
+        # 导入依赖
+        from datetime import datetime
+        from uuid import uuid4
+        from ..models.workout import ExerciseRecord as DBExerciseRecord
+        from ..models.workout import ExerciseSet as DBExerciseSet, ExerciseType
+        from ..schemas.profile import ExerciseRecordCreate, ExerciseSet
+        
+        # 获取当前时间
+        now = datetime.now()
+        
+        # 创建完整的sets数据列表
+        full_sets = []
+        for _ in range(data.num_sets):
+            full_sets.append(
+                ExerciseSet(
+                    reps=data.reps,
+                    weight=data.weight,
+                    duration=data.duration,
+                    distance=data.distance
+                )
+            )
+        
+        # 创建标准的ExerciseRecordCreate对象
+        exercise_record_data = ExerciseRecordCreate(
+            id=data.id,
+            user_id=data.user_id,
+            exercise_name=data.exercise_name,
+            exercise_type=data.exercise_type,
+            sets=full_sets,
+            calories_burned=data.calories_burned,
+            notes=data.notes,
+            recorded_at=data.recorded_at
+        )
+        
+        # 创建数据库记录
+        exercise_record = DBExerciseRecord(
+            id=data.id if data.id else str(uuid4()),
+            user_id=current_user.id,
+            exercise_name=data.exercise_name,
+            exercise_type=ExerciseType(data.exercise_type),
+            calories_burned=data.calories_burned,
+            notes=data.notes,
+            recorded_at=data.recorded_at or now,
+            created_at=now,
+            updated_at=now
+        )
+        
+        db.add(exercise_record)
+        await db.flush()  # 获取ID
+        
+        # 创建多组训练记录
+        for _ in range(data.num_sets):
+            db_set = DBExerciseSet(
+                exercise_record_id=exercise_record.id,
+                reps=data.reps,
+                weight=data.weight,
+                duration=data.duration,
+                distance=data.distance
+            )
+            db.add(db_set)
+        
+        await db.commit()
+        
+        # 构造返回的schema对象
+        from ..schemas.profile import ExerciseRecord as SchemaExerciseRecord
+        from ..schemas.profile import ExerciseSet as SchemaExerciseSet
+        
+        # 从数据库查询包含集合的记录
+        stmt = select(DBExerciseRecord).options(
+            selectinload(DBExerciseRecord.sets)
+        ).where(DBExerciseRecord.id == exercise_record.id)
+        result = await db.execute(stmt)
+        db_record = result.scalar_one_or_none()
+        
+        if not db_record:
+            raise HTTPException(status_code=404, detail="添加记录后无法检索")
+            
+        return SchemaExerciseRecord(
+            id=db_record.id,
+            user_id=db_record.user_id,
+            exercise_name=db_record.exercise_name,
+            exercise_type=db_record.exercise_type.value,
+            sets=[
+                SchemaExerciseSet(
+                    reps=db_set.reps,
+                    weight=db_set.weight,
+                    duration=db_set.duration,
+                    distance=db_set.distance
+                ) for db_set in db_record.sets
+            ],
+            calories_burned=db_record.calories_burned,
+            notes=db_record.notes,
+            recorded_at=db_record.recorded_at,
+            created_at=db_record.created_at,
+            updated_at=db_record.updated_at
+        )
+    except Exception as e:
+        await db.rollback()
+        logging.error(f"记录多组运动数据失败: {str(e)}")
+        logging.error(traceback.format_exc())
+        raise HTTPException(
+            status_code=500,
+            detail=f"记录多组运动数据失败: {str(e)}"
+        )
+
 @router.post("/meal", response_model=MealRecord)
 async def record_meal(
-    data: MealRecord,
+    data: MealRecordCreate,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
@@ -485,54 +674,122 @@ async def record_meal(
         MealRecord: 创建的餐食记录
     """
     try:
-        meal_record = MealRecord(
+        # 如果没有提供ID，生成一个新的
+        from uuid import uuid4
+        meal_id = data.id or str(uuid4())
+        
+        # 创建数据库模型
+        from ..models.nutrition import MealRecord as MealRecordModel
+        from ..models.nutrition import FoodItem as FoodItemModel
+        from ..models.nutrition import DailyNutritionSummary as DailyNutritionSummaryModel
+        
+        # 创建主记录
+        meal_record = MealRecordModel(
+            id=meal_id,
             user_id=current_user.id,
             meal_type=data.meal_type,
             total_calories=data.total_calories,
             location=data.location,
             mood=data.mood,
             notes=data.notes,
-            recorded_at=data.recorded_at or datetime.now(),
-            food_items=[FoodItem(**item.dict()) for item in data.food_items]
+            recorded_at=data.recorded_at or datetime.now()
         )
         
+        # 添加到数据库
         db.add(meal_record)
+        await db.flush()  # 获取ID
+        
+        # 添加食物项目
+        for item in data.food_items:
+            food_item = FoodItemModel(
+                meal_id=meal_record.id,
+                food_name=item.food_name,
+                portion=item.portion,
+                calories=item.calories,
+                protein=item.protein,
+                carbs=item.carbs,
+                fat=item.fat,
+                fiber=item.fiber
+            )
+            db.add(food_item)
+        
         await db.commit()
         await db.refresh(meal_record)
         
         # 更新每日营养摄入汇总
         date = meal_record.recorded_at.date()
         summary = await db.execute(
-            select(DailyNutritionSummary)
+            select(DailyNutritionSummaryModel)
             .where(
-                DailyNutritionSummary.user_id == current_user.id,
-                DailyNutritionSummary.date == date
+                DailyNutritionSummaryModel.user_id == current_user.id,
+                DailyNutritionSummaryModel.date == date
             )
         )
         summary = summary.scalar_one_or_none()
         
         if not summary:
-            summary = DailyNutritionSummary(
+            summary = DailyNutritionSummaryModel(
                 user_id=current_user.id,
-                date=date
+                date=date,
+                total_calories=0,
+                total_protein=0,
+                total_carbs=0,
+                total_fat=0,
+                total_fiber=0,
+                net_calories=0
             )
             db.add(summary)
         
-        # 更新汇总数据
-        summary.total_calories += meal_record.total_calories
-        summary.total_protein += sum(item.protein or 0 for item in meal_record.food_items)
-        summary.total_carbs += sum(item.carbs or 0 for item in meal_record.food_items)
-        summary.total_fat += sum(item.fat or 0 for item in meal_record.food_items)
-        summary.total_fiber += sum(item.fiber or 0 for item in meal_record.food_items)
+        # 更新汇总数据 - 确保在做加法前处理None值
+        summary.total_calories = (summary.total_calories or 0) + meal_record.total_calories
+        summary.total_protein = (summary.total_protein or 0) + sum(item.protein or 0 for item in data.food_items)
+        summary.total_carbs = (summary.total_carbs or 0) + sum(item.carbs or 0 for item in data.food_items)
+        summary.total_fat = (summary.total_fat or 0) + sum(item.fat or 0 for item in data.food_items)
+        summary.total_fiber = (summary.total_fiber or 0) + sum(item.fiber or 0 for item in data.food_items)
         summary.net_calories = summary.total_calories  # 需要减去运动消耗
         
         await db.commit()
-        await db.refresh(summary)
         
-        return meal_record
+        # 转换为响应模型
+        from ..schemas.profile import MealRecord as MealRecordSchema
+        from ..schemas.profile import FoodItem as FoodItemSchema
+        
+        # 获取关联的食物项目
+        food_items_query = await db.execute(
+            select(FoodItemModel).where(FoodItemModel.meal_id == meal_record.id)
+        )
+        food_items = food_items_query.scalars().all()
+        
+        # 创建响应
+        response = MealRecordSchema(
+            id=meal_record.id,
+            user_id=meal_record.user_id,
+            meal_type=meal_record.meal_type,
+            food_items=[
+                FoodItemSchema(
+                    food_name=item.food_name,
+                    portion=item.portion,
+                    calories=item.calories,
+                    protein=item.protein,
+                    carbs=item.carbs,
+                    fat=item.fat,
+                    fiber=item.fiber
+                ) for item in food_items
+            ],
+            total_calories=meal_record.total_calories,
+            location=meal_record.location,
+            mood=meal_record.mood,
+            notes=meal_record.notes,
+            recorded_at=meal_record.recorded_at,
+            created_at=meal_record.created_at,
+            updated_at=meal_record.updated_at
+        )
+        
+        return response
     except Exception as e:
         await db.rollback()
         logging.error(f"记录餐食数据失败: {str(e)}")
+        logging.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"记录餐食数据失败: {str(e)}"

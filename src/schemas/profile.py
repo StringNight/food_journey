@@ -161,6 +161,32 @@ class ExerciseSet(BaseModel):
     duration: Optional[int] = Field(None, description="持续时间（秒）", ge=0)
     distance: Optional[float] = Field(None, description="距离（米）", ge=0)
 
+class ExerciseSetMultiCreate(BaseModel):
+    """多组运动记录创建模型"""
+    id: Optional[str] = Field(None, description="记录ID（可选，如不提供将自动生成）")
+    user_id: Optional[str] = Field(None, description="用户ID（可选，默认使用当前用户）")
+    exercise_name: str = Field(..., description="运动名称")
+    exercise_type: str = Field(..., description="运动类型", pattern="^(力量|有氧|拉伸|其他)$")
+    num_sets: int = Field(..., description="组数", ge=1, le=100)
+    reps: int = Field(..., description="每组重复次数", ge=0)
+    weight: Optional[float] = Field(None, description="重量（千克）", ge=0)
+    duration: Optional[int] = Field(None, description="持续时间（秒）", ge=0)
+    distance: Optional[float] = Field(None, description="距离（米）", ge=0)
+    calories_burned: Optional[float] = Field(None, description="消耗卡路里", ge=0)
+    notes: Optional[str] = Field(None, description="备注")
+    recorded_at: Optional[datetime] = Field(None, description="记录时间，如不提供将使用当前时间")
+
+class ExerciseRecordCreate(BaseModel):
+    """运动记录创建模型"""
+    id: Optional[str] = Field(None, description="记录ID（可选，如不提供将自动生成）")
+    user_id: Optional[str] = Field(None, description="用户ID（可选，默认使用当前用户）")
+    exercise_name: str = Field(..., description="运动名称")
+    exercise_type: str = Field(..., description="运动类型", pattern="^(力量|有氧|拉伸|其他)$")
+    sets: List[ExerciseSet] = Field(..., description="运动组数详情")
+    calories_burned: Optional[float] = Field(None, description="消耗卡路里", ge=0)
+    notes: Optional[str] = Field(None, description="备注")
+    recorded_at: Optional[datetime] = Field(None, description="记录时间，如不提供将使用当前时间")
+
 class ExerciseRecord(BaseModel):
     """运动记录模型"""
     id: str = Field(..., description="记录ID")
@@ -183,6 +209,18 @@ class FoodItem(BaseModel):
     carbs: Optional[float] = Field(None, description="碳水化合物（克）", ge=0)
     fat: Optional[float] = Field(None, description="脂肪（克）", ge=0)
     fiber: Optional[float] = Field(None, description="膳食纤维（克）", ge=0)
+
+class MealRecordCreate(BaseModel):
+    """餐食记录创建模型"""
+    id: Optional[str] = Field(None, description="记录ID（可选，如不提供将自动生成）")
+    user_id: Optional[str] = Field(None, description="用户ID（可选，默认使用当前用户）")
+    meal_type: str = Field(..., description="餐食类型", pattern="^(早餐|午餐|晚餐|加餐)$")
+    food_items: List[FoodItem] = Field(..., description="食物列表")
+    total_calories: float = Field(..., description="总卡路里", ge=0)
+    location: Optional[str] = Field(None, description="用餐地点")
+    mood: Optional[str] = Field(None, description="用餐心情")
+    notes: Optional[str] = Field(None, description="备注")
+    recorded_at: Optional[datetime] = Field(None, description="记录时间，如不提供将使用当前时间")
 
 class MealRecord(BaseModel):
     """餐食记录模型"""
