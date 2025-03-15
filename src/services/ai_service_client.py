@@ -606,58 +606,98 @@ class AIServiceClient:
             logging.error(f"分析用户消息失败: {e}")
             return {"has_updates": False, "updates": {}}
 
-    def extract_profile_updates(self, response: str) -> Optional[Dict[str, Any]]:
-        """从AI助手的回复中提取用户画像更新建议
+    def extract_profile_updates(self, message: str) -> Optional[Dict[str, Any]]:
+        """从用户消息中提取可能的用户画像更新信息
         
         Args:
-            response: AI助手的回复文本
+            message: 用户的消息文本
             
         Returns:
-            Optional[Dict[str, Any]]: 提取的更新建议，如果没有更新建议则返回None
+            Optional[Dict[str, Any]]: 提取的更新信息，如果没有更新信息则返回None
         """
         try:
-            # 记录完整的响应以便调试
-            logging.info(f"尝试从以下AI回复中提取用户画像更新建议: {response[:200]}...")
+            # 记录完整的用户消息以便调试
+            logging.info(f"尝试从用户消息中提取用户画像更新信息: {message[:200]}...")
             
-            # 查找更新建议部分
-            start_marker = "===用户画像更新建议==="
-            end_marker = "==================="
+            # 构建系统提示词，用于分析用户消息
+            system_prompt = """你是一个专门用于分析用户消息并提取用户画像信息的AI助手。
+请分析用户消息中可能包含的个人信息，如身高、体重、年龄、性别、健康状况、饮食偏好、运动习惯等。
+只提取明确提及的信息，不要猜测。如果没有相关信息，返回空对象。
+返回格式必须是有效的JSON，包含以下可能的字段（只包含用户明确提及的字段）：
+{
+    "birth_date": "YYYY-MM-DD",  // 出生日期，格式为ISO日期
+    "gender": "男|女|其他",  // 性别
+    "height": 170.0,  // 身高，单位：厘米
+    "weight": 65.0,  // 体重，单位：千克
+    "body_fat_percentage": 20.0,  // 体脂率，单位：%
+    "muscle_mass": 50.0,  // 肌肉量，单位：千克
+    "health_conditions": ["高血压", "糖尿病"],  // 健康状况
+    "health_goals": ["减重", "增肌"],  // 健康目标
+    "cooking_skill_level": "初级|中级|高级",  // 烹饪技能水平
+    "favorite_cuisines": ["中餐", "日料"],  // 喜爱的菜系
+    "dietary_restrictions": ["无麸质", "素食"],  // 饮食限制
+    "allergies": ["花生", "海鲜"],  // 过敏原
+    "calorie_preference": 2000,  // 卡路里偏好，单位：卡路里
+    "nutrition_goals": {  // 营养目标
+        "protein": 150,  // 蛋白质，单位：克
+        "carbs": 200,  // 碳水化合物，单位：克
+        "fat": 60  // 脂肪，单位：克
+    },
+    "fitness_level": "初级|中级|高级",  // 健身水平
+    "exercise_frequency": 3,  // 运动频率，每周次数
+    "preferred_exercises": ["跑步", "力量训练"],  // 偏好的运动方式
+    "fitness_goals": ["增肌", "提高耐力"],  // 健身目标
+    "update_reason": "基于用户提供的信息..."  // 更新原因说明
+}
+只返回JSON对象，不要有任何其他文字说明。如果没有提取到任何信息，返回空对象 {}。"""
+
+            # 构建消息列表
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": message}
+            ]
             
-            if start_marker not in response:
-                logging.info(f"未找到用户画像更新建议开始标记: '{start_marker}'")
-                return None
-                
-            if end_marker not in response:
-                logging.info(f"未找到用户画像更新建议结束标记: '{end_marker}'")
-                return None
-                
-            # 提取JSON部分
-            start_idx = response.index(start_marker) + len(start_marker)
-            end_idx = response.index(end_marker, start_idx)
-            json_str = response[start_idx:end_idx].strip()
+            # 调用LLM分析用户消息
+            full_response = ""
+            for chunk in self.chat_client.predict(
+                messages=messages,
+                model="qwen2.5:14b",
+                max_tokens=500,
+                api_name="/chat"
+            ):
+                if isinstance(chunk, str):
+                    full_response += chunk
             
-            # 记录提取到的JSON字符串
-            logging.info(f"从AI回复中提取到用户画像更新建议: {json_str}")
-            
+            # 尝试解析JSON响应
             try:
-                # 解析JSON
+                # 清理可能的前后缀文本
+                json_str = full_response.strip()
+                # 查找JSON开始和结束的位置
+                start_idx = json_str.find('{')
+                end_idx = json_str.rfind('}') + 1
+                if start_idx >= 0 and end_idx > start_idx:
+                    json_str = json_str[start_idx:end_idx]
+                
                 updates = json.loads(json_str)
+                logging.info(f"从用户消息中提取到的信息: {updates}")
                 
-                if "updates" not in updates:
-                    logging.error(f"用户画像更新JSON缺少'updates'字段: {json_str}")
+                # 如果没有提取到任何信息，返回None
+                if not updates:
+                    logging.info("未从用户消息中提取到任何用户画像信息")
                     return None
-                
-                # 记录解析后的更新内容
-                logging.info(f"解析后的用户画像更新: {updates['updates']}")
-                
-                # 直接返回更新建议，不再强制要求包含 'update_reason' 字段，以支持所有新的用户画像字段
-                return updates["updates"]
-            except json.JSONDecodeError as json_err:
-                logging.error(f"解析用户画像更新JSON失败: {str(json_err)}, 原始字符串: {json_str}")
+                    
+                # 添加更新原因
+                if "update_reason" not in updates:
+                    updates["update_reason"] = "基于用户提供的信息自动更新"
+                    
+                return updates
+                    
+            except json.JSONDecodeError as e:
+                logging.error(f"解析LLM响应失败: {e}, 响应内容: {full_response}")
                 return None
-            
+                
         except Exception as e:
-            logging.error(f"提取用户画像更新建议失败: {str(e)}, 响应内容: {response[:200]}...")
+            logging.error(f"从用户消息中提取用户画像更新信息失败: {e}")
             return None
 
     async def process_profile_updates(self, user_id: str, updates: Dict[str, Any], db: AsyncSession) -> Dict[str, Any]:
